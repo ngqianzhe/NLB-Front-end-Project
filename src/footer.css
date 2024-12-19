@@ -1,0 +1,57 @@
+.footer {
+  background-color: #333; /* Dark background color */
+  padding: 35px;
+  padding-top: 1rem;
+  text-align: center; /* Center the content */
+  bottom: 0;
+  width: 100%;
+  color: rgb(174, 172, 172);
+}
+
+.footer-content {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Distribute space between items */
+  align-items: center; /* Vertically align items */
+}
+
+.left-links {
+  list-style: none; /* Remove bullet points */
+  padding: 0;
+  padding-bottom: 20px;
+  margin: 0;;
+}
+
+.left-links li {
+  display: inline-block; /* Arrange links horizontally */
+  margin-right: 20px;
+}
+
+.list-text {
+  text-decoration: none; 
+  color: rgb(174, 172, 172);
+  font-weight: normal;
+  font-size: 13px;
+}
+
+.list-text:hover {
+  text-decoration: underline;
+  font-weight: bold;
+  color: rgb(174, 172, 172);
+}
+
+.list-text .faRightFromBracket { 
+  text-decoration: none !important; 
+  color: rgb(174, 172, 172) !important;
+  font-weight: normal !important;
+}
+
+.list-text:hover .faRightFromBracket {
+  text-decoration: underline !important;
+  font-weight: bold !important;
+  color: rgb(174, 172, 172) !important; 
+}
+
+.right-text {
+  font-size: 0.8em; /* Slightly smaller font size */
+  padding-top: 3em;
+}

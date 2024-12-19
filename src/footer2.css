@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+.footer-2 {
+  background-color: #f0f0f0; /* Light gray background */
+  padding: 10px 10px; /* Add some padding */
+  font-family: "Lato", serif;
+  text-align: left;
+  padding-inline-start: 40px;
+}
+
+
+.footer-content-2 {
+  max-width: 1200px; /* Set a max width for the content */
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+.footer-column-2 {
+  width: 150px; /* Adjust width as needed */
+  margin-bottom: 20px;
+}
+
+.footer-column-2 h4 {
+  color: #0675BD; /* Darker color for headings */
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.footer-column-2 a {
+  color: #0675BD; /* Slightly lighter color for links */
+  text-decoration: none;
+  display: block; /* Make links fill the width */
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+.footer-column-2 a:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.social-links-2 a {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 15px;
+  color: #0675BD;
+}
+
+.bottom-links-2 {
+  margin-top: 30px;
+  font-size: 0.8em;
+  text-align: right;
+}
+
+.bottom-links-2 a:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.bottom-links-2 a {
+  color: #0675BD;
+  text-decoration: none;
+  margin: 0 10px;
+}
