@@ -1,49 +1,57 @@
 import './Navbar.css'; // Import your CSS for styling
-import { faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faSearch, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import { useState } from 'react';
 
-function toggleSearchPopup() {
-  const searchPopup = document.querySelector(".search-popup");
-  const now = new Date();
-  const hour = now.getHours();
-  const navbar = document.querySelector(".navbar"); 
-
-  if (searchPopup) {
-    searchPopup.style.display = searchPopup.style.display === "none" ? "block" : "none"; 
-    if (hour >= 18 || hour < 5) { 
-      searchPopup.style.backgroundColor = "#101c2c"; 
-    }
-
-    if (navbar) {
-      // Toggle the border-bottom style
-      if (navbar.style.borderBottom === "none") {
-        navbar.style.borderBottom = "1px solid white"; // Add border
-      } else {
-        navbar.style.borderBottom = "none"; // Remove border
+const Navbar = () => {
+  const [searchIcon, setSearchIcon] = useState(faSearch);
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // Add state for popup visibility
+  function toggleSearchPopup() {
+    const searchPopup = document.querySelector(".search-popup");
+    const now = new Date();
+    const hour = now.getHours();
+    const navbar = document.querySelector(".navbar"); 
+    const navItem = document.querySelector(".nav-item");
+    setIsPopupOpen(!isPopupOpen); // Toggle popup visibility
+  
+    if (searchPopup) {
+      searchPopup.style.display = searchPopup.style.display === "none" ? "block" : "none"; 
+      setSearchIcon(searchIcon === faSearch ? faXmark : faSearch);
+      if (hour >= 18 || hour < 5) { 
+        searchPopup.style.backgroundColor = "#101c2c"; 
+      }
+  
+      if (navbar) {
+        // Toggle the border-bottom style
+        if (navbar.style.borderBottom === "none") {
+          navbar.style.borderBottom = "1px solid white"; // Add border
+          navItem.style.paddingInlineEnd = "2em";
+        } else {
+          navbar.style.borderBottom = "none"; // Remove border
+          navItem.style.paddingInlineEnd = "2.5em";
+        }
       }
     } 
-  } 
-}
-
-function performSearch() {
-  const searchInput = document.getElementById("searchInput");
-  if (searchInput) {
-    const searchTerm = searchInput.value;
-    // ... (construct the URL and redirect) ...
-    const url = `/search-results?q=${searchTerm}`; 
-    window.location.href = url; // Redirect to the search results page
-  } else {
-    console.error("Search input element not found!");
   }
-}
 
-// Update the background color every hour
-setInterval(toggleSearchPopup, 60 * 60 * 1000); // 1 hour in milliseconds
+  /*function performSearch() {
+    const searchInput = document.getElementById("searchInput");
+    if (searchInput) {
+      const searchTerm = searchInput.value;
+      // ... (construct the URL and redirect) ...
+      const url = `/search-results?q=${searchTerm}`; 
+      window.location.href = url; // Redirect to the search results page
+    } else {
+      console.error("Search input element not found!");
+    }
+  }*/
 
-function Navbar() {
+  // Update the background color every hour
+  setInterval(toggleSearchPopup, 60 * 60 * 1000); // 1 hour in milliseconds
+
   return (
     <div className="navigation-bar">
         <div className="govt-banner-wrapper"> 
@@ -56,19 +64,19 @@ function Navbar() {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link" href="login.jsx"><FontAwesomeIcon icon={faUser} size="xl" color="white"/></a>
+                  <a className="nav-link" href="login.jsx"><FontAwesomeIcon className="user-icon" icon={faUser} size="xl" color="white"/></a>
                 </li>
                 <li className="nav-item">
                   <span className="nav-link" onClick={toggleSearchPopup}> 
-                    <FontAwesomeIcon className="search-icon" icon={faSearch} size="xl" color="white"/>
+                    <FontAwesomeIcon className="search-icon" icon={searchIcon} size="xl" color="white"/>
                   </span>
                 </li>
               </ul>  
             </div>
         </nav>
         <div className="search-popup" id="searchPopup" style={{ display: "none"}}> {/* Initially hidden */}
-            <FontAwesomeIcon className="search-icon" icon={faSearch} size="lg" color="white" fontWeight="bold"/>    <input type="text" id="searchInput" placeholder="What do you want to search for?" />
-            <button className="button" type="button" onClick={performSearch()}>Search</button>
+            <FontAwesomeIcon icon={faSearch} size="lg" color="white" fontWeight="bold"/>    <input type="text" id="searchInput" placeholder="What do you want to search for?" />
+            <button className="button" type="button">Search</button>
             <br /> <br />
             <p style={{ color: "white", textAlign: "left", paddingInlineStart: "70px" }}>Search: 
               <label style={{ marginLeft: "10px" }} htmlFor="option1">

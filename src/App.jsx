@@ -119,7 +119,7 @@ const Chatbot = () => {
   return (
     <>
       <Navbar />
-      <div style={{ textAlign: "left", paddingInlineStart: "20px", color: "white", marginTop: "3rem", backgroundImage: "linear-gradient(to bottom, rgba(25, 43, 65, 1), rgba(10, 28, 44, 1)), url('NLB.png')", backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", paddingBottom: "500px"}}>
+      <div style={{ textAlign: "left", paddingInlineStart: "20px", color: "white", marginTop: "3rem" }}>
         <h6 id="greeting" style={{fontWeight: "bold"}}></h6>
         <h2>This is a sample text</h2>
       </div>

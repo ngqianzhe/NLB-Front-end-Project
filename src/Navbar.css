@@ -16,11 +16,19 @@
 }
 
 .nav-item {
-  padding-inline-end: 1.5em;
+  padding-inline-end: 2em;
 }
 
 .search-icon {
   cursor: pointer;
+}
+
+.search-icon:hover {
+  color: #e07c1c; 
+}
+
+.user-icon:hover {
+  color: #e07c1c; 
 }
 
 /* Search bar popup styles */

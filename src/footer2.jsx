@@ -3,7 +3,7 @@ import { faFacebook, faInstagram, faLinkedin, faYoutube } from '@fortawesome/fre
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function footer2() {
+const footer2 = () => {
   return (
     <div className="footer-2">
       <a href="App.jsx">

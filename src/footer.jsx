@@ -2,10 +2,10 @@ import './footer.css';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const date = new Date();
-const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
-function footer() {
+const footer = () => {
+  const date = new Date();
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
   return (
       <div className="footer">
       <div className="footer-content">
