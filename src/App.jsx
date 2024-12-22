@@ -83,6 +83,21 @@ const Chatbot = () => {
     }
   }
 
+  function updateBackgroundColor() {
+    const now = new Date();
+    const hour = now.getHours();
+    const background = document.getElementById("root"); // Get the body element
+  
+    if (hour >= 18 || hour < 5) { // Evening time (6 PM to 5 AM)
+      background.style.backgroundColor = "#101c2c"; // Darker color
+    }
+  }
+
+  updateBackgroundColor();
+
+  // Update the background color every hour
+  setInterval(updateBackgroundColor, 60 * 60 * 1000); // 1 hour in milliseconds
+
   useEffect(() => {
     // Update the greeting initially
     updateGreeting();
@@ -104,8 +119,8 @@ const Chatbot = () => {
   return (
     <>
       <Navbar />
-      <div style={{ textAlign: "left", paddingInlineStart: "20px", color: "white", marginTop: "3rem"}}>
-        <h4 id="greeting"></h4>
+      <div style={{ textAlign: "left", paddingInlineStart: "20px", color: "white", marginTop: "3rem", backgroundImage: "linear-gradient(to bottom, rgba(25, 43, 65, 1), rgba(10, 28, 44, 1)), url('NLB.png')", backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", paddingBottom: "500px"}}>
+        <h6 id="greeting" style={{fontWeight: "bold"}}></h6>
         <h2>This is a sample text</h2>
       </div>
       <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "20rem" }}> 

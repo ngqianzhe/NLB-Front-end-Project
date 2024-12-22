@@ -2,6 +2,10 @@
   border-bottom: 1px solid white;
 }
 
+.navigation-bar {
+  padding-bottom: 10px;
+}
+
 .icon {
   padding-right: 40.7em;
   margin-left: 5px;
@@ -13,4 +17,53 @@
 
 .nav-item {
   padding-inline-end: 1.5em;
+}
+
+.search-icon {
+  cursor: pointer;
+}
+
+/* Search bar popup styles */
+.search-popup {
+  top: 100%; /* Position it right below the navbar */ 
+  width: 100%; /* Make it span the full width */
+  padding: 20px;
+  display: none; /* Hidden by default */
+  background-color: #02615b;
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Add transitions (optional) */
+  border-bottom: 1px solid white;
+}
+
+.search-popup.show {
+  display: block; 
+  opacity: 1;  /* Make it visible */
+  visibility: visible; /* Ensure it's not hidden */
+}
+
+.search-popup input[type="text"] {
+  width: 85%;
+  padding: 10px;
+  border-color: transparent;
+  border-bottom: 1px solid #ccc;
+  background-color: transparent;
+  box-sizing: border-box;
+  font-family: 'Calibri', 'sans-serif';
+}
+
+.search-popup input::placeholder {
+  color: white;
+}
+
+.button {
+  background-color:#e07c1c;
+  color: white;
+  border-radius: 10px;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+input[type="radio"]:checked {
+  accent-color: #e07c1c; /* Change the radio button's accent color */
 }
