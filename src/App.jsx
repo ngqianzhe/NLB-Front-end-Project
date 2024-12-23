@@ -1,75 +1,18 @@
 import './App.css';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
 import Navbar from './Navbar.jsx'; 
 import Footer from './footer.jsx';
 import Footer2 from './footer2.jsx';
-import { 
-  MainContainer, 
-  ChatContainer, 
-  MessageList, 
-  Message, 
-  MessageInput 
-} from "@chatscope/chat-ui-kit-react";
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-const Chatbot = () => {
-  const [messages1, setMessages1] = useState([
-    {
-      message: "Hello from Chatbot 1! How can I help you?",
-      sender: "Chatbot1" 
-    }
-  ]);
-  const [messages2, setMessages2] = useState([
-    {
-      message: "Greetings from Chatbot 2! What can I do for you?",
-      sender: "Chatbot2" 
-    }
-  ]);
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faLocationDot, faArrowRight, faCreditCard, faBookOpen, faUserFriends, 
+  faCalendarCheck, faBriefcase, faHandshake 
+} from '@fortawesome/free-solid-svg-icons'; 
 
-  const [showChat1, setShowChat1] = useState(false);
-  const [showChat2, setShowChat2] = useState(false);
-
-  const handleMessageSend = async (messageText, chatNumber) => {
-    if (chatNumber === 1) {
-      setMessages1([...messages1, { message: messageText, sender: "user" }]);
-      try {
-        const response = await axios.post('/api/ai1', { message: messageText });
-        setMessages1([
-          ...messages1,
-          { message: messageText, sender: "user" },
-          { message: response.data.message, sender: "Chatbot1" },
-        ]);
-      } catch (error) {
-        console.error("Error fetching response from Chatbot 1:", error);
-        // ... error handling for Chatbot 1 ...
-      }
-    } else { // chatNumber === 2
-      setMessages2([...messages2, { message: messageText, sender: "user" }]);
-      try {
-        const response = await axios.post('/api/ai2', { message: messageText });
-        setMessages2([
-          ...messages2,
-          { message: messageText, sender: "user" },
-          { message: response.data.message, sender: "Chatbot2" }, 
-        ]);
-      } catch (error) {
-        console.error("Error fetching response from Chatbot 2:", error);
-        // ... error handling for Chatbot 2 ... 
-      }
-    }
-  };
-
-  const toggleChat = (chatNumber) => {
-    if (chatNumber === 1) {
-      setShowChat1(!showChat1);
-    } else {
-      setShowChat2(!showChat2);
-    }
-  };
-
-  
+const Home = () => {  
   function getGreeting() {
     const now = new Date();
     const hour = now.getHours();
@@ -119,88 +62,83 @@ const Chatbot = () => {
   return (
     <>
       <Navbar />
-      <div style={{ textAlign: "left", paddingInlineStart: "20px", color: "white", marginTop: "3rem" }}>
+      <div style={{ textAlign: "left", paddingInlineStart: "20px", color: "white", marginTop: "3rem", marginBottom: "5rem" }}>
         <h6 id="greeting" style={{fontWeight: "bold"}}></h6>
-        <h2>This is a sample text</h2>
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "20rem" }}> 
-        <div 
-          onClick={() => toggleChat(1)} 
-          style={{ 
-            width: "80px", 
-            height: "80px", 
-            borderRadius: "50%", 
-            backgroundColor: "#0084ff", // Example chat bubble color
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            cursor: "pointer"
-          }}
-        >
-          <span style={{ color: "white", fontSize: "20px" }}>
-            {showChat1 ? "Hide" : "Chat 1"} 
-          </span>
-        </div>
+        <h4 id="header" style={{textAlign: "center", fontWeight: "bold"}}>What would you like to do today?</h4> <br />
+        <div className="content-wrapper">
+          <div className="container-box">
+            <h4 style={{fontWeight: "bold"}}>Plan Your Visit</h4>
 
-        {/* Similar chat bubble for Chatbot 2 */}
-        <div 
-          onClick={() => toggleChat(2)} 
-          style={{ 
-            width: "80px", 
-            height: "80px", 
-            borderRadius: "60%", 
-            backgroundColor: "#0084ff", 
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            cursor: "pointer"
-          }}
-        >
-          <span style={{ color: "white", fontSize: "20px" }}>
-            {showChat2 ? "Hide" : "Chat 2"} 
-          </span>
-        </div>
-      </div>
+            <div className="location">
+              <FontAwesomeIcon style={{marginRight: "3px", textAlign: "center"}} icon={faLocationDot} color="white" size="sm" />
+              <select>
+                <option>National Library / Lee Kong Chian Reference Library</option>
+                <option>National Archives of Singapore</option>
+                <option>Ang Mo Kio Public Library</option>
+                <option>Bedok Public Library</option>
+                <option>Bishan Public Library</option>
+                <option>Bukit Batok Public Library</option>
+              </select>
+            </div>
 
-      <div style={{ display: "flex" }}>
-        {showChat1 && ( 
-          <div style={{ width: "50%", position: "relative", height: "500px" }}>
-            <MainContainer>
-              <ChatContainer>
-                <MessageList>
-                  {messages1.map((message, i) => (
-                    <Message key={i} model={message}>
-                      {/* ... avatar or other customizations ... */}
-                    </Message>
-                  ))}
-                </MessageList>
-                <MessageInput 
-                  placeholder="Type message for Chatbot 1" 
-                  onSend={(messageText) => handleMessageSend(messageText, 1)}
-                />
-              </ChatContainer>
-            </MainContainer>
+            <div className="hours">
+              Open today from <br />
+              <span style={{fontWeight: "bold"}}>10:00 AM to 09:00 PM</span>
+            </div>
+
+            <a href="https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/national-archives-of-singapore" className="button-container">Go to the library <FontAwesomeIcon icon={faArrowRight} color="#002d72" size="lg"/></a>
           </div>
-        )}
-        {showChat2 && ( 
-          <div style={{ width: "50%", position: "relative", height: "500px" }}>
-            <MainContainer>
-              <ChatContainer>
-                <MessageList>
-                  {messages2.map((message, i) => (
-                    <Message key={i} model={message}>
-                      {/* ... avatar or other customizations ... */}
-                    </Message>
-                  ))}
-                </MessageList>
-                <MessageInput 
-                  placeholder="Type message for Chatbot 2" 
-                  onSend={(messageText) => handleMessageSend(messageText, 2)} 
-                />
-              </ChatContainer>
-            </MainContainer>
+          <div className="card-container">
+            <a className="button-cards" href="https://www.nlb.gov.sg/main/services/library-membership">
+            <div className="parallel-card">
+              <div className="card-content">
+                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faCreditCard} size="3x" color="white" />
+                <p>NLB Membership</p>
+              </div>
+            </div>
+            </a>
+            <a className="button-cards" href="https://catalogue.nlb.gov.sg/">
+            <div className="parallel-card">
+              <div className="card-content">
+                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faBookOpen} size="3x" color="white" /> 
+                <p>NLB Digital Resources</p>
+              </div>
+            </div>
+            </a>
+            <a className="button-cards" href="https://www.nlb.gov.sg/main/services/Loans-and-Reservations">
+            <div className="parallel-card">
+              <div className="card-content">
+                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faUserFriends} size="3x" color="white" /> 
+                <p>Loans and Reservations</p>
+              </div>
+            </div>
+            </a>
+            <a className="button-cards" href="https://www.nlb.gov.sg/main/services/facilities/book-room-or-venue">
+            <div className="parallel-card">
+              <div className="card-content">
+                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faCalendarCheck} size="3x" color="white" /> 
+                <p>Book a Room or Venue</p>
+              </div>
+            </div>
+            </a>
+            <a className="button-cards" href="https://www.nlb.gov.sg/main/about-us/careers">
+            <div className="parallel-card">
+              <div className="card-content">
+                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faBriefcase} size="3x" color="white" /> 
+                <p>Explore a Career with Us</p>
+              </div>
+            </div>
+            </a>
+            <a className="button-cards" href="https://www.nlb.gov.sg/main/partner-us">
+            <div className="parallel-card">
+              <div className="card-content">
+                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faHandshake} size="3x" color="white" /> 
+                <p>Partner Us</p>
+              </div>
+            </div>
+            </a>
           </div>
-        )}
+        </div>
       </div>
       <Footer2 />
       <Footer />
@@ -208,4 +146,4 @@ const Chatbot = () => {
   );
 };
 
-export default Chatbot;
+export default Home;

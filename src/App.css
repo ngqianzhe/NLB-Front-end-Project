@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 #root {
   max-width: 200rem;
   width: max-content;
@@ -9,5 +9,107 @@
   font-weight: 400;
 }
 
+#header {
+  font-family: "Montserrat", serif;
+}
 
+.container-box {
+  background-color: #002d72; /* Dark blue background */
+  color: white;
+  padding: 10px;
+  border-radius: 10px; /* Rounded corners */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  width: 30%;
+}
 
+.location {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Vertically align items */
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.location select {
+  background-color: transparent; 
+  color: white;
+  border: none;
+  appearance: none; /* Remove default select styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 5px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.location select option {
+  color: #002d72;
+}
+
+.hours {
+  background-color: transparent; /* White background */
+  color: #fff; /* Dark blue text */
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 15px;
+  border: 1px solid white;
+  border-radius: 10px;
+  width: 70%;
+  margin-inline-start: 50px;
+}
+
+.button-container {
+  display: inline-block;
+  background-color: #fff;
+  color: #002d72;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.button-container:hover {
+  color: #002d72;
+}
+
+.card-container {  /* New container for the cards */
+  display: grid;
+  grid-template-columns: repeat(3, 0fr); /* 3 equal-width columns */
+  row-gap: 50px; /* Adjust spacing between cards */
+  column-gap: 40px;
+}
+
+.button-cards {
+  text-decoration: none;
+}
+
+.parallel-card {
+  width: 200px;
+  padding: 30px;
+  border: 1px solid white; /* Blue border */
+  border-radius: 10px;
+  transform: skewX(-15deg); /* Adjust the angle as needed */
+  box-shadow: 5px 5px 5px white; /* Subtle shadow */
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.card-content {
+  transform: skewX(15deg); /* Counteract the skew of the container */
+  text-align: center;
+  background-color: transparent;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 10px;
+  font-family: "Montserrat", serif;
+}
+
+.content-wrapper {
+  display: flex;
+  gap: 100px; /* Adjust spacing as needed */
+  margin-top: 1rem;
+  padding-inline-start: 25px;
+}

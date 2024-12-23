@@ -72,6 +72,10 @@
   margin-left: 15px;
 }
 
+.button:hover {
+  border-color: transparent;
+}
+
 input[type="radio"]:checked {
   accent-color: #e07c1c; /* Change the radio button's accent color */
 }
