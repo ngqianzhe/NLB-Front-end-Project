@@ -9,7 +9,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faLocationDot, faArrowRight, faCreditCard, faBookOpen, faUserFriends, 
-  faCalendarCheck, faBriefcase, faHandshake, faCaretDown
+  faCalendarCheck, faBriefcase, faHandshake, faCaretDown,
+  faFaceSmile
 } from '@fortawesome/free-solid-svg-icons'; 
 
 const Home = () => {  
@@ -180,16 +181,46 @@ const Home = () => {
         selectElement.style.width = "160px";
         selectElement.style.marginInlineEnd = "-7px";
       }
+
+      else if (selectedValue === "The LLiBrary") {
+        selectElement.style.width = "110px";
+        selectElement.style.marginInlineEnd = "-7px";
+      }
+
+      else if (selectedValue === "Singapore Botanic Gardens' Library") {
+        selectElement.style.width = "250px";
+        selectElement.style.marginInlineEnd = "-7px";
+      }
+
+      else if (selectedValue === "library@chinatown") {
+        selectElement.style.width = "140px";
+        selectElement.style.marginInlineEnd = "-6px";
+      }
+
+      else if (selectedValue === "library@harbourfront") {
+        selectElement.style.width = "160px";
+        selectElement.style.marginInlineEnd = "-6px";
+      }
+
+      else if (selectedValue === "library@orchard") {
+        selectElement.style.width = "130px";
+        selectElement.style.marginInlineEnd = "-6px";
+      }
+
+      else if (selectedValue === "Jurong Regional Library") {
+        selectElement.style.width = "170px";
+        selectElement.style.marginInlineEnd = "-5px";
+      }
     }
   }, [selectedValue]);
 
   const apiKey = ":2MncAowfQLadIE1?=2Ai%WF^voO6F%:";
   const appCode = "DEV-Vijay";
+  const apiUrl = `https://cors-anywhere.herokuapp.com/https://openweb.nlb.gov.sg/api/v1/Library/GetBranches`;
   useEffect(() => {
     const fetchOpeningHours = async () => {
       setIsLoading(true);
       try {
-        const apiUrl = `https://cors-anywhere.herokuapp.com/https://openweb.nlb.gov.sg/api/v1/Library/GetBranches`;
         const response = await fetch(apiUrl, {
           headers: {
             'X-API-Key': apiKey,
@@ -249,6 +280,8 @@ const Home = () => {
     setSelectedValue(event.target.value);
   };
 
+  const [iconVisible, setIconVisible] = useState(true);
+
   return (
     <>
       <Navbar />
@@ -261,31 +294,38 @@ const Home = () => {
 
             <div className="location">
               <FontAwesomeIcon style={{marginRight: "3px", textAlign: "center"}} icon={faLocationDot} color="white" size="sm" />
-              <select ref={selectRef} value={selectedValue} onChange={handleChange}>
-                <option value="National Library / Lee Kong Chian Reference Library">National Library / Lee Kong Chian Reference Library</option>
-                <option value="National Archives of Singapore">National Archives of Singapore</option>
-                <option value="Ang Mo Kio Public Library">Ang Mo Kio Public Library</option>
-                <option value="Bedok Public Library">Bedok Public Library</option>
-                <option value="Bishan Public Library">Bishan Public Library</option>
-                <option value="Bukit Batok Public Library">Bukit Batok Public Library</option>
-                <option value="Central Arts Library">Central Arts Library</option>
-                <option value="Choa Chu Kang Public Library">Choa Chu Kang Public Library</option>
-                <option value="Central Public Library">Central Public Library</option>
-                <option value="Clementi Public Library">Clementi Public Library</option>
-                <option value="Cheng San Public Library">Cheng San Public Library</option>
-                <option value="Geylang East Public Library">Geylang East Public Library</option>
-                <option value="Jurong West Public Library">Jurong West Public Library</option>
-                <option value="Marine Parade Public Library">Marine Parade Public Library</option>
-                <option value="Punggol Regional Library">Punggol Regional Library</option>
-                <option value="Pasir Ris Public Library">Pasir Ris Public Library</option>
-                <option value="Queenstown Public Library">Queenstown Public Library</option>
-                <option value="Sembawang Public Library">Sembawang Public Library</option>
-                <option value="Sengkang Public Library">Sengkang Public Library</option>
-                <option value="Serangoon Public Library">Serangoon Public Library</option>
-                <option value="Toa Payoh Public Library">Toa Payoh Public Library</option>
-                <option value="Tampines Regional Library">Tampines Regional Library</option>
-                <option value="Woodlands Regional Library">Woodlands Regional Library</option>
-                <option value="Yishun Public Library">Yishun Public Library</option>
+              <select ref={selectRef} value={selectedValue} onChange={handleChange} title="Select Libraries">
+                  <option value="National Library / Lee Kong Chian Reference Library">National Library / Lee Kong Chian Reference Library</option>
+                  <option value="National Archives of Singapore">National Archives of Singapore</option>
+                  <option value="Ang Mo Kio Public Library">Ang Mo Kio Public Library</option>
+                  <option value="Bedok Public Library">Bedok Public Library</option>
+                  <option value="Bishan Public Library">Bishan Public Library</option>
+                  <option value="Bukit Batok Public Library">Bukit Batok Public Library</option>
+                  <option value="Bukit Panjang Public Library">Bukit Panjang Public Library</option>
+                  <option value="Central Arts Library">Central Arts Library</option>
+                  <option value="Central Public Library">Central Public Library</option>
+                  <option value="Choa Chu Kang Public Library">Choa Chu Kang Public Library</option>
+                  <option value="Cheng San Public Library">Cheng San Public Library</option>
+                  <option value="Clementi Public Library">Clementi Public Library</option>
+                  <option value="Geylang East Public Library">Geylang East Public Library</option>
+                  <option value="Jurong Regional Library">Jurong Regional Library</option>
+                  <option value="Jurong West Public Library">Jurong West Public Library</option>
+                  <option value="library@chinatown">library@chinatown</option>
+                  <option value="library@harbourfront">library@harbourfront</option>
+                  <option value="library@orchard">library@orchard</option>
+                  <option value="Marine Parade Public Library">Marine Parade Public Library</option>
+                  <option value="Punggol Regional Library">Punggol Regional Library</option>
+                  <option value="Pasir Ris Public Library">Pasir Ris Public Library</option>
+                  <option value="Queenstown Public Library">Queenstown Public Library</option>
+                  <option value="Sembawang Public Library">Sembawang Public Library</option>
+                  <option value="Sengkang Public Library">Sengkang Public Library</option>
+                  <option value="Serangoon Public Library">Serangoon Public Library</option>
+                  <option value="Singapore Botanic Gardens' Library">Singapore Botanic Gardens&apos; Library</option>
+                  <option value="Tampines Regional Library">Tampines Regional Library</option>
+                  <option value="The LLiBrary">The LLiBrary</option>
+                  <option value="Toa Payoh Public Library">Toa Payoh Public Library</option>
+                  <option value="Woodlands Regional Library">Woodlands Regional Library</option>
+                  <option value="Yishun Public Library">Yishun Public Library</option>
               </select>
               <FontAwesomeIcon style={{textAlign: "center"}} icon={faCaretDown} color="white" size="sm" />
             </div>
@@ -353,6 +393,22 @@ const Home = () => {
               </div>
             </div>
             </a>
+          </div>
+          <div className="rating-icon" onMouseEnter={() => setIconVisible(false)} onMouseLeave={() => setIconVisible(true)}>
+            {iconVisible && ( 
+            <FontAwesomeIcon 
+            className="icon-rating" 
+            style={{
+            border: "5px solid black", 
+            borderRadius: "13px", 
+            backgroundColor: "black"
+            }}
+            icon={faFaceSmile} 
+            size="2x" 
+            color="yellow" 
+            />
+            )}
+            <div className="rating-button"><span className="text">Help us improve</span></div>
           </div>
         </div>
       </div>
