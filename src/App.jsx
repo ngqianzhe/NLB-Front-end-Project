@@ -10,7 +10,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faLocationDot, faArrowRight, faCreditCard, faBookOpen, faUserFriends, 
   faCalendarCheck, faBriefcase, faHandshake, faCaretDown,
-  faFaceSmile
+  faFaceSmile,
+  faFaceFrown,
+  faFaceMeh
 } from '@fortawesome/free-solid-svg-icons'; 
 
 const Home = () => {  
@@ -62,8 +64,26 @@ const Home = () => {
   const [selectedValue, setSelectedValue] = useState('National Library / Lee Kong Chian Reference Library');
   const [openingHours, setOpeningHours] = useState("Getting schedule..."); // State to store opening hours
   const [isLoading, setIsLoading] = useState(false);
+  const [iconVisible, setIconVisible] = useState(true);
+  console.log(iconVisible);
   const selectRef = useRef(null);
+  const ratingIconRef = useRef(null); // Ref for the rating icon
 
+  useEffect(() => {
+    const handleMouseOut = (event) => {
+      // Check if the mouse is leaving the rating icon or its children
+      if (ratingIconRef.current && !ratingIconRef.current.contains(event.relatedTarget)) {
+        setIconVisible(true);
+      }
+    };
+
+    // Add the event listener when the component mounts
+    document.addEventListener('mouseout', handleMouseOut);
+
+    // Clean up the event listener when the component unmounts
+    return () => document.removeEventListener('mouseout', handleMouseOut);
+  }, []); // Empty dependency array ensures this runs only once
+  
   useEffect(() => {
     const selectElement = selectRef.current;
     if (selectElement) {
@@ -216,11 +236,11 @@ const Home = () => {
 
   const apiKey = ":2MncAowfQLadIE1?=2Ai%WF^voO6F%:";
   const appCode = "DEV-Vijay";
-  const apiUrl = `https://cors-anywhere.herokuapp.com/https://openweb.nlb.gov.sg/api/v1/Library/GetBranches`;
   useEffect(() => {
     const fetchOpeningHours = async () => {
       setIsLoading(true);
       try {
+        const apiUrl = `https://cors-anywhere.herokuapp.com/https://openweb.nlb.gov.sg/api/v1/Library/GetBranches`;
         const response = await fetch(apiUrl, {
           headers: {
             'X-API-Key': apiKey,
@@ -243,9 +263,16 @@ const Home = () => {
           const hourWithoutZero = hourString.replace(/^0+/, '');
           const hourInt = parseInt(hourWithoutZero) + 12;
           const now = new Date().getHours();
-          const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
-          const todaysClosure = closureSchedules.some(schedule => schedule.date === today);
+          const today = new Date().toLocaleDateString(); // Get today's date in YYYY-MM-DD format
+          const dateParts = today.split("/");
+          const year = dateParts[2];
+          const month = dateParts[1]; 
+          const day = dateParts[0];
+
+          const todaysDate = `${year}-${month}-${day}`;
+          const todaysClosure = closureSchedules.some(schedule => schedule.date === todaysDate);
           if (todaysClosure) {
+            messageText.innerHTML = "";
             setOpeningHours('Closed today due to a public holiday!'); 
             return; // Exit early if closed
           }
@@ -254,9 +281,11 @@ const Home = () => {
             messageText.innerHTML = "Open today from <br />";
             setOpeningHours (`${openingTime} to ${closingTime}`);
           } else { 
+            messageText.innerHTML = "";
             setOpeningHours('Closed today'); 
           }
         } else {
+          messageText.innerHTML = "";
           setOpeningHours('Schedule NOT Available'); 
         }
       } catch (error) {
@@ -279,8 +308,6 @@ const Home = () => {
     messageText.innerHTML = "";
     setSelectedValue(event.target.value);
   };
-
-  const [iconVisible, setIconVisible] = useState(true);
 
   return (
     <>
@@ -394,7 +421,7 @@ const Home = () => {
             </div>
             </a>
           </div>
-          <div className="rating-icon" onMouseEnter={() => setIconVisible(false)} onMouseLeave={() => setIconVisible(true)}>
+          <div className="rating-icon" ref={ratingIconRef} onMouseEnter={() => setIconVisible(false)}>
             {iconVisible && ( 
             <FontAwesomeIcon 
             className="icon-rating" 
@@ -408,7 +435,17 @@ const Home = () => {
             color="yellow" 
             />
             )}
-            <div className="rating-button"><span className="text">Help us improve</span></div>
+            <div className="rating-button">
+              <span className="text">Help us improve</span>
+              <div className="rating-faces">
+                <span style={{fontSize:"10px"}}>Rate your experience with this website</span>
+                <div>
+                  <FontAwesomeIcon style={{backgroundColor:"black", borderRadius: "11px", border: "1.5px solid black"}} icon={faFaceFrown} color="white" size="sm" />  
+                  <FontAwesomeIcon style={{backgroundColor:"black", borderRadius: "11px", border: "1.5px solid black"}} icon={faFaceMeh} color="white" size="sm" />
+                  <FontAwesomeIcon style={{backgroundColor:"black", borderRadius: "11px", border: "1.5px solid black"}} icon={faFaceSmile} color="white" size="sm" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
