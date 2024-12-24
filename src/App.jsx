@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Navbar from './Navbar.jsx'; 
 import Footer from './footer.jsx';
 import Footer2 from './footer2.jsx';
@@ -9,7 +9,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faLocationDot, faArrowRight, faCreditCard, faBookOpen, faUserFriends, 
-  faCalendarCheck, faBriefcase, faHandshake 
+  faCalendarCheck, faBriefcase, faHandshake, faCaretDown
 } from '@fortawesome/free-solid-svg-icons'; 
 
 const Home = () => {  
@@ -58,6 +58,188 @@ const Home = () => {
       greetingElement.textContent = getGreeting();
     }
   }
+  const [selectedValue, setSelectedValue] = useState('National Library / Lee Kong Chian Reference Library');
+  const [openingHours, setOpeningHours] = useState(""); // State to store opening hours
+  const selectRef = useRef(null);
+
+  useEffect(() => {
+    const selectElement = selectRef.current;
+    if (selectElement) {
+      if (selectedValue === "National Library / Lee Kong Chian Reference Library") {
+        selectElement.style.width = "400px";
+        selectElement.style.marginInlineEnd = "-2px";
+      }
+
+      else if (selectedValue === "National Archives of Singapore") {
+        selectElement.style.width = "220px";
+        selectElement.style.marginInlineEnd = "-9px";
+      }
+
+      else if (selectedValue === "Ang Mo Kio Public Library") {
+        selectElement.style.width = "190px";
+        selectElement.style.marginInlineEnd = "-9px";
+      }
+
+      else if (selectedValue === "Bedok Public Library" || selectedValue === "Bishan Public Library") {
+        selectElement.style.width = "150px";
+        selectElement.style.marginInlineEnd = "-4px";
+      }
+
+      else if (selectedValue === "Bukit Batok Public Library") {
+        selectElement.style.width = "180px";
+        selectElement.style.marginInlineEnd = "-3px";
+      }
+
+      else if (selectedValue === "Central Arts Library") {
+        selectElement.style.width = "150px";
+        selectElement.style.marginInlineEnd = "-6px";
+      }
+
+      else if (selectedValue === "Choa Chu Kang Public Library") {
+        selectElement.style.width = "210px";
+        selectElement.style.marginInlineEnd = "-3px";
+      }
+
+      else if (selectedValue === "Central Public Library") {
+        selectElement.style.width = "155px";
+        selectElement.style.marginInlineEnd = "-3px";
+      }
+
+      else if (selectedValue === "Clementi Public Library") {
+        selectElement.style.width = "165px";
+        selectElement.style.marginInlineEnd = "-3px";
+      }
+
+      else if (selectedValue === "Cheng San Public Library") {
+        selectElement.style.width = "180px";
+        selectElement.style.marginInlineEnd = "-6px";
+      }
+
+      else if (selectedValue === "Geylang East Public Library") {
+        selectElement.style.width = "190px";
+        selectElement.style.marginInlineEnd = "-4px";
+      }
+
+      else if (selectedValue === "Jurong West Public Library") {
+        selectElement.style.width = "180px";
+        selectElement.style.marginInlineEnd = "-2px";
+      }
+
+      else if (selectedValue === "Marine Parade Public Library") {
+        selectElement.style.width = "200px";
+        selectElement.style.marginInlineEnd = "-4px";
+      }
+
+      else if (selectedValue === "Punggol Regional Library") {
+        selectElement.style.width = "170px";
+        selectElement.style.marginInlineEnd = "-1px";
+      }
+
+      else if (selectedValue === "Pasir Ris Public Library") {
+        selectElement.style.width = "160px";
+        selectElement.style.marginInlineEnd = "-3px";
+      }
+
+      else if (selectedValue === "Queenstown Public Library") {
+        selectElement.style.width = "190px";
+        selectElement.style.marginInlineEnd = "-4px";
+      }
+
+      else if (selectedValue === "Sembawang Public Library") {
+        selectElement.style.width = "180px";
+        selectElement.style.marginInlineEnd = "-2px";
+      }
+
+      else if (selectedValue === "Sengkang Public Library") {
+        selectElement.style.width = "170px";
+        selectElement.style.marginInlineEnd = "-3px";
+      }
+
+      else if (selectedValue === "Serangoon Public Library") {
+        selectElement.style.width = "180px";
+        selectElement.style.marginInlineEnd = "-5px";
+      }
+
+      else if (selectedValue === "Toa Payoh Public Library") {
+        selectElement.style.width = "170px";
+        selectElement.style.marginInlineEnd = "-3px";
+      }
+
+      else if (selectedValue === "Tampines Regional Library") {
+        selectElement.style.width = "180px";
+        selectElement.style.marginInlineEnd = "-2px";
+      }
+
+      else if (selectedValue === "Woodlands Regional Library") {
+        selectElement.style.width = "190px";
+        selectElement.style.marginInlineEnd = "-1px";
+      }
+
+      else if (selectedValue === "Yishun Public Library") {
+        selectElement.style.width = "160px";
+        selectElement.style.marginInlineEnd = "-7px";
+      }
+    }
+  }, [selectedValue]);
+
+  const apiKey = ":2MncAowfQLadIE1?=2Ai%WF^voO6F%:";
+  const appCode = "DEV-Vijay";
+  useEffect(() => {
+    const fetchOpeningHours = async () => {
+      try {
+        const apiUrl = `https://cors-anywhere.herokuapp.com/https://openweb.nlb.gov.sg/api/v1/Library/GetBranches`;
+        const response = await fetch(apiUrl, {
+          headers: {
+            'X-API-Key': apiKey,
+            'X-App-Code': appCode,
+            'Origin': 'http://localhost:5173'
+          }
+        });
+
+        const data = await response.json();
+        const library = data.branches.find(branch => branch.branchName === selectedValue);
+        const messageText = document.querySelector(".message");
+
+        if (library) {
+          const schedule = library.timing.openingHours; // Get today's schedule
+          const openingHours = schedule.replace(/.*?:/, '').trim();
+          console.log(openingHours);
+          const openingTime = openingHours.split("-")[0];
+          const closingTime = openingHours.split("-")[1]; // "09:00 PM"
+          const hourString = closingTime.split(":")[0];
+          const hourWithoutZero = hourString.replace(/^0+/, '');
+          const hourInt = parseInt(hourWithoutZero) + 12;
+          const now = new Date().getHours();
+          console.log(now);
+          console.log(hourInt);
+
+          if (now <= hourInt) {
+            messageText.innerHTML = "Open today from <br />";
+            setOpeningHours (`${openingTime} to ${closingTime}`);
+          } else {
+            messageText.innerHTML = ""; // Set innerHTML to an empty string
+            setOpeningHours('Closed today'); 
+          }
+        } else {
+          messageText.innerHTML = "";
+          setOpeningHours('Schedule NOT Available'); 
+        }
+      } catch (error) {
+        const messageText = document.querySelector(".message");
+        messageText.innerHTML = "";
+        console.error(error);
+        setOpeningHours('Schedule NOT Available');
+      }
+    };
+
+    if (selectedValue) {
+      fetchOpeningHours();
+    }
+  }, [selectedValue]); // Re-fetch when selectedValue changes
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
 
   return (
     <>
@@ -71,19 +253,38 @@ const Home = () => {
 
             <div className="location">
               <FontAwesomeIcon style={{marginRight: "3px", textAlign: "center"}} icon={faLocationDot} color="white" size="sm" />
-              <select>
-                <option>National Library / Lee Kong Chian Reference Library</option>
-                <option>National Archives of Singapore</option>
-                <option>Ang Mo Kio Public Library</option>
-                <option>Bedok Public Library</option>
-                <option>Bishan Public Library</option>
-                <option>Bukit Batok Public Library</option>
+              <select ref={selectRef} value={selectedValue} onChange={handleChange}>
+                <option value="National Library / Lee Kong Chian Reference Library">National Library / Lee Kong Chian Reference Library</option>
+                <option value="National Archives of Singapore">National Archives of Singapore</option>
+                <option value="Ang Mo Kio Public Library">Ang Mo Kio Public Library</option>
+                <option value="Bedok Public Library">Bedok Public Library</option>
+                <option value="Bishan Public Library">Bishan Public Library</option>
+                <option value="Bukit Batok Public Library">Bukit Batok Public Library</option>
+                <option value="Central Arts Library">Central Arts Library</option>
+                <option value="Choa Chu Kang Public Library">Choa Chu Kang Public Library</option>
+                <option value="Central Public Library">Central Public Library</option>
+                <option value="Clementi Public Library">Clementi Public Library</option>
+                <option value="Cheng San Public Library">Cheng San Public Library</option>
+                <option value="Geylang East Public Library">Geylang East Public Library</option>
+                <option value="Jurong West Public Library">Jurong West Public Library</option>
+                <option value="Marine Parade Public Library">Marine Parade Public Library</option>
+                <option value="Punggol Regional Library">Punggol Regional Library</option>
+                <option value="Pasir Ris Public Library">Pasir Ris Public Library</option>
+                <option value="Queenstown Public Library">Queenstown Public Library</option>
+                <option value="Sembawang Public Library">Sembawang Public Library</option>
+                <option value="Sengkang Public Library">Sengkang Public Library</option>
+                <option value="Serangoon Public Library">Serangoon Public Library</option>
+                <option value="Toa Payoh Public Library">Toa Payoh Public Library</option>
+                <option value="Tampines Regional Library">Tampines Regional Library</option>
+                <option value="Woodlands Regional Library">Woodlands Regional Library</option>
+                <option value="Yishun Public Library">Yishun Public Library</option>
               </select>
+              <FontAwesomeIcon style={{textAlign: "center"}} icon={faCaretDown} color="white" size="sm" />
             </div>
 
             <div className="hours">
-              Open today from <br />
-              <span style={{fontWeight: "bold"}}>10:00 AM to 09:00 PM</span>
+              <span className="message"></span>
+              <span style={{ fontWeight: "bold" }}>{openingHours}</span> {/* Display opening hours */}
             </div>
 
             <a href="https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/national-archives-of-singapore" className="button-container">Go to the library <FontAwesomeIcon icon={faArrowRight} color="#002d72" size="lg"/></a>
