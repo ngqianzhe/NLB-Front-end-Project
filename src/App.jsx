@@ -202,16 +202,21 @@ const Home = () => {
 
         if (library) {
           const schedule = library.timing.openingHours; // Get today's schedule
+          const closureSchedules = library.closureSchedules;
           const openingHours = schedule.replace(/.*?:/, '').trim();
-          console.log(openingHours);
           const openingTime = openingHours.split("-")[0];
           const closingTime = openingHours.split("-")[1]; // "09:00 PM"
           const hourString = closingTime.split(":")[0];
           const hourWithoutZero = hourString.replace(/^0+/, '');
           const hourInt = parseInt(hourWithoutZero) + 12;
           const now = new Date().getHours();
-          console.log(now);
-          console.log(hourInt);
+          const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+          const todaysClosure = closureSchedules.some(schedule => schedule.date === today);
+          if (todaysClosure) {
+            messageText.innerHTML = "";
+            setOpeningHours('Closed today due to a public holiday!'); 
+            return; // Exit early if closed
+          }
 
           if (now <= hourInt) {
             messageText.innerHTML = "Open today from <br />";
