@@ -59,7 +59,8 @@ const Home = () => {
     }
   }
   const [selectedValue, setSelectedValue] = useState('National Library / Lee Kong Chian Reference Library');
-  const [openingHours, setOpeningHours] = useState(""); // State to store opening hours
+  const [openingHours, setOpeningHours] = useState("Getting schedule..."); // State to store opening hours
+  const [isLoading, setIsLoading] = useState(false);
   const selectRef = useRef(null);
 
   useEffect(() => {
@@ -186,6 +187,7 @@ const Home = () => {
   const appCode = "DEV-Vijay";
   useEffect(() => {
     const fetchOpeningHours = async () => {
+      setIsLoading(true);
       try {
         const apiUrl = `https://cors-anywhere.herokuapp.com/https://openweb.nlb.gov.sg/api/v1/Library/GetBranches`;
         const response = await fetch(apiUrl, {
@@ -213,7 +215,6 @@ const Home = () => {
           const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
           const todaysClosure = closureSchedules.some(schedule => schedule.date === today);
           if (todaysClosure) {
-            messageText.innerHTML = "";
             setOpeningHours('Closed today due to a public holiday!'); 
             return; // Exit early if closed
           }
@@ -221,12 +222,10 @@ const Home = () => {
           if (now <= hourInt) {
             messageText.innerHTML = "Open today from <br />";
             setOpeningHours (`${openingTime} to ${closingTime}`);
-          } else {
-            messageText.innerHTML = ""; // Set innerHTML to an empty string
+          } else { 
             setOpeningHours('Closed today'); 
           }
         } else {
-          messageText.innerHTML = "";
           setOpeningHours('Schedule NOT Available'); 
         }
       } catch (error) {
@@ -234,6 +233,8 @@ const Home = () => {
         messageText.innerHTML = "";
         console.error(error);
         setOpeningHours('Schedule NOT Available');
+      } finally {
+        setIsLoading(false); // Set loading to false when fetching completes (or fails)
       }
     };
 
@@ -243,6 +244,8 @@ const Home = () => {
   }, [selectedValue]); // Re-fetch when selectedValue changes
 
   const handleChange = (event) => {
+    const messageText = document.querySelector(".message");
+    messageText.innerHTML = "";
     setSelectedValue(event.target.value);
   };
 
@@ -289,7 +292,14 @@ const Home = () => {
 
             <div className="hours">
               <span className="message"></span>
-              <span style={{ fontWeight: "bold" }}>{openingHours}</span> {/* Display opening hours */}
+              {isLoading ? (
+                <span style={{ fontWeight: "bold" }}>Getting schedule...</span> 
+              ) : (
+                <>
+                  <span className="message"></span> {/* Now outside the conditional */}
+                  <span style={{ fontWeight: "bold" }}>{openingHours}</span> 
+                </>
+              )}
             </div>
 
             <a href="https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/national-archives-of-singapore" className="button-container">Go to the library <FontAwesomeIcon icon={faArrowRight} color="#002d72" size="lg"/></a>
