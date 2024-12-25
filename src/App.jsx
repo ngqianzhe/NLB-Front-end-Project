@@ -240,12 +240,11 @@ const Home = () => {
     const fetchOpeningHours = async () => {
       setIsLoading(true);
       try {
-        const apiUrl = `https://cors-anywhere.herokuapp.com/https://openweb.nlb.gov.sg/api/v1/Library/GetBranches`;
+        const apiUrl = `/api/GetBranches`;
         const response = await fetch(apiUrl, {
           headers: {
             'X-API-Key': apiKey,
-            'X-App-Code': appCode,
-            'Origin': 'http://localhost:5173'
+            'X-App-Code': appCode
           }
         });
 
@@ -289,9 +288,9 @@ const Home = () => {
           setOpeningHours('Schedule NOT Available'); 
         }
       } catch (error) {
+        console.log(error);
         const messageText = document.querySelector(".message");
         messageText.innerHTML = "";
-        console.error(error);
         setOpeningHours('Schedule NOT Available');
       } finally {
         setIsLoading(false); // Set loading to false when fetching completes (or fails)
