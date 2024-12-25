@@ -65,7 +65,6 @@ const Home = () => {
   const [openingHours, setOpeningHours] = useState("Getting schedule..."); // State to store opening hours
   const [isLoading, setIsLoading] = useState(false);
   const [iconVisible, setIconVisible] = useState(true);
-  console.log(iconVisible);
   const selectRef = useRef(null);
   const ratingIconRef = useRef(null); // Ref for the rating icon
 
@@ -436,14 +435,14 @@ const Home = () => {
             )}
             <div className="rating-button">
               <span className="text">Help us improve</span>
-              <div className="rating-faces">
-                <span style={{fontSize:"10px"}}>Rate your experience with this website</span>
-                <div>
-                  <FontAwesomeIcon style={{backgroundColor:"black", borderRadius: "11px", border: "1.5px solid black"}} icon={faFaceFrown} color="white" size="sm" />  
-                  <FontAwesomeIcon style={{backgroundColor:"black", borderRadius: "11px", border: "1.5px solid black"}} icon={faFaceMeh} color="white" size="sm" />
-                  <FontAwesomeIcon style={{backgroundColor:"black", borderRadius: "11px", border: "1.5px solid black"}} icon={faFaceSmile} color="white" size="sm" />
+                <div className="rating-faces">
+                  <span style={{fontSize:"10px"}}>Rate your experience with this website</span>
+                  <div>
+                    <FontAwesomeIcon style={{backgroundColor:"black", borderRadius: "11px", border: "1.5px solid black"}} icon={faFaceFrown} color="white" size="sm" />
+                    <FontAwesomeIcon style={{backgroundColor:"black", borderRadius: "11px", border: "1.5px solid black"}} icon={faFaceMeh} color="white" size="sm" />
+                    <FontAwesomeIcon style={{backgroundColor:"black", borderRadius: "11px", border: "1.5px solid black"}} icon={faFaceSmile} color="white" size="sm" />
+                  </div>
                 </div>
-              </div>
             </div>
           </div>
         </div>
