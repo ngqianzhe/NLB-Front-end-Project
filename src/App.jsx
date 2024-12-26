@@ -257,9 +257,12 @@ const Home = () => {
           const openingHours = schedule.replace(/.*?:/, '').trim();
           const openingTime = openingHours.split("-")[0];
           const closingTime = openingHours.split("-")[1]; // "09:00 PM"
-          const hourString = closingTime.split(":")[0];
-          const hourWithoutZero = hourString.replace(/^0+/, '');
-          const hourInt = parseInt(hourWithoutZero) + 12;
+          const closinghourString = closingTime.split(":")[0];
+          const closinghourWithoutZero = closinghourString.replace(/^0+/, '');
+          const closinghourInt = parseInt(closinghourWithoutZero) + 12;
+          const openinghourString = openingTime.split(":")[0];
+          const openinghourWithoutZero = openinghourString.replace(/^0+/, '');
+          const openinghourInt = parseInt(openinghourWithoutZero);
           const now = new Date().getHours();
           const today = new Date().toLocaleDateString(); // Get today's date in YYYY-MM-DD format
           const dateParts = today.split("/");
@@ -275,7 +278,7 @@ const Home = () => {
             return; // Exit early if closed
           }
 
-          if (now <= hourInt) {
+          if (now <= closinghourInt && now >= openinghourInt) {
             messageText.innerHTML = "Open today from <br />";
             setOpeningHours (`${openingTime} to ${closingTime}`);
           } else { 
