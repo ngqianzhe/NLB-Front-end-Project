@@ -254,9 +254,15 @@ const Home = () => {
         const data = await response.json();
         const library = data.branches.find(branch => branch.branchName === selectedValue);
         const messageText = document.querySelector(".message");
+        
+        const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
         if (library) {
           const schedule = library.timing.openingHours; // Get today's schedule
+          const days = schedule.split(": ")[0];
+          const closingDayName = days.split(" - ")[1];
+          const closingDay = daysOfWeek.indexOf(closingDayName);
+          const currentDay = new Date().getDay();
           const closureSchedules = library.closureSchedules;
           const openingHours = schedule.replace(/.*?:/, '').trim();
           const openingTime = openingHours.split("-")[0];
@@ -268,6 +274,7 @@ const Home = () => {
           const openinghourWithoutZero = openinghourString.replace(/^0+/, '');
           const openinghourInt = parseInt(openinghourWithoutZero);
           const now = new Date().getHours();
+          const minute = new Date().getMinutes();
           const today = new Date().toLocaleDateString(); // Get today's date in YYYY-MM-DD format
           const dateParts = today.split("/");
           const year = dateParts[2];
@@ -282,7 +289,7 @@ const Home = () => {
             return; // Exit early if closed
           }
 
-          if (now <= closinghourInt && now >= openinghourInt) {
+          if ((now < closinghourInt && minute > 0) && (now > openinghourInt && minute > 0) && currentDay <= closingDay) {
             messageText.innerHTML = "Open today from <br />";
             setOpeningHours (`${openingTime} to ${closingTime}`);
           } else { 
