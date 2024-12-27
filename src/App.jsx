@@ -12,7 +12,11 @@ import {
   faCalendarCheck, faBriefcase, faHandshake, faCaretDown,
   faFaceSmile,
   faFaceFrown,
-  faFaceMeh
+  faFaceMeh,
+  faFaceLaughBeam,
+  faFaceAngry,
+  faFaceGrin,
+  faXmark
 } from '@fortawesome/free-solid-svg-icons'; 
 
 const Home = () => {  
@@ -310,6 +314,26 @@ const Home = () => {
     setSelectedValue(event.target.value);
   };
 
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+
+  const handleVisibleClick = () => {
+    setIsPopupVisible(!isPopupVisible);
+  };
+
+  useEffect(() => {
+    const popupElement = document.querySelector('.rating-faces');
+    const ratingButton = document.querySelector('.rating-icon');
+    if (popupElement) {
+      popupElement.style.display = isPopupVisible ? 'block' : 'none';
+      ratingButton.style.display = isPopupVisible ? 'none' : 'block';
+    }
+  }, [isPopupVisible]);
+
+  // Function to handle both close icon and rating button click
+  const handleTogglePopup = () => {
+    setIsPopupVisible(prevState => !prevState);
+  }
+
   return (
     <>
       <Navbar />
@@ -436,17 +460,31 @@ const Home = () => {
             color="yellow" 
             />
             )}
-            <div className="rating-button">
+            <div className="rating-button" onClick={handleVisibleClick}>
               <span className="text">Help us improve</span>
-                <div className="rating-faces">
-                  <span style={{fontSize:"10px"}}>Rate your experience with this website</span>
-                  <div>
-                    <FontAwesomeIcon style={{backgroundColor:"black", borderRadius: "11px", border: "1.5px solid black"}} icon={faFaceFrown} color="white" size="sm" />
-                    <FontAwesomeIcon style={{backgroundColor:"black", borderRadius: "11px", border: "1.5px solid black"}} icon={faFaceMeh} color="white" size="sm" />
-                    <FontAwesomeIcon style={{backgroundColor:"black", borderRadius: "11px", border: "1.5px solid black"}} icon={faFaceSmile} color="white" size="sm" />
-                  </div>
-                </div>
             </div>
+          </div>
+          <div className="rating-faces">
+              <FontAwesomeIcon onClick={handleTogglePopup} className="close-icon" icon={faXmark} color="black" size="sm"/>
+              <span style={{fontSize:"10px"}}>Rate your experience with this website</span>
+              <div className="rating-container">
+                <div className="icons-container"> {/* Container for the icons */}
+                  {[faFaceAngry, faFaceFrown, faFaceMeh, faFaceSmile, faFaceGrin, faFaceLaughBeam].map((icon, index) => (
+                    <div key={index} className="rating-icon-faces">
+                      <FontAwesomeIcon 
+                        className="faceRatings" 
+                        icon={icon} 
+                        size="sm" 
+                      />
+                      <label>{index + 1}</label>
+                    </div>
+                  ))}
+                </div>
+                <div className="labels-container"> {/* Container for the labels */}
+                  <span className="label-left">NOT SATISFIED</span>
+                  <span className="label-right">VERY SATISFIED</span>
+                </div>
+              </div>
           </div>
         </div>
       </div>
