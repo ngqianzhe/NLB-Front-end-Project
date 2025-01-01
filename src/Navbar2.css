@@ -1,0 +1,18 @@
+.govt-banner-wrapper {
+  padding-bottom: 5px;
+  background-color: white;
+}
+
+.logo {
+  text-align: left;
+  padding-inline-start: 40px;
+  min-width: 80rem;
+  max-height: 10rem;
+}
+
+.navigation-bar-2 {
+  background-color: white;
+  padding-bottom: 0px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add the box-shadow */
+}
+

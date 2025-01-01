@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from './login.jsx'; 
+import RegisterPage from './register.jsx'
 
 function updateBackgroundColor() {
   const now = new Date();
@@ -25,8 +26,11 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter> {/* Wrap your routes with BrowserRouter */}
       <Routes>
-        <Route path="/" element={<App />} /> 
+      <Route path="/" element={<App />} /> 
+        <Route path="/App.jsx" element={<App />} /> 
         <Route path="/login.jsx" element={<LoginPage />} /> 
+        <Route path="/register.jsx" element={<RegisterPage />} />
+        <Route path="/forgetPassword.jsx" element={<RegisterPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

@@ -73,19 +73,36 @@ const Navbar = () => {
   // Update the background color every hour
   setInterval(toggleSearchPopup, 60 * 60 * 1000); // 1 hour in milliseconds
 
+  const [isProfileDropdownVisible, setIsProfileDropdownVisible] = useState(false);
+
+  const handleProfileClick = () => {
+    setIsProfileDropdownVisible(!isProfileDropdownVisible);
+  };
+
   return (
     <div className="navigation-bar">
         <div className="govt-banner-wrapper"> 
           <sgds-masthead fluid></sgds-masthead>
         </div> 
         <nav className="navbar navbar-expand-xl smart-scroll">
-          <a className="navbar-brand icon" href="App.jsx" aria-current="page">
+          <a className="navbar-brand icon" href="/" aria-current="page">
               <img src="NLB-home-logo.png" alt="NLB Logo" /> 
           </a> 
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link" href="login.jsx"><FontAwesomeIcon className="user-icon" icon={faUser} size="xl" color="white"/></a>
+                  <div className="profile-container"> 
+                    <span className="nav-link" onClick={handleProfileClick}>
+                      <FontAwesomeIcon className="user-icon" icon={faUser} size="xl" color="white" /> {/* Use faUser icon */}
+                    </span>
+                    {isProfileDropdownVisible && (
+                      <div className="profile-dropdown">
+                        <a href="login.jsx">Login</a>
+                        <a href="register.jsx">Register</a>
+                        <a href="forgetPassword.jsx">Forgot Password</a>
+                      </div>
+                    )}
+                  </div>
                 </li>
                 <li className="nav-item">
                   <span className="nav-link" onClick={toggleSearchPopup}> 

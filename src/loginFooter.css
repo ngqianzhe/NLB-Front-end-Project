@@ -1,0 +1,54 @@
+.loginFooter {
+  background-color: white; /* Dark background color */
+  padding: 35px;
+  text-align: center; /* Center the content */
+  bottom: 0;
+  width: 100%;
+  color: black;
+}
+
+.login-footer-content {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Distribute space between items */
+  align-items: center; /* Vertically align items */
+}
+
+.login-left-links {
+  list-style: none; /* Remove bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+.login-left-links li {
+  display: inline-block; /* Arrange links horizontally */
+  margin-right: 20px;
+}
+
+.login-list-text {
+  text-decoration: none; 
+  color: black;
+  font-weight: normal;
+  font-size: 13px;
+}
+
+.login-list-text:hover {
+  text-decoration: underline;
+  font-weight: bold;
+  color: black;
+}
+
+.login-list-text .faRightFromBracket { 
+  text-decoration: none !important; 
+  color: black !important;
+  font-weight: normal !important;
+}
+
+.login-list-text:hover .faRightFromBracket {
+  text-decoration: underline !important;
+  font-weight: bold !important;
+  color: black !important; 
+}
+
+.login-right-text {
+  font-size: 0.8em; /* Slightly smaller font size */
+}

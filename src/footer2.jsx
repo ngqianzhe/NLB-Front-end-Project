@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const footer2 = () => {
   return (
     <div className="footer-2">
-      <a href="App.jsx">
+      <a href="/">
         <img src="NLB-home-coloured-logo.png" alt="Logo" className="footer-image" />
       </a>
     <div className="footer-content-2">

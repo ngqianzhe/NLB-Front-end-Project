@@ -12,7 +12,6 @@
 }
 
 .govt-banner-wrapper {
-  background-color: white;
   padding-bottom: 5px;
 }
 
@@ -79,4 +78,41 @@
 
 input[type="radio"]:checked {
   accent-color: #e07c1c; /* Change the radio button's accent color */
+}
+
+.profile-container {
+  position: relative; /* To position the dropdown relative to the icon */
+  display: inline-block; /* To contain the dropdown within the container */
+}
+
+.user-icon {
+  cursor: pointer; /* Indicate that the icon is clickable */
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 100%; /* Position the dropdown below the icon */
+  right: 0; /* Align to the right of the icon */
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1; /* Ensure the dropdown is on top of other elements */
+  display: flex;
+  flex-direction: column; /* Stack the links vertically */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+}
+
+.profile-dropdown a {
+  padding-right: 5rem;
+  padding-bottom: 10px;
+  padding-inline-start: 10px;
+  text-decoration: none;
+  text-align: left;
+  color: #333;
+  white-space: nowrap;
+}
+
+.profile-dropdown a:hover {
+  background-color: peachpuff;
 }
