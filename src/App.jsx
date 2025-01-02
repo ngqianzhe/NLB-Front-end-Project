@@ -285,8 +285,6 @@ const Home = () => {
           const dateObj = new Date(todaysDate);
           const todaysMonth = dateObj.getMonth() + 1; 
           const todaysDay = dateObj.getDate();
-          console.log(closingDay);
-          console.log(currentDay);
           const todaysClosure = closureSchedules.some(schedule => {
             const scheduleDate = new Date(schedule.date);
             return scheduleDate.getMonth() + 1 === todaysMonth && scheduleDate.getDate() === todaysDay;
