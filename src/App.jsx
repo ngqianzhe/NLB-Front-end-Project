@@ -255,7 +255,7 @@ const Home = () => {
         const library = data.branches.find(branch => branch.branchName === selectedValue);
         const messageText = document.querySelector(".message");
         
-        const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
         if (library) {
           const schedule = library.timing.openingHours; // Get today's schedule
@@ -285,7 +285,8 @@ const Home = () => {
           const dateObj = new Date(todaysDate);
           const todaysMonth = dateObj.getMonth() + 1; 
           const todaysDay = dateObj.getDate();
-
+          console.log(closingDay);
+          console.log(currentDay);
           const todaysClosure = closureSchedules.some(schedule => {
             const scheduleDate = new Date(schedule.date);
             return scheduleDate.getMonth() + 1 === todaysMonth && scheduleDate.getDate() === todaysDay;
@@ -297,7 +298,7 @@ const Home = () => {
             return; // Exit early if closed
           }
 
-          if ((now < closinghourInt && minute > 0) && (now > openinghourInt && minute > 0) && currentDay >= closingDay) {
+          if ((now < closinghourInt && minute > 0) && (now > openinghourInt && minute > 0) && (closingDayName == "Sun" || closingDay >= currentDay)) {
             messageText.innerHTML = "Open today from <br />";
             setOpeningHours (`${openingTime} to ${closingTime}`);
           } else { 
