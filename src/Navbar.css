@@ -33,12 +33,12 @@
 
 /* Search bar popup styles */
 .search-popup {
-  top: 100%; /* Position it right below the navbar */ 
-  width: 100%; /* Make it span the full width */
+  top: 100%; 
+  width: 100%; 
   padding: 20px;
-  display: none; /* Hidden by default */
+  display: none; 
   background-color: #02615b;
-  transition: opacity 0.3s ease, visibility 0.3s ease; /* Add transitions (optional) */
+  transition: opacity 0.3s ease, visibility 0.3s ease; 
   border-bottom: 1px solid white;
 }
 
@@ -49,7 +49,7 @@
 }
 
 .search-popup input[type="text"] {
-  width: 85%;
+  width: 80%;
   padding: 10px;
   border-color: transparent;
   border-bottom: 1px solid #ccc;
@@ -62,22 +62,35 @@
   color: white;
 }
 
-.button {
+.search-popup label { /* Style the labels */
+  display: inline-flex; /* Use inline-flex to align items vertically */
+  align-items: center; /* Vertically center the radio button and text */
+  margin-left: 20px; /* Adjust spacing as needed */
+}
+
+.button-search {
   background-color:#e07c1c;
   color: white;
   border-radius: 10px;
   padding: 8px;
   font-size: 14px;
   font-weight: bold;
-  margin-left: 15px;
+  width: 5%;
+  margin-left: 10px;
+  margin-inline-end: 60px;
 }
 
-.button:hover {
+.button-search:hover {
   border-color: transparent;
 }
 
-input[type="radio"]:checked {
-  accent-color: #e07c1c; /* Change the radio button's accent color */
+.search-popup input[type="radio"] { /* Style the radio buttons */
+  margin-right: 5px; /* Add some space between the radio button and text */
+}
+
+.search-popup input[type="radio"]:checked {
+  accent-color: #e07c1c; 
+  background-color: #e07c1c; /* Fill with orange when checked */
 }
 
 .profile-container {

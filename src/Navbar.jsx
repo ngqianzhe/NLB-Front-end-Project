@@ -114,28 +114,28 @@ const Navbar = () => {
         </nav>
         <div className="search-popup" id="searchPopup" style={{ display: "none"}}> {/* Initially hidden */}
           <form onSubmit={handleSubmit}> {/* Add form for submission */}
-          <FontAwesomeIcon icon={faSearch} size="lg" color="white" fontWeight="bold"/> <input type="text" id="searchInput" placeholder="What do you want to search for?" 
-                 value={query} onChange={handleChange} />
-          <button className="button" type="submit">Search</button> {/* Submit button */}
-          <br /> <br />
-          {/* Radio buttons with onChange handler */}
-          <p style={{ color: "white", textAlign: "left", paddingInlineStart: "70px" }}>Search: 
-            <label style={{ marginLeft: "10px" }} htmlFor="option1">
-              <input type="radio" id="option1" name="myRadioGroup" value="option1" 
-                     checked={selectedRadio === 'option1'} onChange={handleRadioChange} /> OneSearch
-            </label>
+            <FontAwesomeIcon icon={faSearch} size="lg" color="white" fontWeight="bold"/> <input type="text" id="searchInput" placeholder="What do you want to search for?" 
+                  value={query} onChange={handleChange} />
+            <button className="button-search" type="submit">Search</button> {/* Submit button */}
+            <br /> <br />
+            {/* Radio buttons with onChange handler */}
+            <p style={{ color: "white", textAlign: "left", paddingInlineStart: "80px", marginBottom: "0"}}>Search: <br />
+              <label style={{ marginLeft: "10px" }} htmlFor="option1">
+                <input type="radio" id="option1" name="myRadioGroup" value="option1" 
+                      checked={selectedRadio === 'option1'} onChange={handleRadioChange} /> OneSearch
+              </label>
 
-            <label style={{ marginLeft: "20px" }} htmlFor="option2">
-              <input type="radio" id="option2" name="myRadioGroup" value="option2" 
-                     checked={selectedRadio === 'option2'} onChange={handleRadioChange} /> Catalogue
-            </label>
+              <label style={{ marginLeft: "20px" }} htmlFor="option2">
+                <input type="radio" id="option2" name="myRadioGroup" value="option2" 
+                      checked={selectedRadio === 'option2'} onChange={handleRadioChange} /> Catalogue
+              </label>
 
-            <label style={{ marginLeft: "20px" }} htmlFor="option3">
-              <input type="radio" id="option3" name="myRadioGroup" value="option3" 
-                     checked={selectedRadio === 'option3'} onChange={handleRadioChange} /> Search Within this Site
-            </label>
-          </p>
-        </form>
+              <label style={{ marginLeft: "20px" }} htmlFor="option3">
+                <input type="radio" id="option3" name="myRadioGroup" value="option3" 
+                      checked={selectedRadio === 'option3'} onChange={handleRadioChange} /> Search Within this Site
+              </label>
+            </p>
+          </form>
         </div>
     </div>
   );
