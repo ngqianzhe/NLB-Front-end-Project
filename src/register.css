@@ -1,0 +1,38 @@
+.register-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    color: black;
+}
+  
+.register-button {
+    background-color: #ff9c74; /* Example color */
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-box {
+    background-color: white;
+}
+
+.password-input-container {
+    position: relative;
+}
+
+.password-icon {
+    position: absolute;
+    top: 40%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background-color: #ff9c74;
+    padding: 5px;
+    border-radius: 3px;
+}

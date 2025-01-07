@@ -37,6 +37,11 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent default form submission
     // Add your login logic here (e.g., send data to server)
+
+    if (!username || !password) {
+      alert('Please fill in all fields.');
+    }
+    
     console.log('Username:', username);
     console.log('Password:', password);
   };
