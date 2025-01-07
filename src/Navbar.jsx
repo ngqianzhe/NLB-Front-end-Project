@@ -86,7 +86,7 @@ const Navbar = () => {
         </div> 
         <nav className="navbar navbar-expand-xl smart-scroll">
           <a className="navbar-brand icon" href="/" aria-current="page">
-              <img src="NLB-home-logo.png" alt="NLB Logo" /> 
+              <img src="src/assets/NLB-home-logo.png" alt="NLB Logo" /> 
           </a> 
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">

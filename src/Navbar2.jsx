@@ -11,7 +11,7 @@ const Navbar2 = () => {
         </div> 
         <div className="logo">
           <a href="/" aria-current="page">
-              <img className="icon-brand" src="NLB-home-coloured-logo.png" alt="NLB Logo" width="250" height="125"/> 
+              <img className="icon-brand" src="src/assets/NLB-home-coloured-logo.png" alt="NLB Logo" width="250" height="125"/> 
           </a> 
         </div>
     </div>

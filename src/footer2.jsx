@@ -7,7 +7,7 @@ const footer2 = () => {
   return (
     <div className="footer-2">
       <a href="/">
-        <img src="NLB-home-coloured-logo.png" alt="Logo" className="footer-image" />
+        <img src="src/assets/NLB-home-coloured-logo.png" alt="Logo" className="footer-image" />
       </a>
     <div className="footer-content-2">
       <div className="footer-column-2">
