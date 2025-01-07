@@ -469,7 +469,7 @@ const Home = () => {
   };
 
   const openai = new OpenAI({
-    apiKey: `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`,
+    apiKey: `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`,
     organization: "org-l6jiqsh5JBfKik7Nokftvb28",
     dangerouslyAllowBrowser: true, // Use with caution!
   });
