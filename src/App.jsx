@@ -468,29 +468,6 @@ const Home = () => {
     setSelectedChat(chat);
   };
 
-  const handleCloseChat = () => {
-    setIsChatOpen(false);
-    setSelectedChat(null); // Reset selected chat when closing
-    setMessages([
-      {
-        message:
-        "Hello! This is an Oracle chatbot chatting with you for today!\nHow can I help you?", // Default incoming message
-        sender: "chatbot", // Set sender as "chatbot"
-        direction: "incoming", // Set direction as "incoming"
-      }
-    ]);
-  };
-
-
-  const [messages, setMessages] = useState([
-    {
-      message:
-        "Hello! This is an Oracle chatbot chatting with you for today!\nHow can I help you?", // Default incoming message
-      sender: "chatbot", // Set sender as "chatbot"
-      direction: "incoming", // Set direction as "incoming"
-    },
-  ]);
-
   const openai = new OpenAI({
     apiKey: `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`,
     organization: "org-l6jiqsh5JBfKik7Nokftvb28",
@@ -512,6 +489,27 @@ const Home = () => {
     model: "gemini-1.5-pro", // Or another Gemini model
   });
 
+  const handleCloseChat = () => {
+    setIsChatOpen(false);
+    setSelectedChat(null); // Reset selected chat when closing
+    setMessages([
+      {
+        message:
+        `Hello! This chatbot is chatting with you for today!\nHow can I help you?`, // Default incoming message
+        sender: "chatbot", // Set sender as "chatbot"
+        direction: "incoming", // Set direction as "incoming"
+      }
+    ]);
+  };
+
+  const [messages, setMessages] = useState([
+    {
+      message:
+        `Hello! This chatbot is chatting with you for today!\nHow can I help you?`, // Default incoming message
+      sender: "chatbot", // Set sender as "chatbot"
+      direction: "incoming", // Set direction as "incoming"
+    },
+  ]);
   const handleMessageSend = async (messageText) => {
     setMessages([
       ...messages,
@@ -764,7 +762,7 @@ const Home = () => {
           {isChatOpen && selectedChat && (
             <div className="chat-window">
               <div className="chat-header"> {/* Add a header for the close button */}
-                <h6 className="chat-header-text">Oracle Chatbot ({selectedChat})</h6>
+                <h6 className="chat-header-text">{selectedChat} Chatbot</h6>
                 <FontAwesomeIcon 
                   icon={faXmark} 
                   color="black"
