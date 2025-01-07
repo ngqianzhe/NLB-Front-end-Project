@@ -19,10 +19,6 @@
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "http-proxy-middleware": "^3.0.3",
-<<<<<<< HEAD
-=======
-    "oci": "^0.0.51",
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
     "openai": "^4.77.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
