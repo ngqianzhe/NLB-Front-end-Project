@@ -723,7 +723,7 @@ const Home = () => {
             ) : ratingSubmitted ? (
               <p style={{fontSize: "14px"}}> 
                 Thank you for rating our website! <br />
-                Leaving the page in {countdown} seconds...
+                Leaving in {countdown} seconds...
               </p>
             ) : null} 
           </div>
