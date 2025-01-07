@@ -3,13 +3,6 @@ import { useState, useRef, useEffect } from 'react';
 import Navbar from './Navbar.jsx'; 
 import Footer from './footer.jsx';
 import Footer2 from './footer2.jsx';
-import {
-  MainContainer,
-  ChatContainer,
-  MessageList,
-  Message,
-  MessageInput,
-} from '@chatscope/chat-ui-kit-react';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import {
   MainContainer,
@@ -33,11 +26,7 @@ import {
   faXmark,
   faCommentDots
 } from '@fortawesome/free-solid-svg-icons'; 
-<<<<<<< HEAD
-import OpenAI from "openai";
-=======
 import { OpenAI } from "openai";
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const Home = () => {  
@@ -92,7 +81,6 @@ const Home = () => {
   const [iconVisible, setIconVisible] = useState(true);
   const selectRef = useRef(null);
   const ratingIconRef = useRef(null); // Ref for the rating icon
-  
 
   useEffect(() => {
     const handleMouseOut = (event) => {
@@ -182,13 +170,8 @@ const Home = () => {
     const selectElement = selectRef.current;
     if (selectElement) {
       if (selectedValue === "National Library / Lee Kong Chian Reference Library") {
-<<<<<<< HEAD
-        selectElement.style.width = "340px";
-        selectElement.style.marginInlineEnd = "-2px";
-=======
         selectElement.style.width = "350px";
         selectElement.style.marginInlineEnd = "-1px";
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
       }
 
       else if (selectedValue === "National Archives of Singapore") {
@@ -474,10 +457,6 @@ const Home = () => {
     setIsPopupVisible(prevState => !prevState);
   }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedChat, setSelectedChat] = useState(null); // State to track selected chat
 
@@ -489,39 +468,6 @@ const Home = () => {
     setSelectedChat(chat);
   };
 
-<<<<<<< HEAD
-  const handleCloseChat = () => {
-    setIsChatOpen(false);
-    setSelectedChat(null);
-    // Reset history for the selected chat
-    setMessages(() => [
-      {
-        message: "Hello! This is an Oracle chatbot chatting with you for today! How can I help you?", // Default outgoing message
-        sender: "chatbot", 
-        direction: "incoming" 
-      }
-    ]); 
-  };
-
-  const [messages, setMessages] = useState([
-    {
-      message: "Hello! This is an Oracle chatbot chatting with you for today! How can I help you?", // Default outgoing message
-      sender: "chatbot", 
-      direction: "incoming" 
-    },
-  ]); 
-
-  // ... (handleChatClick, handleChatSelection, handleCloseChat) ...
-
-  const openai = new OpenAI({
-    apiKey: `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`,
-    organization: "org-l6jiqsh5JBfKik7Nokftvb28",
-    dangerouslyAllowBrowser: true
-  }); 
-
-  const googleAIapiKey = "AIzaSyADGqlJ2g_1OPF7aHqDGU4jEA7qB1sNPos";
-  const googleAI = new GoogleGenerativeAI(googleAIapiKey);
-=======
   const openai = new OpenAI({
     apiKey: `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`,
     organization: "org-l6jiqsh5JBfKik7Nokftvb28",
@@ -538,21 +484,11 @@ const Home = () => {
     "top_k": 40,
     "max_output_tokens": 8192,
   }
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
 
   const model = googleAI.getGenerativeModel({
     model: "gemini-1.5-pro", // Or another Gemini model
   });
 
-<<<<<<< HEAD
-  const generationConfig = {
-    temperature: 0.5,
-    topP: 0.95,
-    topK: 40,
-    maxOutputTokens: 8192,
-  };
-
-=======
   const handleCloseChat = () => {
     setIsChatOpen(false);
     setSelectedChat(null); // Reset selected chat when closing
@@ -574,66 +510,11 @@ const Home = () => {
       direction: "incoming", // Set direction as "incoming"
     },
   ]);
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
   const handleMessageSend = async (messageText) => {
     setMessages([
       ...messages,
       { message: messageText, sender: "user", direction: "outgoing" },
     ]);
-<<<<<<< HEAD
-    let chatbotResponse;
-    if (selectedChat === "OpenAI") {
-      try {
-        const completion = await openai.chat.completions.create({
-          messages: [{ role: "user", content: messageText }],
-          model: "gpt-4o-mini",
-          store: true
-        });
-  
-        chatbotResponse = completion.choices[0].message.content;
-
-        // Update the chat history state
-      } catch (error) {
-        console.error('Error with OpenAI Chatbot:', error);
-      }
-    } else if (selectedChat === "Gemini") {
-        try {
-          const chatSession = model.startChat({
-            generationConfig,
-          });
-
-          const result = await chatSession.sendMessage(messageText);
-          chatbotResponse = result.response.text();
-
-        } catch (error) {
-          console.error("Error with Google Gemini AI Chatbot:", error);
-        }
-    }
-  
-      setMessages([
-        ...messages,
-        { message: messageText, sender: "user", direction: "outgoing" },
-        { message: chatbotResponse, sender: "chatbot", direction: "incoming" },
-      ]);
-  };
-
-  const handleFileInputChange = (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        const fileData = e.target.result;
-        // Here, you can send `fileData` to your chatbot API
-        // along with the message text. You'll need to modify
-        // your API endpoint to handle file uploads.
-        console.log("File data:", fileData); 
-      };
-
-      reader.readAsDataURL(file); // Read the file as a data URL
-    }
-=======
 
     let chatbotResponse;
 
@@ -674,7 +555,6 @@ const Home = () => {
       },
     ]);
     // ... (rest of your message sending logic) ...
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
   };
 
   return (
@@ -850,13 +730,6 @@ const Home = () => {
               <FontAwesomeIcon
                 icon={faCommentDots}
                 size="2x"
-<<<<<<< HEAD
-                color="white"
-                className="chat-icon"
-                style={{border: "5px solid black", 
-                borderRadius: "20px", 
-                backgroundColor: "black"}}
-=======
                 style={{
                   border: "5px solid black", 
                   borderRadius: "20px", 
@@ -864,24 +737,12 @@ const Home = () => {
                 }}
                 color="white"
                 className="chat-icon"
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
                 onClick={handleChatClick}
               />
             </div>
           )}
           {isChatOpen && !selectedChat && ( // Show selection box if chat is open and no chat is selected
             <div className="chat-selection-box">
-<<<<<<< HEAD
-              <FontAwesomeIcon onClick={handleCloseChat} className="close-icon" icon={faXmark} color="black" size="sm"/>
-              <div className="button-box">
-                <button className="button-chat" onClick={() => handleChatSelection("OpenAI")}>
-                  OpenAI
-                </button>
-                <br />
-                <br />
-                <button className="button-chat" onClick={() => handleChatSelection("Gemini")}>
-                  Gemini
-=======
               <FontAwesomeIcon 
                   icon={faXmark} 
                   className="close-icon" 
@@ -894,40 +755,10 @@ const Home = () => {
                 </button>
                 <button className="select-button" onClick={() => handleChatSelection("Gemini")}>
                   <b>Gemini</b>
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
                 </button>
               </div>
             </div>
           )}
-<<<<<<< HEAD
-          {isChatOpen && selectedChat && ( // Show selected chat interface
-            <div className="chat-window">
-              <div className="chat-header"> {/* Add a header for the close button */}
-                <h6 className="chat-header-text">Oracle Chatbot</h6>
-                <FontAwesomeIcon onClick={handleCloseChat} className="close-icon" icon={faXmark} color="black" size="sm"/>
-              </div>
-                <MainContainer>
-                  <ChatContainer>
-                    <MessageList>
-                      {messages.map((message, i) => (
-                        <Message
-                          key={i}
-                          model={{
-                            message: message.message,
-                            sender: message.sender,
-                            direction: message.sender === 'user' ? 'outgoing' : 'incoming', // Set message direction
-                          }}
-                        />
-                      ))}
-                    </MessageList>
-                    <MessageInput 
-                      placeholder="Type message here" 
-                      onSend={handleMessageSend} 
-                      attachButton={true} // Enable the attach button
-                      onAttachmentChange={handleFileInputChange} 
-                    />
-                  </ChatContainer>
-=======
           {isChatOpen && selectedChat && (
             <div className="chat-window">
               <div className="chat-header"> {/* Add a header for the close button */}
@@ -958,7 +789,6 @@ const Home = () => {
                     onSend={handleMessageSend}
                   />
                 </ChatContainer>
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
               </MainContainer>
             </div>
           )}
