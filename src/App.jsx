@@ -411,10 +411,37 @@ const Home = () => {
   };
 
   const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [ratingSubmitted, setRatingSubmitted] = useState(false);
+  const [countdown, setCountdown] = useState(5); // Countdown state
 
   const handleVisibleClick = () => {
     setIsPopupVisible(!isPopupVisible);
   };
+
+  useEffect(() => {
+    let timer;
+    if (ratingSubmitted) {
+      timer = setInterval(() => {
+        setCountdown(prevCountdown => prevCountdown - 1);
+      }, 1000);
+    } 
+
+    // Clean up the timer when the countdown reaches 0 or ratingSubmitted is false
+    if (countdown === 0 || !ratingSubmitted) {
+      clearInterval(timer);
+      setRatingSubmitted(false);
+      setIsPopupVisible(false);
+      setCountdown(5); // Reset countdown
+    }
+
+    return () => clearInterval(timer);
+  }, [ratingSubmitted, countdown]);
+
+
+  const handleFaceIconClick = () => {
+    setRatingSubmitted(true); 
+  };
+
 
   useEffect(() => {
     const popupElement = document.querySelector('.rating-faces');
@@ -645,7 +672,7 @@ const Home = () => {
             </a>
           </div>
           <div className="rating-icon" ref={ratingIconRef} onMouseEnter={() => setIconVisible(false)}>
-            {iconVisible && ( 
+            {iconVisible && !ratingSubmitted && ( 
             <FontAwesomeIcon 
             className="icon-rating" 
             style={{
@@ -663,7 +690,15 @@ const Home = () => {
             </div>
           </div>
           <div className="rating-faces">
-              <FontAwesomeIcon onClick={handleTogglePopup} className="close-icon" icon={faXmark} color="black" size="sm"/>
+            {isPopupVisible && !ratingSubmitted ? (
+            <> 
+              <FontAwesomeIcon 
+                onClick={handleTogglePopup} // Close popup on X click
+                className="close-icon" 
+                icon={faXmark} 
+                color="black" 
+                size="sm"
+              />
               <span style={{fontSize:"10px"}}>Rate your experience with this website</span>
               <div className="rating-container">
                 <div className="icons-container"> {/* Container for the icons */}
@@ -673,6 +708,7 @@ const Home = () => {
                         className="faceRatings" 
                         icon={icon} 
                         size="sm" 
+                        onClick={handleFaceIconClick}
                       />
                       <label>{index + 1}</label>
                     </div>
@@ -683,6 +719,13 @@ const Home = () => {
                   <span className="label-right">VERY SATISFIED</span>
                 </div>
               </div>
+            </>
+            ) : ratingSubmitted ? (
+              <p style={{fontSize: "14px"}}> 
+                Thank you for rating our website! <br />
+                Leaving the page in {countdown} seconds...
+              </p>
+            ) : null} 
           </div>
           {!isChatOpen && (
             <div>
@@ -721,7 +764,7 @@ const Home = () => {
           {isChatOpen && selectedChat && (
             <div className="chat-window">
               <div className="chat-header"> {/* Add a header for the close button */}
-                <h6 className="chat-header-text">Oracle Chatbot</h6>
+                <h6 className="chat-header-text">Oracle Chatbot ({selectedChat})</h6>
                 <FontAwesomeIcon 
                   icon={faXmark} 
                   color="black"
