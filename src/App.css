@@ -239,8 +239,6 @@
   cursor: pointer;
 }
 
-<<<<<<< HEAD
-=======
 .chat-selection-box {
   background-color: white;
   padding: 50px;
@@ -273,7 +271,6 @@
   border: 1px solid white;
 }
 
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
 .chat-window {
   position: fixed; /* Or absolute, depending on your layout */
   bottom: 70px; /* Adjust position as needed */
@@ -282,60 +279,10 @@
   height: 400px; /* Adjust size as needed */
   background-color: white;
   border: 1px solid #ccc;
-<<<<<<< HEAD
-  
-}
-
-.chat-selection-box {
-  background-color: white;
-  border-radius: 9px;
-  padding: 30px;
-  height: 37%;
-  position: fixed;
-  top: 60%;
-  right: 3%;
-  text-align: center;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.6);
-}
-
-.button-chat {
-  background-color: transparent;
-  color: black;
-  font-size: 10px;
-  border: 1px solid black;
-  border-radius: 4px;
-  width: 100%;
-  white-space: nowrap;
-  text-align: center;
-}
-
-.button-box {
-  display: block;
-  position: relative;
-  padding-block-start: 35px;
-}
-
-.button-chat:hover {
-  background-color: #e07c1c;
-  color: white;
-  border: 1px solid white;
-=======
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
 }
 
 .chat-header {
   display: flex;
-<<<<<<< HEAD
-  padding: 9px;
-  background-color: #f0f0f0; /* Add a background color to the header */
-}
-
-.chat-header-text {
-  text-align: left;
-  color: black;
-  font-weight: bold;
-}
-=======
   padding: 10px;
   background-color: white; /* Add a background color to the header */
 }
@@ -349,6 +296,5 @@
   text-align: left;
 }
 
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
 
 
