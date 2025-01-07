@@ -19,14 +19,7 @@ h2 {
     font-weight: bold;
     font-family: 'Calibri Dark', sans-serif
 }
-<<<<<<< HEAD
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-=======
 
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
 .login-input {
     width: 100%;
     padding: 10px;
@@ -36,10 +29,6 @@ label {
     background-color: transparent;
     color: black;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
 .login-button {
     background-color: #ff9c74; 
     color: white;
