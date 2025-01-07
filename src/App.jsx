@@ -97,6 +97,75 @@ const Home = () => {
     return () => document.removeEventListener('mouseout', handleMouseOut);
   }, []); // Empty dependency array ensures this runs only once
   
+  const getLibraryUrl = (libraryName) => {
+    switch (libraryName) {
+      case "National Library / Lee Kong Chian Reference Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/national-library-singapore";
+      case "National Archives of Singapore":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/national-archives-of-singapore";
+      case "Ang Mo Kio Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/ang-mo-kio-public-library";
+      case "Bedok Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/bedok-public-library";
+      case "Bishan Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/bishan-public-library";
+      case "Bukit Batok Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/bukit-batok-public-library";
+      case "Bukit Panjang Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/bukit-panjang-public-library";
+      case "Central Arts Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/central-public-library";
+      case "Central Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/central-public-library";
+      case "Choa Chu Kang Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/choa-chu-kang-public-library";
+      case "Cheng San Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/cheng-san-public-library";
+      case "Clementi Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/clementi-public-library";
+      case "Geylang East Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/geylang-east-public-library";
+      case "Jurong Regional Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/jurong-regional-library";
+      case "Jurong West Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/jurong-west-public-library";
+      case "library@chinatown":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/library@chinatown";
+      case "library@harbourfront":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/library@harbourfront";
+      case "library@orchard":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/library@orchard";
+      case "Marine Parade Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/marine-parade-public-library";
+      case "Punggol Regional Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/punggol-regional-library";
+      case "Pasir Ris Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/pasir-ris-public-library";
+      case "Queenstown Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/queenstown-public-library";
+      case "Sembawang Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/sembawang-public-library";
+      case "Sengkang Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/sengkang-public-library";
+      case "Serangoon Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/serangoon-public-library";
+      case "Singapore Botanic Gardens' Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/singapore-botanic-gardens-library";
+      case "Tampines Regional Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/tampines-regional-library";
+      case "The LLiBrary":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/the-llibrary";
+      case "Toa Payoh Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/toa-payoh-public-library";
+      case "Woodlands Regional Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/woodlands-regional-library";
+      case "Yishun Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/yishun-public-library";
+      default:
+        return "#"; 
+    }
+  };
+
   useEffect(() => {
     const selectElement = selectRef.current;
     if (selectElement) {
@@ -269,6 +338,7 @@ const Home = () => {
 
         if (library) {
           const schedule = library.timing.openingHours; // Get today's schedule
+          console.log(schedule);
           const days = schedule.split(": ")[0];
           const closingDayName = days.split(" - ")[1];
           const closingDay = daysOfWeek.indexOf(closingDayName);
@@ -299,14 +369,16 @@ const Home = () => {
             const scheduleDate = new Date(schedule.date);
             return scheduleDate.getMonth() + 1 === todaysMonth && scheduleDate.getDate() === todaysDay;
           });
-
+          console.log(closinghourInt);
+          console.log(openinghourInt);
+          console.log(minute);
           if (todaysClosure) {
             messageText.innerHTML = "";
             setOpeningHours('Closed today due to a public holiday!'); 
             return; // Exit early if closed
           }
 
-          if ((now < closinghourInt && minute > 0) && (now > openinghourInt && minute > 0) && (closingDayName == "Sun" || closingDay >= currentDay)) {
+          if ((now < closinghourInt && minute > 0) && (now >= openinghourInt && minute > 0) && (closingDayName == "Sun" || closingDay >= currentDay)) {
             messageText.innerHTML = "Open today from <br />";
             setOpeningHours (`${openingTime} to ${closingTime}`);
           } else { 
@@ -393,7 +465,7 @@ const Home = () => {
   ]);
 
   const openai = new OpenAI({
-    apiKey: `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`,
+    apiKey: `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`,
     organization: "org-l6jiqsh5JBfKik7Nokftvb28",
     dangerouslyAllowBrowser: true, // Use with caution!
   });
@@ -520,7 +592,7 @@ const Home = () => {
               )}
             </div>
 
-            <a href="https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/national-archives-of-singapore" className="button-container">Go to the library <FontAwesomeIcon icon={faArrowRight} color="#002d72" size="lg"/></a>
+            <a href={getLibraryUrl(selectedValue)} className="button-container">Go to the library <FontAwesomeIcon icon={faArrowRight} color="#002d72" size="lg"/></a>
           </div>
           <div className="card-container">
             <a className="button-cards" href="https://www.nlb.gov.sg/main/services/library-membership">
