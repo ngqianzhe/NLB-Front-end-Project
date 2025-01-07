@@ -4,6 +4,13 @@ import Navbar from './Navbar.jsx';
 import Footer from './footer.jsx';
 import Footer2 from './footer2.jsx';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
+import {
+  MainContainer,
+  ChatContainer,
+  MessageList,
+  Message,
+  MessageInput,
+} from "@chatscope/chat-ui-kit-react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,8 +23,11 @@ import {
   faFaceLaughBeam,
   faFaceAngry,
   faFaceGrin,
-  faXmark
+  faXmark,
+  faCommentDots
 } from '@fortawesome/free-solid-svg-icons'; 
+import { OpenAI } from "openai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const Home = () => {  
   function getGreeting() {
@@ -91,7 +101,7 @@ const Home = () => {
     const selectElement = selectRef.current;
     if (selectElement) {
       if (selectedValue === "National Library / Lee Kong Chian Reference Library") {
-        selectElement.style.width = "400px";
+        selectElement.style.width = "340px";
         selectElement.style.marginInlineEnd = "-2px";
       }
 
@@ -348,6 +358,108 @@ const Home = () => {
     setIsPopupVisible(prevState => !prevState);
   }
 
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [selectedChat, setSelectedChat] = useState(null); // State to track selected chat
+
+  const handleChatClick = () => {
+    setIsChatOpen(true);
+  };
+
+  const handleChatSelection = (chat) => {
+    setSelectedChat(chat);
+  };
+
+  const handleCloseChat = () => {
+    setIsChatOpen(false);
+    setSelectedChat(null); // Reset selected chat when closing
+    setMessages([
+      {
+        message:
+        "Hello! This is an Oracle chatbot chatting with you for today!\nHow can I help you?", // Default incoming message
+        sender: "chatbot", // Set sender as "chatbot"
+        direction: "incoming", // Set direction as "incoming"
+      }
+    ]);
+  };
+
+
+  const [messages, setMessages] = useState([
+    {
+      message:
+        "Hello! This is an Oracle chatbot chatting with you for today!\nHow can I help you?", // Default incoming message
+      sender: "chatbot", // Set sender as "chatbot"
+      direction: "incoming", // Set direction as "incoming"
+    },
+  ]);
+
+  const openai = new OpenAI({
+    apiKey: `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`,
+    organization: "org-l6jiqsh5JBfKik7Nokftvb28",
+    dangerouslyAllowBrowser: true, // Use with caution!
+  });
+
+  const geminiAPIKey = "AIzaSyADGqlJ2g_1OPF7aHqDGU4jEA7qB1sNPos"; // Replace with your actual API key
+
+  const googleAI = new GoogleGenerativeAI(geminiAPIKey);
+
+  const generation_config = {
+    "temperature": 1,
+    "top_p": 0.95,
+    "top_k": 40,
+    "max_output_tokens": 8192,
+  }
+
+  const model = googleAI.getGenerativeModel({
+    model: "gemini-1.5-pro", // Or another Gemini model
+  });
+
+  const handleMessageSend = async (messageText) => {
+    setMessages([
+      ...messages,
+      { message: messageText, sender: "user", direction: "outgoing" },
+    ]);
+
+    let chatbotResponse;
+
+    if (selectedChat === "OpenAI") {
+      try {
+        const completion = await openai.chat.completions.create({
+          messages: [{ role: "assistant", content: messageText }],
+          model: "gpt-4o-mini",
+          store: true
+        });
+
+        chatbotResponse = completion.choices[0].message.content;
+
+      } catch (error) {
+        console.error("Error with OpenAI Chatbot:", error);
+      }
+    } else if (selectedChat === "Gemini") {
+      // ... (Gemini API call) ...
+      try {
+        const chatSession = model.startChat({
+          generation_config,
+          history: []
+        });
+        const result = await chatSession.sendMessage(messageText);
+        chatbotResponse = result.response.text();
+      } catch (error) {
+        console.error("Error with Google Gemini:", error);
+      }
+    }
+
+    setMessages([
+      ...messages,
+      { message: messageText, sender: "user", direction: "outgoing" },
+      {
+        message: chatbotResponse,
+        sender: "chatbot",
+        direction: "incoming",
+      },
+    ]);
+    // ... (rest of your message sending logic) ...
+  };
+
   return (
     <>
       <Navbar />
@@ -466,7 +578,7 @@ const Home = () => {
             className="icon-rating" 
             style={{
             border: "5px solid black", 
-            borderRadius: "13px", 
+            borderRadius: "20px", 
             backgroundColor: "black"
             }}
             icon={faFaceSmile} 
@@ -500,6 +612,73 @@ const Home = () => {
                 </div>
               </div>
           </div>
+          {!isChatOpen && (
+            <div>
+              <FontAwesomeIcon
+                icon={faCommentDots}
+                size="2x"
+                style={{
+                  border: "5px solid black", 
+                  borderRadius: "20px", 
+                  backgroundColor: "black"
+                }}
+                color="white"
+                className="chat-icon"
+                onClick={handleChatClick}
+              />
+            </div>
+          )}
+          {isChatOpen && !selectedChat && ( // Show selection box if chat is open and no chat is selected
+            <div className="chat-selection-box">
+              <FontAwesomeIcon 
+                  icon={faXmark} 
+                  className="close-icon" 
+                  color="black"
+                  onClick={handleCloseChat} 
+              />
+              <div className="button-box">
+                <button className="select-button" onClick={() => handleChatSelection("OpenAI")}>
+                  OpenAI
+                </button>
+                <button className="select-button" onClick={() => handleChatSelection("Gemini")}>
+                  Gemini
+                </button>
+              </div>
+            </div>
+          )}
+          {isChatOpen && selectedChat && (
+            <div className="chat-window">
+              <div className="chat-header"> {/* Add a header for the close button */}
+                <h6 className="chat-header-text">Oracle Chatbot</h6>
+                <FontAwesomeIcon 
+                  icon={faXmark} 
+                  color="black"
+                  className="close-icon" 
+                  onClick={handleCloseChat} 
+                />
+              </div>
+              <MainContainer>
+                <ChatContainer>
+                  <MessageList>
+                    {messages.map((message, i) => (
+                      <Message
+                        key={i}
+                        model={{
+                          message: message.message,
+                          sender: message.sender,
+                          direction: message.direction,
+                        }}
+                      />
+                    ))}
+                  </MessageList>
+                  <MessageInput
+                    placeholder="Type message here"
+                    onSend={handleMessageSend}
+                  />
+                </ChatContainer>
+              </MainContainer>
+            </div>
+          )}
         </div>
       </div>
       <Footer2 />
