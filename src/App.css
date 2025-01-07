@@ -264,6 +264,13 @@
   border-radius: 5px;
   margin-right: 20px;
 }
+
+.select-button:hover {
+  background-color:#e07c1c;
+  color: white;
+  border: 1px solid white;
+}
+
 .chat-window {
   position: fixed; /* Or absolute, depending on your layout */
   bottom: 70px; /* Adjust position as needed */

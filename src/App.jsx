@@ -638,10 +638,10 @@ const Home = () => {
               />
               <div className="button-box">
                 <button className="select-button" onClick={() => handleChatSelection("OpenAI")}>
-                  OpenAI
+                  <b>OpenAI</b>
                 </button>
                 <button className="select-button" onClick={() => handleChatSelection("Gemini")}>
-                  Gemini
+                  <b>Gemini</b>
                 </button>
               </div>
             </div>
