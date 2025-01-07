@@ -54,6 +54,7 @@ const Login = () => {
       <h2>Sign <span style={{fontStyle: "italic"}}>in</span></h2>
       <form onSubmit={handleSubmit}> {/* Add form element with onSubmit */}
         <input
+          className="login-input"
           type="text"
           id="username"
           name="username"
@@ -64,6 +65,7 @@ const Login = () => {
 
         <div className="password-input-container">
           <input
+            className="login-input"
             type={showPassword ? 'text' : 'password'}
             id="password"
             name="password"
@@ -80,7 +82,7 @@ const Login = () => {
           />
         </div>
 
-        <button type="submit">CONTINUE</button>
+        <button className="login-button" type="submit">CONTINUE</button>
       </form>
 
       <div className="forgot-password">
