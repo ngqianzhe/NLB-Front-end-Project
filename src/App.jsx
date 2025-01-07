@@ -30,18 +30,37 @@ import { OpenAI } from "openai";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const Home = () => {  
-  function getGreeting() {
+  const [greeting, setGreeting] = useState('');
+
+  useEffect(() => {
     const now = new Date();
     const hour = now.getHours();
 
     if (hour >= 5 && hour < 12) {
-      return "Good Morning";
+      setGreeting("Good Morning");
     } else if (hour >= 12 && hour < 18) {
-      return "Good Afternoon";
+      setGreeting("Good Afternoon");
     } else {
-      return "Good Evening";
+      setGreeting("Good Evening");
     }
-  }
+
+  // Update the greeting every minute
+  const intervalId = setInterval(() => {
+    const now = new Date();
+    const hour = now.getHours();
+
+    if (hour >= 5 && hour < 12) {
+      setGreeting("Good Morning");
+    } else if (hour >= 12 && hour < 18) {
+      setGreeting("Good Afternoon");
+    } else {
+      setGreeting("Good Evening");
+    }
+  }, 60000);
+
+  // Clean up the interval when the component unmounts
+  return () => clearInterval(intervalId);
+}, []); // Empty dependency array ensures this runs only once
 
   function updateBackgroundColor() {
     const now = new Date();
@@ -58,23 +77,6 @@ const Home = () => {
   // Update the background color every hour
   setInterval(updateBackgroundColor, 60 * 60 * 1000); // 1 hour in milliseconds
 
-  useEffect(() => {
-    // Update the greeting initially
-    updateGreeting();
-
-    // Update the greeting every minute
-    const intervalId = setInterval(updateGreeting, 60000);
-
-    // Clean up the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []); // Empty dependency array ensures this runs only once after initial render
-
-  function updateGreeting() {
-    const greetingElement = document.getElementById("greeting");
-    if (greetingElement) { 
-      greetingElement.textContent = getGreeting();
-    }
-  }
   const [selectedValue, setSelectedValue] = useState('National Library / Lee Kong Chian Reference Library');
   const [openingHours, setOpeningHours] = useState("Getting schedule..."); // State to store opening hours
   const [isLoading, setIsLoading] = useState(false);
@@ -557,11 +559,33 @@ const Home = () => {
     // ... (rest of your message sending logic) ...
   };
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState(''); // State to store the username
+
+  useEffect(() => {
+    const storedUser = JSON.parse(sessionStorage.getItem('user'));
+    if (storedUser) {
+      setIsLoggedIn(true);
+      setUserName(storedUser.username); // Get the username from sessionStorage
+    }
+
+    else {
+      setIsLoggedIn(false);
+      setUserName('');
+    }
+  }, []); // Run only once on component mount
+  
   return (
     <>
       <Navbar />
       <div style={{ textAlign: "left", paddingInlineStart: "20px", color: "white", marginTop: "3rem", marginBottom: "5rem" }}>
-        <h6 id="greeting" style={{fontWeight: "bold"}}></h6>
+        {isLoggedIn ? ( // Conditionally render the greeting
+          <h6 id="greeting" style={{ fontWeight: "bold" }}>
+            {greeting}, {userName}!
+          </h6>
+        ) : (
+          <h6 id="greeting" style={{fontWeight: "bold"}}>{greeting}!</h6>
+        )}
         <h4 id="header" style={{textAlign: "center", fontWeight: "bold"}}>What would you like to do today?</h4> <br />
         <div className="content-wrapper">
           <div className="container-box">

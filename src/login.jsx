@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Login = () => {
   function updateBackgroundColor() {
@@ -34,16 +35,34 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
+  const navigate = useNavigate(); // Initialize useNavigate
+
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent default form submission
     // Add your login logic here (e.g., send data to server)
 
     if (!username || !password) {
       alert('Please fill in all fields.');
+      return;
     }
-    
-    console.log('Username:', username);
-    console.log('Password:', password);
+    let users = JSON.parse(localStorage.getItem('users'));
+    if (users === null) {
+      alert('No user has been registered yet!');
+      navigate('/register.jsx');
+      return;
+    }
+
+    const usernameExists = users.find(user => user.username === username);
+    const passwordExists = users.find(user => user.password === password);
+
+    if (!usernameExists && !passwordExists) {
+      alert('Username and Password does not match within the system!');
+      return;
+    }
+
+    const userData = { username, password }; 
+    sessionStorage.setItem('user', JSON.stringify(userData));
+    navigate('/'); 
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -66,6 +85,7 @@ const Login = () => {
           placeholder="myLibrary username"
           value={username}
           onChange={handleUsernameChange}
+          required
         />
 
         <div className="password-input-container">
@@ -77,6 +97,7 @@ const Login = () => {
             placeholder="Enter your password"
             value={password}
             onChange={handlePasswordChange}
+            required
           />
           <FontAwesomeIcon 
             icon={showPassword ? faEyeSlash : faEye} 

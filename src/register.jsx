@@ -1,5 +1,6 @@
 import './register.css';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import Navbar2 from './Navbar2.jsx'; 
 import LoginFooter from './loginFooter.jsx';
 import LoginFooter2 from './loginFooter2.jsx';
@@ -18,7 +19,7 @@ const Register = () => {
 
   
   updateBackgroundColor();
-
+  
   useEffect(() => {
     document.title = 'Register for myLibrary';
   }, []); // Empty dependency array ensures this runs only once
@@ -34,17 +35,41 @@ const Register = () => {
     setShowPassword(!showPassword);
   };
 
+  const navigate = useNavigate(); // Initialize useNavigate
+
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent default form submission behavior
-
+    
     // Basic validation (you can add more robust validation)
     if (!username || !email || !password || !contactNumber) {
       alert('Please fill in all fields.');
       return;
     }
+    const userData = {
+      username: username,
+      email: email,
+      password: password, 
+      contactNumber: contactNumber 
+    };
 
-    // TODO: Send registration data to your backend API
-    console.log('Registration data:', { username, email, password, contactNumber });
+    // Get the existing users array from localStorage, or initialize an empty array
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+
+    const emailExists = users.find(user => user.email === email);
+    if (emailExists) {
+      alert('Email already exists, please enter another email.');
+      return;
+    }
+
+    // Add the new user data to the array
+    users.push(userData);
+
+    // Store the updated array back in localStorage
+    localStorage.setItem('users', JSON.stringify(users));
+
+    const userSessionData = { username, password }
+    sessionStorage.setItem('user', JSON.stringify(userSessionData));
+    navigate('/'); 
 
     // Optionally clear the form or redirect to another page
   };

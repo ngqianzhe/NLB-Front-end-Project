@@ -1,15 +1,18 @@
 import './Navbar.css'; // Import your CSS for styling
-import { faUser, faSearch, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faSearch, faXmark, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Navbar = () => {
   const [searchIcon, setSearchIcon] = useState(faSearch);
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Add state for popup visibility
   const [selectedRadio, setSelectedRadio] = useState(null); // State for selected radio button
+  const navigate = useNavigate(); 
+
   function toggleSearchPopup() {
     const searchPopup = document.querySelector(".search-popup");
     const now = new Date();
@@ -79,21 +82,57 @@ const Navbar = () => {
     setIsProfileDropdownVisible(!isProfileDropdownVisible);
   };
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const storedUser = JSON.parse(sessionStorage.getItem('user'));
+    if (storedUser) {
+      setIsLoggedIn(true);
+      setIsProfileDropdownVisible(false);
+    }
+  }, []); // Run only once on component mount
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('user');
+    setIsLoggedIn(false);
+    setIsProfileDropdownVisible(true); // Close the dropdown
+    // Redirect to the home page or login page after logout:
+    navigate('/'); 
+    window.location.reload(); // Refresh the page
+  };
+
   return (
     <div className="navigation-bar">
         <div className="govt-banner-wrapper"> 
           <sgds-masthead fluid></sgds-masthead>
         </div> 
         <nav className="navbar navbar-expand-xl smart-scroll">
-          <a className="navbar-brand icon" href="/" aria-current="page">
-              <img src="src/assets/NLB-home-logo.png" alt="NLB Logo" /> 
-          </a> 
+          <div className="navbar-brand icon">
+            <a href="/" aria-current="page">
+                <img src="src/assets/NLB-home-logo.png" alt="NLB Logo" /> 
+            </a> 
+          </div>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <div className="profile-container"> 
                     <span className="nav-link" onClick={handleProfileClick}>
-                      <FontAwesomeIcon className="user-icon" icon={faUser} size="xl" color="white" /> {/* Use faUser icon */}
+                      {isLoggedIn ? (
+                        <FontAwesomeIcon
+                          className="user-icon"
+                          icon={faSignOutAlt} // Use faCircleUser for logged-in users
+                          size="xl"
+                          color="white"
+                          onClick={handleLogout}
+                        />
+                      ) : (
+                        <FontAwesomeIcon
+                          className="user-icon"
+                          icon={faUser}
+                          size="xl"
+                          color="white"
+                        />
+                      )}
                     </span>
                     {isProfileDropdownVisible && (
                       <div className="profile-dropdown">
