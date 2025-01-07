@@ -11,6 +11,13 @@ import {
   MessageInput,
 } from '@chatscope/chat-ui-kit-react';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
+import {
+  MainContainer,
+  ChatContainer,
+  MessageList,
+  Message,
+  MessageInput,
+} from "@chatscope/chat-ui-kit-react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +33,11 @@ import {
   faXmark,
   faCommentDots
 } from '@fortawesome/free-solid-svg-icons'; 
+<<<<<<< HEAD
 import OpenAI from "openai";
+=======
+import { OpenAI } from "openai";
+>>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const Home = () => {  
@@ -98,12 +109,86 @@ const Home = () => {
     return () => document.removeEventListener('mouseout', handleMouseOut);
   }, []); // Empty dependency array ensures this runs only once
   
+  const getLibraryUrl = (libraryName) => {
+    switch (libraryName) {
+      case "National Library / Lee Kong Chian Reference Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/national-library-singapore";
+      case "National Archives of Singapore":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/national-archives-of-singapore";
+      case "Ang Mo Kio Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/ang-mo-kio-public-library";
+      case "Bedok Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/bedok-public-library";
+      case "Bishan Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/bishan-public-library";
+      case "Bukit Batok Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/bukit-batok-public-library";
+      case "Bukit Panjang Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/bukit-panjang-public-library";
+      case "Central Arts Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/central-public-library";
+      case "Central Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/central-public-library";
+      case "Choa Chu Kang Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/choa-chu-kang-public-library";
+      case "Cheng San Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/cheng-san-public-library";
+      case "Clementi Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/clementi-public-library";
+      case "Geylang East Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/geylang-east-public-library";
+      case "Jurong Regional Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/jurong-regional-library";
+      case "Jurong West Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/jurong-west-public-library";
+      case "library@chinatown":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/library@chinatown";
+      case "library@harbourfront":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/library@harbourfront";
+      case "library@orchard":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/library@orchard";
+      case "Marine Parade Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/marine-parade-public-library";
+      case "Punggol Regional Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/punggol-regional-library";
+      case "Pasir Ris Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/pasir-ris-public-library";
+      case "Queenstown Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/queenstown-public-library";
+      case "Sembawang Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/sembawang-public-library";
+      case "Sengkang Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/sengkang-public-library";
+      case "Serangoon Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/serangoon-public-library";
+      case "Singapore Botanic Gardens' Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/singapore-botanic-gardens-library";
+      case "Tampines Regional Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/tampines-regional-library";
+      case "The LLiBrary":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/the-llibrary";
+      case "Toa Payoh Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/toa-payoh-public-library";
+      case "Woodlands Regional Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/woodlands-regional-library";
+      case "Yishun Public Library":
+        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/yishun-public-library";
+      default:
+        return "#"; 
+    }
+  };
+
   useEffect(() => {
     const selectElement = selectRef.current;
     if (selectElement) {
       if (selectedValue === "National Library / Lee Kong Chian Reference Library") {
+<<<<<<< HEAD
         selectElement.style.width = "340px";
         selectElement.style.marginInlineEnd = "-2px";
+=======
+        selectElement.style.width = "350px";
+        selectElement.style.marginInlineEnd = "-1px";
+>>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
       }
 
       else if (selectedValue === "National Archives of Singapore") {
@@ -270,6 +355,7 @@ const Home = () => {
 
         if (library) {
           const schedule = library.timing.openingHours; // Get today's schedule
+          console.log(schedule);
           const days = schedule.split(": ")[0];
           const closingDayName = days.split(" - ")[1];
           const closingDay = daysOfWeek.indexOf(closingDayName);
@@ -300,14 +386,16 @@ const Home = () => {
             const scheduleDate = new Date(schedule.date);
             return scheduleDate.getMonth() + 1 === todaysMonth && scheduleDate.getDate() === todaysDay;
           });
-
+          console.log(closinghourInt);
+          console.log(openinghourInt);
+          console.log(minute);
           if (todaysClosure) {
             messageText.innerHTML = "";
             setOpeningHours('Closed today due to a public holiday!'); 
             return; // Exit early if closed
           }
 
-          if ((now < closinghourInt && minute > 0) && (now > openinghourInt && minute > 0) && (closingDayName == "Sun" || closingDay >= currentDay)) {
+          if ((now < closinghourInt && minute > 0) && (now >= openinghourInt && minute > 0) && (closingDayName == "Sun" || closingDay >= currentDay)) {
             messageText.innerHTML = "Open today from <br />";
             setOpeningHours (`${openingTime} to ${closingTime}`);
           } else { 
@@ -340,10 +428,37 @@ const Home = () => {
   };
 
   const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [ratingSubmitted, setRatingSubmitted] = useState(false);
+  const [countdown, setCountdown] = useState(5); // Countdown state
 
   const handleVisibleClick = () => {
     setIsPopupVisible(!isPopupVisible);
   };
+
+  useEffect(() => {
+    let timer;
+    if (ratingSubmitted) {
+      timer = setInterval(() => {
+        setCountdown(prevCountdown => prevCountdown - 1);
+      }, 1000);
+    } 
+
+    // Clean up the timer when the countdown reaches 0 or ratingSubmitted is false
+    if (countdown === 0 || !ratingSubmitted) {
+      clearInterval(timer);
+      setRatingSubmitted(false);
+      setIsPopupVisible(false);
+      setCountdown(5); // Reset countdown
+    }
+
+    return () => clearInterval(timer);
+  }, [ratingSubmitted, countdown]);
+
+
+  const handleFaceIconClick = () => {
+    setRatingSubmitted(true); 
+  };
+
 
   useEffect(() => {
     const popupElement = document.querySelector('.rating-faces');
@@ -359,7 +474,10 @@ const Home = () => {
     setIsPopupVisible(prevState => !prevState);
   }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedChat, setSelectedChat] = useState(null); // State to track selected chat
 
@@ -371,6 +489,7 @@ const Home = () => {
     setSelectedChat(chat);
   };
 
+<<<<<<< HEAD
   const handleCloseChat = () => {
     setIsChatOpen(false);
     setSelectedChat(null);
@@ -402,11 +521,30 @@ const Home = () => {
 
   const googleAIapiKey = "AIzaSyADGqlJ2g_1OPF7aHqDGU4jEA7qB1sNPos";
   const googleAI = new GoogleGenerativeAI(googleAIapiKey);
+=======
+  const openai = new OpenAI({
+    apiKey: `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`,
+    organization: "org-l6jiqsh5JBfKik7Nokftvb28",
+    dangerouslyAllowBrowser: true, // Use with caution!
+  });
+
+  const geminiAPIKey = "AIzaSyADGqlJ2g_1OPF7aHqDGU4jEA7qB1sNPos"; // Replace with your actual API key
+
+  const googleAI = new GoogleGenerativeAI(geminiAPIKey);
+
+  const generation_config = {
+    "temperature": 1,
+    "top_p": 0.95,
+    "top_k": 40,
+    "max_output_tokens": 8192,
+  }
+>>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
 
   const model = googleAI.getGenerativeModel({
     model: "gemini-1.5-pro", // Or another Gemini model
   });
 
+<<<<<<< HEAD
   const generationConfig = {
     temperature: 0.5,
     topP: 0.95,
@@ -414,11 +552,35 @@ const Home = () => {
     maxOutputTokens: 8192,
   };
 
+=======
+  const handleCloseChat = () => {
+    setIsChatOpen(false);
+    setSelectedChat(null); // Reset selected chat when closing
+    setMessages([
+      {
+        message:
+        `Hello! This chatbot is chatting with you for today!\nHow can I help you?`, // Default incoming message
+        sender: "chatbot", // Set sender as "chatbot"
+        direction: "incoming", // Set direction as "incoming"
+      }
+    ]);
+  };
+
+  const [messages, setMessages] = useState([
+    {
+      message:
+        `Hello! This chatbot is chatting with you for today!\nHow can I help you?`, // Default incoming message
+      sender: "chatbot", // Set sender as "chatbot"
+      direction: "incoming", // Set direction as "incoming"
+    },
+  ]);
+>>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
   const handleMessageSend = async (messageText) => {
     setMessages([
       ...messages,
       { message: messageText, sender: "user", direction: "outgoing" },
     ]);
+<<<<<<< HEAD
     let chatbotResponse;
     if (selectedChat === "OpenAI") {
       try {
@@ -471,6 +633,48 @@ const Home = () => {
 
       reader.readAsDataURL(file); // Read the file as a data URL
     }
+=======
+
+    let chatbotResponse;
+
+    if (selectedChat === "OpenAI") {
+      try {
+        const completion = await openai.chat.completions.create({
+          messages: [{ role: "assistant", content: messageText }],
+          model: "gpt-4o-mini",
+          store: true
+        });
+
+        chatbotResponse = completion.choices[0].message.content;
+
+      } catch (error) {
+        console.error("Error with OpenAI Chatbot:", error);
+      }
+    } else if (selectedChat === "Gemini") {
+      // ... (Gemini API call) ...
+      try {
+        const chatSession = model.startChat({
+          generation_config,
+          history: []
+        });
+        const result = await chatSession.sendMessage(messageText);
+        chatbotResponse = result.response.text();
+      } catch (error) {
+        console.error("Error with Google Gemini:", error);
+      }
+    }
+
+    setMessages([
+      ...messages,
+      { message: messageText, sender: "user", direction: "outgoing" },
+      {
+        message: chatbotResponse,
+        sender: "chatbot",
+        direction: "incoming",
+      },
+    ]);
+    // ... (rest of your message sending logic) ...
+>>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
   };
 
   return (
@@ -533,7 +737,7 @@ const Home = () => {
               )}
             </div>
 
-            <a href="https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/national-archives-of-singapore" className="button-container">Go to the library <FontAwesomeIcon icon={faArrowRight} color="#002d72" size="lg"/></a>
+            <a href={getLibraryUrl(selectedValue)} className="button-container">Go to the library <FontAwesomeIcon icon={faArrowRight} color="#002d72" size="lg"/></a>
           </div>
           <div className="card-container">
             <a className="button-cards" href="https://www.nlb.gov.sg/main/services/library-membership">
@@ -586,7 +790,7 @@ const Home = () => {
             </a>
           </div>
           <div className="rating-icon" ref={ratingIconRef} onMouseEnter={() => setIconVisible(false)}>
-            {iconVisible && ( 
+            {iconVisible && !ratingSubmitted && ( 
             <FontAwesomeIcon 
             className="icon-rating" 
             style={{
@@ -604,7 +808,15 @@ const Home = () => {
             </div>
           </div>
           <div className="rating-faces">
-              <FontAwesomeIcon onClick={handleTogglePopup} className="close-icon" icon={faXmark} color="black" size="sm"/>
+            {isPopupVisible && !ratingSubmitted ? (
+            <> 
+              <FontAwesomeIcon 
+                onClick={handleTogglePopup} // Close popup on X click
+                className="close-icon" 
+                icon={faXmark} 
+                color="black" 
+                size="sm"
+              />
               <span style={{fontSize:"10px"}}>Rate your experience with this website</span>
               <div className="rating-container">
                 <div className="icons-container"> {/* Container for the icons */}
@@ -614,6 +826,7 @@ const Home = () => {
                         className="faceRatings" 
                         icon={icon} 
                         size="sm" 
+                        onClick={handleFaceIconClick}
                       />
                       <label>{index + 1}</label>
                     </div>
@@ -624,23 +837,41 @@ const Home = () => {
                   <span className="label-right">VERY SATISFIED</span>
                 </div>
               </div>
+            </>
+            ) : ratingSubmitted ? (
+              <p style={{fontSize: "14px"}}> 
+                Thank you for rating our website! <br />
+                Leaving in {countdown} seconds...
+              </p>
+            ) : null} 
           </div>
           {!isChatOpen && (
             <div>
               <FontAwesomeIcon
                 icon={faCommentDots}
                 size="2x"
+<<<<<<< HEAD
                 color="white"
                 className="chat-icon"
                 style={{border: "5px solid black", 
                 borderRadius: "20px", 
                 backgroundColor: "black"}}
+=======
+                style={{
+                  border: "5px solid black", 
+                  borderRadius: "20px", 
+                  backgroundColor: "black"
+                }}
+                color="white"
+                className="chat-icon"
+>>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
                 onClick={handleChatClick}
               />
             </div>
           )}
           {isChatOpen && !selectedChat && ( // Show selection box if chat is open and no chat is selected
             <div className="chat-selection-box">
+<<<<<<< HEAD
               <FontAwesomeIcon onClick={handleCloseChat} className="close-icon" icon={faXmark} color="black" size="sm"/>
               <div className="button-box">
                 <button className="button-chat" onClick={() => handleChatSelection("OpenAI")}>
@@ -650,10 +881,25 @@ const Home = () => {
                 <br />
                 <button className="button-chat" onClick={() => handleChatSelection("Gemini")}>
                   Gemini
+=======
+              <FontAwesomeIcon 
+                  icon={faXmark} 
+                  className="close-icon" 
+                  color="black"
+                  onClick={handleCloseChat} 
+              />
+              <div className="button-box">
+                <button className="select-button" onClick={() => handleChatSelection("OpenAI")}>
+                  <b>OpenAI</b>
+                </button>
+                <button className="select-button" onClick={() => handleChatSelection("Gemini")}>
+                  <b>Gemini</b>
+>>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
                 </button>
               </div>
             </div>
           )}
+<<<<<<< HEAD
           {isChatOpen && selectedChat && ( // Show selected chat interface
             <div className="chat-window">
               <div className="chat-header"> {/* Add a header for the close button */}
@@ -681,6 +927,38 @@ const Home = () => {
                       onAttachmentChange={handleFileInputChange} 
                     />
                   </ChatContainer>
+=======
+          {isChatOpen && selectedChat && (
+            <div className="chat-window">
+              <div className="chat-header"> {/* Add a header for the close button */}
+                <h6 className="chat-header-text">{selectedChat} Chatbot</h6>
+                <FontAwesomeIcon 
+                  icon={faXmark} 
+                  color="black"
+                  className="close-icon" 
+                  onClick={handleCloseChat} 
+                />
+              </div>
+              <MainContainer>
+                <ChatContainer>
+                  <MessageList>
+                    {messages.map((message, i) => (
+                      <Message
+                        key={i}
+                        model={{
+                          message: message.message,
+                          sender: message.sender,
+                          direction: message.direction,
+                        }}
+                      />
+                    ))}
+                  </MessageList>
+                  <MessageInput
+                    placeholder="Type message here"
+                    onSend={handleMessageSend}
+                  />
+                </ChatContainer>
+>>>>>>> f613a0b25ce0c37cd0f759d885506cb7d18cf0ee
               </MainContainer>
             </div>
           )}

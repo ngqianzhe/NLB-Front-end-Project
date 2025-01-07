@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Register = () => {
+const ForgetPassword = () => {
   function updateBackgroundColor() {
     const background = document.getElementById("root"); // Get the body element
   
@@ -34,4 +34,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default ForgetPassword;
