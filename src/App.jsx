@@ -101,8 +101,8 @@ const Home = () => {
     const selectElement = selectRef.current;
     if (selectElement) {
       if (selectedValue === "National Library / Lee Kong Chian Reference Library") {
-        selectElement.style.width = "340px";
-        selectElement.style.marginInlineEnd = "-2px";
+        selectElement.style.width = "350px";
+        selectElement.style.marginInlineEnd = "-1px";
       }
 
       else if (selectedValue === "National Archives of Singapore") {
