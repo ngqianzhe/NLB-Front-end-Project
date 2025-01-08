@@ -4,14 +4,14 @@
 html, body, #root {
   height: 100%;
   width: 100%;
+  zoom: 100%;
   margin: 0;
-}
+} 
 
 #root {
   text-align: center;
   background-color: #02615b;
   font-family: "Lato", serif;
-  font-weight: 400;
 }
 
 #header {
@@ -128,6 +128,7 @@ html, body, #root {
   gap: 100px; /* Adjust spacing as needed */
   margin-top: 1rem;
   padding-inline-start: 25px;
+  padding-bottom: 80px;
 }
 
 .rating-icon {

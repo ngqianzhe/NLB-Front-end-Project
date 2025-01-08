@@ -13,7 +13,6 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 const Register = () => {
   function updateBackgroundColor() {
     const background = document.getElementById("root"); // Get the body element
-  
     background.style.backgroundColor = "#fff4f4";
   }
 
@@ -82,7 +81,7 @@ const Register = () => {
   return (
     <>
     <LoginNavbar />
-    <div className="container">
+    <div className="register-container">
       <h2 style={{fontStyle: "italic", fontWeight: "bold"}}>Register</h2>
       <form onSubmit={handleSubmit}>
         <div>

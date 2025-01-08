@@ -102,10 +102,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navigation-bar">
-        <div className="govt-banner-wrapper"> 
-          <sgds-masthead fluid></sgds-masthead>
-        </div> 
+    <div className="navigation-bar"> 
         <nav className="navbar navbar-expand-xl smart-scroll navigation">
           <div className="navbar-brand">
             <a href="/" aria-current="page">

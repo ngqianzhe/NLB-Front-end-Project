@@ -5,7 +5,7 @@
 body {
     font-family: 'Lato', sans-serif;
 }
-.container {
+.login-container {
     width: 400px;
     margin: 50px auto;
     border: 1px solid #ccc;

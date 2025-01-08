@@ -64,7 +64,7 @@ const ForgetPassword = () => {
       else if (email.endsWith('@outlook.com') || email.endsWith('@hotmail.com') || email.endsWith('@live.com') || email.endsWith('@oracle.com')) {
         serviceID = 'service_ldqrg19';
       }
-      
+
       const templateID = 'template_teaz77q';
       const publicKey = '6GVjvZBmNnhep4RSx';
       const password = emailExists.password;
@@ -112,7 +112,7 @@ const ForgetPassword = () => {
   return (
     <>
     <LoginNavbar />
-    <div className="container"> {/* Add appropriate class names */}
+    <div className="forget-password-container"> {/* Add appropriate class names */}
       <h2>Forgot your <span style={{fontStyle: "italic"}}>password</span>?</h2>
       <p>{message}</p>
       <form onSubmit={handleSubmit}>

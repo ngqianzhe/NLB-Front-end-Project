@@ -7,13 +7,7 @@
 }
 
 .icon {
-  padding-right: 42.7em;
-  margin-left: 5px;
   padding-inline-start: 10px;
-}
-
-.govt-banner-wrapper {
-  padding-bottom: 5px;
 }
 
 .nav-item {
@@ -63,7 +57,7 @@
   color: white;
 }
 
-.button {
+.button-search {
   background-color:#e07c1c;
   color: white;
   border-radius: 10px;
@@ -73,7 +67,7 @@
   margin-left: 15px;
 }
 
-.button:hover {
+.button-search:hover {
   border-color: transparent;
 }
 
@@ -84,6 +78,7 @@ input[type="radio"]:checked {
 .profile-container {
   position: relative; /* To position the dropdown relative to the icon */
   display: inline-block; /* To contain the dropdown within the container */
+  padding-inline-start: 50rem;
 }
 
 .user-icon {

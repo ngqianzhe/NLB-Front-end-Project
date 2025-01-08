@@ -6,9 +6,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 const LoginNavbar = () => {
   return (
     <div className="navigation-bar-2">
-        <div className="govt-banner-wrapper"> 
-          <sgds-masthead fluid></sgds-masthead>
-        </div> 
         <div className="logo">
           <a href="/" aria-current="page">
               <img className="icon-brand" src="src/assets/NLB-home-coloured-logo.png" alt="NLB Logo" width="250" height="125"/> 

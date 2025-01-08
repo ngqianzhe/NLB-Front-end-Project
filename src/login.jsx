@@ -86,7 +86,7 @@ const Login = () => {
   return (
     <>
     <LoginNavbar />
-    <div className="container">
+    <div className="login-container">
       <h2>Sign <span style={{fontStyle: "italic"}}>in</span></h2>
       <form onSubmit={handleSubmit}> {/* Add form element with onSubmit */}
         <input

@@ -598,7 +598,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div style={{ textAlign: "left", paddingInlineStart: "20px", color: "white", marginTop: "3rem", marginBottom: "5rem" }}>
+      <div style={{ textAlign: "left", paddingInlineStart: "20px", color: "white", marginTop: "3rem", backgroundColor: "#02615b"}}>
         {isLoggedIn ? ( // Conditionally render the greeting
           <h6 id="greeting" style={{ fontWeight: "bold" }}>
             {greeting}, {userName}!
