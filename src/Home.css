@@ -303,4 +303,87 @@ html, body, #root {
 }
 
 
+@media screen and (min-width: 1303px) and (min-height: 750px) {
+  .content-wrapper {
+    padding-inline-start: 90px;
+    gap: 120px;
+  }
+  
+  #greeting {
+    padding-inline-start: 10px;
+    font-size: 17px;
+  }
+
+  .hours {
+    width: 72%;
+  }
+}
+
+@media screen and (min-width: 1520px) and (min-height: 876px) {
+  .content-wrapper {
+    padding-inline-start: 170px;
+    gap: 150px;
+  }
+  
+  #greeting {
+    padding-inline-start: 20px;
+    font-size: 18px;
+  }
+
+  .hours {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 1824px) and (min-height: 1051px) {
+  .content-wrapper {
+    padding-inline-start: 280px;
+    gap: 240px;
+  }
+  
+  #greeting {
+    padding-inline-start: 25px;
+    font-size: 20px;
+  }
+
+  .hours {
+    width: 78%;
+  }
+}
+
+@media screen and (min-width: 2087px) and (min-height: 1194px) {
+  .content-wrapper {
+    padding-inline-start: 350px;
+    gap: 270px;
+    padding-top: 30px;
+    padding-bottom: 150px;
+  }
+  
+  #greeting {
+    padding-inline-start: 30px;
+    font-size: 22px;
+  }
+
+  .hours {
+    width: 78%;
+  }
+}
+
+@media screen and (min-width: 2281px) and (min-height: 1314px) {
+  .content-wrapper {
+    padding-inline-start: 500px;
+    gap: 300px;
+    padding-top: 40px;
+    padding-bottom: 250px;
+  }
+  
+  #greeting {
+    padding-inline-start: 32px;
+    font-size: 25px;
+  }
+
+  .hours {
+    width: 79%;
+  }
+}
 
