@@ -62,4 +62,28 @@ h2 {
     border-radius: 3px;
 }
 
+@media screen and (min-height: 853px) {
+    .login-container {
+        padding-bottom: 90px;
+    }
+}
+
+@media screen and (min-height: 1024px) {
+    .login-container {
+        padding-bottom: 260px;
+    }
+}
+
+@media screen and (min-height: 1163px) {
+    .login-container {
+        padding-bottom: 405px;
+    }
+}
+
+@media screen and (min-height: 1280px) {
+    .login-container {
+        padding-bottom: 525px;
+    }
+}
+
 

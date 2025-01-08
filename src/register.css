@@ -44,5 +44,28 @@
     padding: 20px;
     background-color: white;
     border-radius: 10px;
-    height: 65%;
+}
+
+@media screen and (min-height: 853px) {
+    .register-container {
+        padding-bottom: 30px;
+    }
+}
+
+@media screen and (min-height: 1024px) {
+    .register-container {
+        padding-bottom: 205px;
+    }
+}
+
+@media screen and (min-height: 1163px) {
+    .register-container {
+        padding-bottom: 350px;
+    }
+}
+
+@media screen and (min-height: 1280px) {
+    .register-container {
+        padding-bottom: 465px;
+    }
 }
