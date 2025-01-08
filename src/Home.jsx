@@ -178,12 +178,12 @@ const Home = () => {
 
       else if (selectedValue === "National Archives of Singapore") {
         selectElement.style.width = "220px";
-        selectElement.style.marginInlineEnd = "-9px";
+        selectElement.style.marginInlineEnd = "-5px";
       }
 
       else if (selectedValue === "Ang Mo Kio Public Library") {
         selectElement.style.width = "190px";
-        selectElement.style.marginInlineEnd = "-9px";
+        selectElement.style.marginInlineEnd = "-5px";
       }
 
       else if (selectedValue === "Bedok Public Library" || selectedValue === "Bishan Public Library") {
@@ -194,6 +194,11 @@ const Home = () => {
       else if (selectedValue === "Bukit Batok Public Library") {
         selectElement.style.width = "180px";
         selectElement.style.marginInlineEnd = "-3px";
+      }
+
+      else if (selectedValue === "Bukit Panjang Public Library") {
+        selectElement.style.width = "200px";
+        selectElement.style.marginInlineEnd = "-5px";
       }
 
       else if (selectedValue === "Central Arts Library") {
@@ -218,7 +223,7 @@ const Home = () => {
 
       else if (selectedValue === "Cheng San Public Library") {
         selectElement.style.width = "180px";
-        selectElement.style.marginInlineEnd = "-6px";
+        selectElement.style.marginInlineEnd = "-3px";
       }
 
       else if (selectedValue === "Geylang East Public Library") {
@@ -318,8 +323,8 @@ const Home = () => {
     }
   }, [selectedValue]);
 
-  const apiKey = ":2MncAowfQLadIE1?=2Ai%WF^voO6F%:";
-  const appCode = "DEV-Vijay";
+  const apiKey = "<P}o$s$v.|X4~w#*4/+8GxrIJd_I5Wtt";
+  const appCode = "DEV-NgQianZhe";
   useEffect(() => {
     const fetchOpeningHours = async () => {
       setIsLoading(true);
