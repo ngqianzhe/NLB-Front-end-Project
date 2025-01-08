@@ -1,9 +1,9 @@
 import './register.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import Navbar2 from './Navbar2.jsx'; 
+import LoginNavbar from './loginNavbar.jsx'; 
 import LoginFooter from './loginFooter.jsx';
-import LoginFooter2 from './loginFooter2.jsx';
+import LoginSocialFooter from './loginSocialFooter.jsx';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -19,6 +19,10 @@ const Register = () => {
 
   
   updateBackgroundColor();
+
+  // Update the background color every hour
+  setInterval(updateBackgroundColor, 60 * 60 * 1000); // 1 hour in milliseconds
+
   
   useEffect(() => {
     document.title = 'Register for myLibrary';
@@ -66,19 +70,20 @@ const Register = () => {
 
     // Store the updated array back in localStorage
     localStorage.setItem('users', JSON.stringify(users));
-
+    
+    console.log(users);
     const userSessionData = { username, password }
     sessionStorage.setItem('user', JSON.stringify(userSessionData));
     navigate('/'); 
-
+    window.location.reload();
     // Optionally clear the form or redirect to another page
   };
 
   return (
     <>
-    <Navbar2 />
+    <LoginNavbar />
     <div className="container">
-      <h3 style={{fontStyle: "italic", fontWeight: "bold"}}>Register</h3>
+      <h2 style={{fontStyle: "italic", fontWeight: "bold"}}>Register</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <input
@@ -134,7 +139,7 @@ const Register = () => {
         <button className="register-button" type="submit">Register</button>
       </form>
     </div>
-    <LoginFooter2 />
+    <LoginSocialFooter />
     <LoginFooter />
     </>
   );

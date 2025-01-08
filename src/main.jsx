@@ -1,10 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
+import Home from './Home.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from './login.jsx'; 
-import RegisterPage from './register.jsx'
+import RegisterPage from './register.jsx';
+import ForgetPasswordPage from './forgetPassword.jsx';
 
 function updateBackgroundColor() {
   const now = new Date();
@@ -26,11 +27,11 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter> {/* Wrap your routes with BrowserRouter */}
       <Routes>
-      <Route path="/" element={<App />} /> 
-        <Route path="/App.jsx" element={<App />} /> 
+      <Route path="/" element={<Home />} /> 
+        <Route path="/Home.jsx" element={<Home />} /> 
         <Route path="/login.jsx" element={<LoginPage />} /> 
         <Route path="/register.jsx" element={<RegisterPage />} />
-        <Route path="/forgetPassword.jsx" element={<RegisterPage />} />
+        <Route path="/forgetPassword.jsx" element={<ForgetPasswordPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

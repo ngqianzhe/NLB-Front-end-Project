@@ -1,11 +1,11 @@
-import './loginFooter2.css';
+import './loginSocialFooter.css';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-const loginFooter2 = () => {
+const loginSocialFooter = () => {
   return (
-      <div className="loginFooter2">
+      <div className="loginSocialFooter">
         <a href="/" className="footer-text">National Library Board</a> 
           <nav className="footer-nav">
             <ul className="footer-nav-list">
@@ -24,4 +24,4 @@ const loginFooter2 = () => {
   );
 }
 
-export default loginFooter2;
+export default loginSocialFooter;

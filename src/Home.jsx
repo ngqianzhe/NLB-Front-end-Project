@@ -1,8 +1,8 @@
-import './App.css';
+import './Home.css';
 import { useState, useRef, useEffect } from 'react';
 import Navbar from './Navbar.jsx'; 
 import Footer from './footer.jsx';
-import Footer2 from './footer2.jsx';
+import SocialFooter from './socialFooter.jsx';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import {
   MainContainer,
@@ -172,7 +172,7 @@ const Home = () => {
     const selectElement = selectRef.current;
     if (selectElement) {
       if (selectedValue === "National Library / Lee Kong Chian Reference Library") {
-        selectElement.style.width = "350px";
+        selectElement.style.width = "340px";
         selectElement.style.marginInlineEnd = "-1px";
       }
 
@@ -371,9 +371,6 @@ const Home = () => {
             const scheduleDate = new Date(schedule.date);
             return scheduleDate.getMonth() + 1 === todaysMonth && scheduleDate.getDate() === todaysDay;
           });
-          console.log(closinghourInt);
-          console.log(openinghourInt);
-          console.log(minute);
           if (todaysClosure) {
             messageText.innerHTML = "";
             setOpeningHours('Closed today due to a public holiday!'); 
@@ -491,27 +488,66 @@ const Home = () => {
     model: "gemini-1.5-pro", // Or another Gemini model
   });
 
+  const [chatbotUsername, setChatbotUsername] = useState('Guest');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState(''); // State to store the username
+
+  useEffect(() => {
+    const storedUser = JSON.parse(sessionStorage.getItem('user'));
+    if (storedUser) {
+      setIsLoggedIn(true);
+      setUserName(storedUser.username); // Get the username from sessionStorage
+      setChatbotUsername(storedUser.username);
+      console.log(storedUser);
+       // Update the default incoming message
+    setMessages(prevMessages => {
+      const updatedMessages = prevMessages.map(message => {
+        if (message.sender === "chatbot") {
+          return {
+            ...message,
+            message: `Hello ${storedUser.username}! This chatbot is chatting with you for today!\nHow can I help you?`
+          };
+        }
+        return message;
+      });
+      return updatedMessages;
+    });
+    }
+
+    else {
+      setIsLoggedIn(false);
+      setUserName('');
+      setChatbotUsername('Guest');
+    }
+  }, [setIsLoggedIn]); // Run only once on component mount
+
+  const [messages, setMessages] = useState([
+    {
+      message:
+        `Hello ${chatbotUsername}! This chatbot is chatting with you for today!\nHow can I help you?`, // Default incoming message
+      sender: "chatbot", // Set sender as "chatbot"
+      direction: "incoming", // Set direction as "incoming"
+    },
+  ]);
+
   const handleCloseChat = () => {
     setIsChatOpen(false);
     setSelectedChat(null); // Reset selected chat when closing
+    const storedUser = JSON.parse(sessionStorage.getItem('user'));
+    console.log(storedUser);
+    if (storedUser) {
+      setChatbotUsername(storedUser.username);
+    }
     setMessages([
       {
         message:
-        `Hello! This chatbot is chatting with you for today!\nHow can I help you?`, // Default incoming message
+        `Hello ${chatbotUsername}! This chatbot is chatting with you for today!\nHow can I help you?`, // Default incoming message
         sender: "chatbot", // Set sender as "chatbot"
         direction: "incoming", // Set direction as "incoming"
       }
     ]);
   };
-
-  const [messages, setMessages] = useState([
-    {
-      message:
-        `Hello! This chatbot is chatting with you for today!\nHow can I help you?`, // Default incoming message
-      sender: "chatbot", // Set sender as "chatbot"
-      direction: "incoming", // Set direction as "incoming"
-    },
-  ]);
+  
   const handleMessageSend = async (messageText) => {
     setMessages([
       ...messages,
@@ -558,22 +594,6 @@ const Home = () => {
     ]);
     // ... (rest of your message sending logic) ...
   };
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState(''); // State to store the username
-
-  useEffect(() => {
-    const storedUser = JSON.parse(sessionStorage.getItem('user'));
-    if (storedUser) {
-      setIsLoggedIn(true);
-      setUserName(storedUser.username); // Get the username from sessionStorage
-    }
-
-    else {
-      setIsLoggedIn(false);
-      setUserName('');
-    }
-  }, []); // Run only once on component mount
   
   return (
     <>
@@ -809,7 +829,7 @@ const Home = () => {
                     ))}
                   </MessageList>
                   <MessageInput
-                    placeholder="Type message here"
+                    placeholder="Enter your queries here..."
                     onSend={handleMessageSend}
                   />
                 </ChatContainer>
@@ -818,7 +838,7 @@ const Home = () => {
           )}
         </div>
       </div>
-      <Footer2 />
+      <SocialFooter />
       <Footer />
     </>
   );

@@ -1,8 +1,8 @@
 import './login.css';
 import { useState, useEffect } from 'react';
-import Navbar2 from './Navbar2.jsx'; 
+import LoginNavbar from './loginNavbar.jsx'; 
 import LoginFooter from './loginFooter.jsx';
-import LoginFooter2 from './loginFooter2.jsx';
+import LoginSocialFooter from './loginSocialFooter.jsx';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -19,6 +19,10 @@ const Login = () => {
 
   
   updateBackgroundColor();
+
+  // Update the background color every hour
+  setInterval(updateBackgroundColor, 60 * 60 * 1000); // 1 hour in milliseconds
+
 
   useEffect(() => {
     document.title = 'Login with myLibrary';
@@ -53,16 +57,24 @@ const Login = () => {
     }
 
     const usernameExists = users.find(user => user.username === username);
-    const passwordExists = users.find(user => user.password === password);
 
-    if (!usernameExists && !passwordExists) {
-      alert('Username and Password does not match within the system!');
+    if (!usernameExists) {
+      alert('Username is not found in the system!');
       return;
+    }
+
+    else {
+      const passwordExists = users.find(user => user.password === password);
+      if (!passwordExists) {
+        alert('Incorrect Password!');
+        return;
+      }
     }
 
     const userData = { username, password }; 
     sessionStorage.setItem('user', JSON.stringify(userData));
     navigate('/'); 
+    window.location.reload();
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -73,7 +85,7 @@ const Login = () => {
 
   return (
     <>
-    <Navbar2 />
+    <LoginNavbar />
     <div className="container">
       <h2>Sign <span style={{fontStyle: "italic"}}>in</span></h2>
       <form onSubmit={handleSubmit}> {/* Add form element with onSubmit */}
@@ -117,7 +129,7 @@ const Login = () => {
         <a href="register.jsx">Don&apos;t have a myLibrary username? Apply now!</a>
       </div>
     </div>
-    <LoginFooter2 />
+    <LoginSocialFooter />
     <LoginFooter />
     </>
   );

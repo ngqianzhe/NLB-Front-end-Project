@@ -1,9 +1,9 @@
-import './Navbar2.css'; // Import your CSS for styling
+import './loginNavbar.css'; // Import your CSS for styling
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-const Navbar2 = () => {
+const LoginNavbar = () => {
   return (
     <div className="navigation-bar-2">
         <div className="govt-banner-wrapper"> 
@@ -18,4 +18,4 @@ const Navbar2 = () => {
   );
 }
 
-export default Navbar2;
+export default LoginNavbar;

@@ -90,7 +90,7 @@ const Navbar = () => {
       setIsLoggedIn(true);
       setIsProfileDropdownVisible(false);
     }
-  }, []); // Run only once on component mount
+  }, [isLoggedIn]); // Run only once on component mount
 
   const handleLogout = () => {
     sessionStorage.removeItem('user');
@@ -106,17 +106,17 @@ const Navbar = () => {
         <div className="govt-banner-wrapper"> 
           <sgds-masthead fluid></sgds-masthead>
         </div> 
-        <nav className="navbar navbar-expand-xl smart-scroll">
-          <div className="navbar-brand icon">
+        <nav className="navbar navbar-expand-xl smart-scroll navigation">
+          <div className="navbar-brand">
             <a href="/" aria-current="page">
-                <img src="src/assets/NLB-home-logo.png" alt="NLB Logo" /> 
+                <img className="icon" src="src/assets/NLB-home-logo.png" alt="NLB Logo" /> 
             </a> 
           </div>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <div className="profile-container"> 
-                    <span className="nav-link" onClick={handleProfileClick}>
+                    <span className="nav-link">
                       {isLoggedIn ? (
                         <FontAwesomeIcon
                           className="user-icon"
@@ -131,6 +131,7 @@ const Navbar = () => {
                           icon={faUser}
                           size="xl"
                           color="white"
+                          onClick={handleProfileClick}
                         />
                       )}
                     </span>
