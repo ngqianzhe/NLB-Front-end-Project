@@ -56,12 +56,22 @@ const ForgetPassword = () => {
   
     try {
       // Send the email using EmailJS
-      const serviceID = 'service_adup5tr';
+      let serviceID;
+      if (email.endsWith('@gmail.com')) {
+        serviceID = 'service_adup5tr';
+      }
+
+      else if (email.endsWith('@outlook.com') || email.endsWith('@hotmail.com') || email.endsWith('@live.com') || email.endsWith('@oracle.com')) {
+        serviceID = 'service_ldqrg19';
+      }
+      
       const templateID = 'template_teaz77q';
       const publicKey = '6GVjvZBmNnhep4RSx';
       const password = emailExists.password;
+      const username = emailExists.username;
       await emailjs.send(serviceID, templateID, {
         to_email: email,
+        username: username,
         subject: 'Password Reset Request',
         message: `You have requested to reset your password. 
           Here is your password: ${password} 
