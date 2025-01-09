@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import NLBLogo from './assets/NLB-home-logo.png';
 
 const Navbar = () => {
   const [searchIcon, setSearchIcon] = useState(faSearch);
@@ -106,7 +107,7 @@ const Navbar = () => {
         <nav className="navbar navbar-expand-xl smart-scroll navigation">
           <div className="navbar-brand">
             <a href="/" aria-current="page">
-                <img className="icon" src="src/assets/NLB-home-logo.png" alt="NLB Logo" /> 
+                <img className="icon" src={NLBLogo} alt="NLB Logo" /> 
             </a> 
           </div>
             <div className="collapse navbar-collapse" id="navbarNav">

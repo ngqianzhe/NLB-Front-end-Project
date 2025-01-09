@@ -321,6 +321,11 @@ html, body, #root {
   .hours {
     width: 72%;
   }
+
+  .rating-faces {
+    bottom: 3%;
+    left: 10%;
+  }
 }
 
 @media screen and (min-width: 1520px) and (min-height: 876px) {
@@ -337,6 +342,11 @@ html, body, #root {
   .hours {
     width: 75%;
   }
+
+  .rating-faces {
+    bottom: 2%;
+    left: 8%;
+  }
 }
 
 @media screen and (min-width: 1824px) and (min-height: 1051px) {
@@ -352,6 +362,11 @@ html, body, #root {
 
   .hours {
     width: 78%;
+  }
+
+  .rating-faces {
+    bottom: 2%;
+    left: 7%;
   }
 }
 
@@ -371,6 +386,11 @@ html, body, #root {
   .hours {
     width: 78%;
   }
+
+  .rating-faces {
+    bottom: 1%;
+    left: 6%;
+  }
 }
 
 @media screen and (min-width: 2281px) and (min-height: 1314px) {
@@ -388,6 +408,11 @@ html, body, #root {
 
   .hours {
     width: 79%;
+  }
+
+  .rating-faces {
+    bottom: 1%;
+    left: 6%;
   }
 }
 

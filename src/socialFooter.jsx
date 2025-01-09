@@ -2,12 +2,13 @@ import './socialFooter.css';
 import { faFacebook, faInstagram, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import NLBHomeLogo from './assets/NLB-home-coloured-logo.png';
 
 const SocialFooter = () => {
   return (
     <div className="socialFooter">
       <a href="/">
-        <img src="src/assets/NLB-home-coloured-logo.png" alt="Logo" className="footer-image" />
+        <img src={NLBHomeLogo} alt="Logo" className="footer-image" />
       </a>
     <div className="footer-content-2">
       <div className="footer-column-2">
