@@ -12,8 +12,4 @@ export default defineConfig({
       },
     },
   },
-  define: {
-    'process.env.VITE_NLB_API_KEY': JSON.stringify('<P}o$s$v.|X4~w#*4/+8GxrIJd_I5Wtt'),
-    'process.env.VITE_NLB_APP_CODE': JSON.stringify('DEV-NgQianZhe')
-  }
 });

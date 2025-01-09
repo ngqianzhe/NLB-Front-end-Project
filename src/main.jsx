@@ -27,11 +27,10 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter> {/* Wrap your routes with BrowserRouter */}
       <Routes>
-      <Route path="/" element={<Home />} /> 
-        <Route path="/Home.jsx" element={<Home />} /> 
-        <Route path="/login.jsx" element={<LoginPage />} /> 
-        <Route path="/register.jsx" element={<RegisterPage />} />
-        <Route path="/forgetPassword.jsx" element={<ForgetPasswordPage />} />
+        <Route path="/" element={<Home />} /> 
+        <Route path="/login" element={<LoginPage />} /> 
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/forgetPassword" element={<ForgetPasswordPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

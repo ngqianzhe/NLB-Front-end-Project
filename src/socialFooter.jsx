@@ -3,13 +3,14 @@ import { faFacebook, faInstagram, faLinkedin, faYoutube } from '@fortawesome/fre
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NLBHomeLogo from './assets/NLB-home-coloured-logo.png';
+import { Link } from 'react-router-dom';
 
 const SocialFooter = () => {
   return (
     <div className="socialFooter">
-      <a href="/">
+      <Link to="/">
         <img src={NLBHomeLogo} alt="Logo" className="footer-image" />
-      </a>
+      </Link>
     <div className="footer-content-2">
       <div className="footer-column-2">
         <h4>Read with us</h4>

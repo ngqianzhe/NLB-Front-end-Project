@@ -7,6 +7,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import NLBLogo from './assets/NLB-home-logo.png';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [searchIcon, setSearchIcon] = useState(faSearch);
@@ -106,9 +107,9 @@ const Navbar = () => {
     <div className="navigation-bar"> 
         <nav className="navbar navbar-expand-xl smart-scroll navigation">
           <div className="navbar-brand">
-            <a href="/" aria-current="page">
+            <Link to="/">
                 <img className="icon" src={NLBLogo} alt="NLB Logo" /> 
-            </a> 
+            </Link> 
           </div>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
@@ -135,9 +136,9 @@ const Navbar = () => {
                     </span>
                     {isProfileDropdownVisible && (
                       <div className="profile-dropdown">
-                        <a href="login.jsx">Login</a>
-                        <a href="register.jsx">Register</a>
-                        <a href="forgetPassword.jsx">Forgot Password</a>
+                        <Link to="/login">Login</Link>
+                        <Link to="/register">Register</Link>
+                        <Link to="/forgetPassword">Forget Password</Link>
                       </div>
                     )}
                   </div>

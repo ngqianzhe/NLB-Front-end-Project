@@ -44,7 +44,7 @@ const ForgetPassword = () => {
     let users = JSON.parse(localStorage.getItem('users'));
     if (users === null) {
       alert('No user has been registered yet!');
-      navigate('/register.jsx');
+      navigate('/register');
       return;
     }
 
@@ -81,7 +81,7 @@ const ForgetPassword = () => {
 
         if (countdown === 0) {
           clearInterval(countdownInterval); // Stop the countdown
-          navigate('/login.jsx'); 
+          navigate('/login'); 
         }
       }, 1000); // Update message every 1000 milliseconds (1 second)
       

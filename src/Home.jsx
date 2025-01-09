@@ -33,6 +33,10 @@ const Home = () => {
   const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
+    document.title = 'National Library Board';
+  }, []); // Empty dependency array ensures this runs only once
+
+  useEffect(() => {
     const now = new Date();
     const hour = now.getHours();
 
@@ -333,7 +337,8 @@ const Home = () => {
     const fetchOpeningHours = async () => {
       setIsLoading(true);
       try {
-        const apiUrl = `/api/v1/Library/GetBranches`;
+        
+        const apiUrl = `api/v1/Library/GetBranches`;
         const response = await fetch(apiUrl, {
           headers: {
             'x-api-key': '<P}o$s$v.|X4~w#*4/+8GxrIJd_I5Wtt',

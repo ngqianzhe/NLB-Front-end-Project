@@ -52,7 +52,7 @@ const Login = () => {
     let users = JSON.parse(localStorage.getItem('users'));
     if (users === null) {
       alert('No user has been registered yet!');
-      navigate('/register.jsx');
+      navigate('/register');
       return;
     }
 

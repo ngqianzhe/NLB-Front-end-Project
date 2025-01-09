@@ -1,12 +1,13 @@
 import './loginSocialFooter.css';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 
 const loginSocialFooter = () => {
   return (
       <div className="loginSocialFooter">
-        <a href="/" className="footer-text">National Library Board</a> 
+        <Link to="/" className="footer-text">National Library Board</Link> 
           <nav className="footer-nav">
             <ul className="footer-nav-list">
               <li className="footer-nav-item">
