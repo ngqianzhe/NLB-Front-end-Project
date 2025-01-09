@@ -7,6 +7,10 @@
     background-color: transparent;
     color: black;
 }
+
+#root {
+    padding-bottom: 40rem;
+}
   
 .register-button {
     background-color: #ff9c74; /* Example color */
