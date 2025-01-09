@@ -96,7 +96,7 @@ const ForgetPassword = () => {
 
         if (countdown === 0) {
           clearInterval(countdownInterval); // Stop the countdown
-          window.location.reload();
+          navigate('/forgetPassword');
         }
       }, 1000); // Update message every 1000 milliseconds (1 second)
     }
