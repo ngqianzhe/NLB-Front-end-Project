@@ -72,7 +72,9 @@ const Home = () => {
     if (hour >= 18 || hour < 5) { // Evening time (6 PM to 5 AM)
       background.style.backgroundColor = "#101c2c"; // Darker color
       body.style.backgroundColor = "#101c2c";
-      page.style.backgroundColor = "#101c2c";
+      if (page) {
+        page.style.backgroundColor = "#101c2c";
+      }
     }
   }
 
@@ -327,17 +329,15 @@ const Home = () => {
     }
   }, [selectedValue]);
 
-  const apiKey = "<P}o$s$v.|X4~w#*4/+8GxrIJd_I5Wtt";
-  const appCode = "DEV-NgQianZhe";
   useEffect(() => {
     const fetchOpeningHours = async () => {
       setIsLoading(true);
       try {
-        const apiUrl = `/api/GetBranches`;
+        const apiUrl = `/api/v1/Library/GetBranches`;
         const response = await fetch(apiUrl, {
           headers: {
-            'X-API-Key': apiKey,
-            'X-App-Code': appCode
+            'x-api-key': '<P}o$s$v.|X4~w#*4/+8GxrIJd_I5Wtt',
+            'x-app-code': 'DEV-NgQianZhe'
           }
         });
 
@@ -349,7 +349,6 @@ const Home = () => {
 
         if (library) {
           const schedule = library.timing.openingHours; // Get today's schedule
-          console.log(schedule);
           const days = schedule.split(": ")[0];
           const closingDayName = days.split(" - ")[1];
           const closingDay = daysOfWeek.indexOf(closingDayName);
@@ -477,12 +476,12 @@ const Home = () => {
   };
 
   const openai = new OpenAI({
-    apiKey: `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`,
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
     organization: "org-l6jiqsh5JBfKik7Nokftvb28",
     dangerouslyAllowBrowser: true, // Use with caution!
   });
 
-  const geminiAPIKey = "AIzaSyADGqlJ2g_1OPF7aHqDGU4jEA7qB1sNPos"; // Replace with your actual API key
+  const geminiAPIKey = import.meta.env.VITE_GOOGLE_API_KEY; // Replace with your actual API key
 
   const googleAI = new GoogleGenerativeAI(geminiAPIKey);
 

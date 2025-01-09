@@ -56,9 +56,9 @@ const ForgetPassword = () => {
   
     try {
       // Send the email using EmailJS
-      const serviceID = 'service_adup5tr';
-      const templateID = 'template_teaz77q';
-      const publicKey = '6GVjvZBmNnhep4RSx';
+      const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
       const password = emailExists.password;
       const username = emailExists.username;
       await emailjs.send(serviceID, templateID, {

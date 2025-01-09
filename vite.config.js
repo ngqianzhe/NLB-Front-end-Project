@@ -6,11 +6,14 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': {
+      '/api/v1/Library': {
         target: 'https://openweb.nlb.gov.sg',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api/v1/Library'), 
       },
     },
   },
+  define: {
+    'process.env.VITE_NLB_API_KEY': JSON.stringify('<P}o$s$v.|X4~w#*4/+8GxrIJd_I5Wtt'),
+    'process.env.VITE_NLB_APP_CODE': JSON.stringify('DEV-NgQianZhe')
+  }
 });
