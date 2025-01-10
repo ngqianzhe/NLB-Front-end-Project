@@ -9,6 +9,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   function updateBackgroundColor() {
@@ -124,9 +125,9 @@ const Login = () => {
       </form>
 
       <div className="forgot-password">
-        <a href="forgetPassword.jsx">Forgot your myLibrary username/Password?</a>
+        <Link to="/forgetPassword">Forgot your myLibrary username/Password?</Link>
         <br />
-        <a href="register.jsx">Don&apos;t have a myLibrary username? Apply now!</a>
+        <Link to="/register">Don&apos;t have a myLibrary username? Apply now!</Link>
       </div>
     </div>
     <LoginSocialFooter />
