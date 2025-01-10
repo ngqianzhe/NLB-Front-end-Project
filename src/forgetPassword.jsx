@@ -56,8 +56,8 @@ const ForgetPassword = () => {
   
     try {
       // Send the email using EmailJS
-      const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const serviceID = 'service_adup5tr';
+      const templateID = 'template_teaz77q';
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
       const password = emailExists.password;
       const username = emailExists.username;
@@ -71,8 +71,6 @@ const ForgetPassword = () => {
           If you did not request a password reset, please ignore this email.`,
       }, publicKey);
 
-
-      setMessage('Password reset email sent! Redirecting to login in 5 seconds...');
       // Countdown and redirect
       let countdown = 5;
       const countdownInterval = setInterval(() => {
@@ -87,7 +85,6 @@ const ForgetPassword = () => {
       
     } catch (error) {
       console.error('Failed to send email:', error);
-      setMessage('Error sending email. Refreshing the page in 5 seconds...');
       // Countdown and refresh
       let countdown = 5;
       const countdownInterval = setInterval(() => {
@@ -96,7 +93,7 @@ const ForgetPassword = () => {
 
         if (countdown === 0) {
           clearInterval(countdownInterval); // Stop the countdown
-          navigate('/forgetPassword');
+          window.location.reload();
         }
       }, 1000); // Update message every 1000 milliseconds (1 second)
     }
