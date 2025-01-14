@@ -663,9 +663,9 @@ const Home = () => {
     const chatWindow = document.querySelector('.chat-window');
     if (chatWindow) {
       if (selectedFile && selectedFile.type.startsWith('image/')) {
-        chatWindow.style.bottom = '200px';
+        chatWindow.style.bottom = '400px';
       } else {
-        chatWindow.style.bottom = 'initial';
+        chatWindow.style.bottom = '150px';
       }
     }
   }, [selectedFile]);
@@ -682,7 +682,7 @@ const Home = () => {
   const handleCloseAttachment = () => {
     const chatWindow = document.querySelector('.chat-window');
     if (chatWindow) {
-      chatWindow.style.bottom = 'initial';
+      chatWindow.style.bottom = '150px';
       setSelectedFile(null); // Clear the selectedFile state
     }
   };
