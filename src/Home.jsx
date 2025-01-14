@@ -9,7 +9,6 @@ import {
   ChatContainer,
   MessageList,
   Message,
-  MessageInput,
 } from "@chatscope/chat-ui-kit-react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -24,7 +23,9 @@ import {
   faFaceAngry,
   faFaceGrin,
   faXmark,
-  faCommentDots
+  faCommentDots,
+  faPaperclip,
+  faPaperPlane
 } from '@fortawesome/free-solid-svg-icons'; 
 import { OpenAI } from "openai";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -512,7 +513,6 @@ const Home = () => {
       setIsLoggedIn(true);
       setUserName(storedUser.username); // Get the username from sessionStorage
       setChatbotUsername(storedUser.username);
-      console.log(storedUser);
        // Update the default incoming message
     setMessages(prevMessages => {
       const updatedMessages = prevMessages.map(message => {
@@ -547,6 +547,8 @@ const Home = () => {
   const handleCloseChat = () => {
     setIsChatOpen(false);
     setSelectedChat(null); // Reset selected chat when closing
+    setSelectedFile(null);
+    setMessageText('');
     const storedUser = JSON.parse(sessionStorage.getItem('user'));
     console.log(storedUser);
     if (storedUser) {
@@ -604,11 +606,46 @@ const Home = () => {
         message: chatbotResponse,
         sender: "chatbot",
         direction: "incoming",
+        file: selectedFile,
       },
     ]);
+    setMessageText('');
+    setSelectedFile(null);
     // ... (rest of your message sending logic) ...
   };
-  
+  const submitInputRef = useRef(null);
+  const fileInputRef = useRef(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [messageText, setMessageText] = useState('');
+
+  const handleTextChange = (event) => {
+    setMessageText(event.target.value);
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleMessageSend(messageText);
+      setMessageText('');
+      setSelectedFile(null);
+    }
+  };
+
+  const handleSubmitIconClick = () => {
+    handleMessageSend(messageText);
+    setMessageText('');
+    setSelectedFile(null);
+    submitInputRef.current.focus(); // Set focus back to the input
+  };
+
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleLogoClick = () => {
+    fileInputRef.current.click();
+  };
+
   return (
     <>
       <Navbar />
@@ -838,18 +875,30 @@ const Home = () => {
                           message: message.message,
                           sender: message.sender,
                           direction: message.direction,
+                          file: message.file,
                         }}
                       />
                     ))}
                   </MessageList>
-                  <MessageInput
-                    placeholder="Enter your queries here..."
-                    onSend={handleMessageSend}
-                  />
                 </ChatContainer>
               </MainContainer>
+              {selectedFile && (
+                <div className="image-container">
+                  <span style={{color:"black"}}>
+                    Selected file: {selectedFile.name}
+                  </span>
+                </div>
+              )}
+              <div className="message-input-container">
+                <div className="attachment-container">
+                  <FontAwesomeIcon icon={faPaperclip} color="#6EA9D7" onClick={handleLogoClick} className="file-icon-button" /> 
+                  <input type="file" ref={fileInputRef} id="fileInput" style={{ display: 'none' }} onChange={handleFileChange} />
+                </div>
+                <input type="text" value={messageText} onChange={handleTextChange} className="text-input" placeholder="Enter your queries here..." onKeyUp={handleKeyPress} />
+                <FontAwesomeIcon icon={faPaperPlane} color="#6EA9D7" className="submit-icon-button"  onClick={handleSubmitIconClick} /> 
+              </div>
             </div>
-          )}
+          )};
         </div>
       </div>
       <SocialFooter />
