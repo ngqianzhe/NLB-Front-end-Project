@@ -341,7 +341,8 @@ const Home = () => {
       myHeaders.append("x-app-code", "DEV-NgQianZhe");
       myHeaders.append("Cookie", "AWSALB=ocEaQ9sXcmDiQFk2OFXbzDQDGfDQ6evQAvAjS2/l+mJd0Z/fdfEq4/JjVRGAoJnCGpRyrRoXNR/lM8MV/pFXxSsQBSgmCuU6MfzZP97ZQ/FrLqQBlU65H4my3l75; AWSALBCORS=ocEaQ9sXcmDiQFk2OFXbzDQDGfDQ6evQAvAjS2/l+mJd0Z/fdfEq4/JjVRGAoJnCGpRyrRoXNR/lM8MV/pFXxSsQBSgmCuU6MfzZP97ZQ/FrLqQBlU65H4my3l75");
       try {
-        const apiUrl = 'https://openweb.nlb.gov.sg/api/v1/Library/GetBranches';
+        //const apiUrl = 'https://openweb.nlb.gov.sg/api/v1/Library/GetBranches';
+        const apiUrl = '/api/v1/Library/GetBranches';
         const response = await fetch(apiUrl, {
           headers: myHeaders
         });
