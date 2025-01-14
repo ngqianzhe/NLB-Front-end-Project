@@ -278,7 +278,7 @@ html, body, #root {
   border: 1px solid white;
 }
 
-.image-container {
+.attachment-image {
   display: flex; /* Enable flexbox layout */
   align-items: center; /* Vertically align items in the center */
   background-color: white;
@@ -443,7 +443,7 @@ html, body, #root {
 .attachment-button {
   background-color: transparent;
 }
-.message-input-container {
+.message-input {
   display: flex; /* Enable flexbox layout */
   align-items: center; /* Vertically align items in the center */
   background-color: white;
@@ -451,7 +451,7 @@ html, body, #root {
   padding-bottom: 5px;
 }
 
-.attachment-container {
+.image-attachment-container {
   margin-right: 10px; /* Add some space between the attachment and text input */
 }
 

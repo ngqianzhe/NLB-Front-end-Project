@@ -893,15 +893,15 @@ const Home = () => {
                 </ChatContainer>
               </MainContainer>
               {selectedFile && (
-                <div className="image-container">
+                <div className="attachment-image">
                   <span style={{color:"black"}}>
                     Selected file: {selectedFile.name}
                   </span>
                 </div>
               )}
-              <div className="message-input-container">
+              <div className="message-input">
                 {showAttachment && ( // Conditionally render attachment
-                  <div className="attachment-container">
+                  <div className="image-attachment-container">
                     <FontAwesomeIcon icon={faPaperclip} color="#6EA9D7" onClick={handleLogoClick} className="file-icon-button" /> 
                     <input type="file" ref={fileInputRef} id="fileInput" style={{ display: 'none' }} onChange={handleFileChange} />
                   </div>
@@ -910,7 +910,7 @@ const Home = () => {
                 <FontAwesomeIcon icon={faPaperPlane} color="#6EA9D7" className="submit-icon-button"  onClick={handleSubmitIconClick} /> 
               </div>
             </div>
-          )};
+          )}
         </div>
       </div>
       <SocialFooter />
