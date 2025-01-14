@@ -937,10 +937,10 @@ const Home = () => {
                         style={{ maxWidth: '100px', maxHeight: '100px' }}
                       />
                       <br />
-                      <span style={{color: "black"}}>{selectedFile.name}</span>
+                      <span style={{color: "black", fontSize: "11px"}}>{selectedFile.name}</span>
                     </>
                   ) : (
-                    <span style={{color: "black"}}>{selectedFile.name}</span>
+                    <span style={{color: "black", fontSize: "11px"}}>{selectedFile.name}</span>
                   )}
                 </div>
               )}
