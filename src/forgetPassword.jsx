@@ -16,6 +16,7 @@ const ForgetPassword = () => {
     const background = document.getElementById("root"); // Get the body element
   
     background.style.backgroundColor = "#fff4f4";
+    
   }
 
   

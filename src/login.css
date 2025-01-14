@@ -5,6 +5,11 @@
 body {
     font-family: 'Lato', sans-serif;
 }
+
+#root {
+    background-color: #fff4f4; 
+}
+
 .login-container {
     width: 400px;
     margin: 50px auto;

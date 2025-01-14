@@ -15,6 +15,21 @@ const Navbar = () => {
   const [selectedRadio, setSelectedRadio] = useState(null); // State for selected radio button
   const navigate = useNavigate(); 
 
+  function updateBackgroundColor() {
+    const now = new Date();
+    const hour = now.getHours();
+    const body = document.body;
+  
+    if (hour >= 18 || hour < 5) { // Evening time (6 PM to 5 AM)
+      body.style.backgroundColor = "#101c2c";
+    }
+  }
+
+  updateBackgroundColor();
+
+  // Update the background color every hour
+  setInterval(updateBackgroundColor, 60 * 60 * 1000); // 1 hour in milliseconds
+
   function toggleSearchPopup() {
     const searchPopup = document.querySelector(".search-popup");
     const now = new Date();

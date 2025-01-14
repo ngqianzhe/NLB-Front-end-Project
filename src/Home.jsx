@@ -73,13 +73,16 @@ const Home = () => {
     const background = document.getElementById("root"); // Get the body element
     const body = document.body;
     const page = document.querySelector(".page");
-  
+    
     if (hour >= 18 || hour < 5) { // Evening time (6 PM to 5 AM)
       background.style.backgroundColor = "#101c2c"; // Darker color
       body.style.backgroundColor = "#101c2c";
       if (page) {
         page.style.backgroundColor = "#101c2c";
       }
+    }
+    else {
+      background.style.backgroundColor = "#02615b";
     }
   }
 

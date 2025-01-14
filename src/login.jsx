@@ -12,18 +12,6 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-  function updateBackgroundColor() {
-    const background = document.getElementById("root"); // Get the body element
-  
-    background.style.backgroundColor = "#fff4f4";
-  }
-
-  
-  updateBackgroundColor();
-
-  // Update the background color every hour
-  setInterval(updateBackgroundColor, 60 * 60 * 1000); // 1 hour in milliseconds
-
 
   useEffect(() => {
     document.title = 'Login with myLibrary';
