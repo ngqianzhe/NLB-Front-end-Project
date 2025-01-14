@@ -663,7 +663,7 @@ const Home = () => {
     const chatWindow = document.querySelector('.chat-window');
     if (chatWindow) {
       if (selectedFile && selectedFile.type.startsWith('image/')) {
-        chatWindow.style.bottom = '400px';
+        chatWindow.style.bottom = '300px';
       } else {
         chatWindow.style.bottom = '150px';
       }
