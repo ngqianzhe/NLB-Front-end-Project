@@ -239,6 +239,12 @@ html, body, #root {
   cursor: pointer;
 }
 
+.close-image-icon {
+  position: absolute;
+  right: 10px; /* Adjust right position as needed */
+  cursor: pointer;
+}
+
 .chat-icon {
   position: fixed; /* Or absolute, depending on your layout */
   bottom: 20px;
@@ -279,17 +285,17 @@ html, body, #root {
 }
 
 .attachment-image {
-  display: flex; /* Enable flexbox layout */
-  align-items: center; /* Vertically align items in the center */
+ /* Vertically align items in the center */
   background-color: white;
   border: 1px solid #ccc;
+  padding: 10px;
 }
 .chat-window {
   position: fixed; /* Or absolute, depending on your layout */
   bottom: 150px; /* Adjust position as needed */
   right: 20px;
   width: 300px; /* Adjust size as needed */
-  height: 400px; /* Adjust size as needed */
+  height: 200px; /* Adjust size as needed */
   background-color: white;
 }
 

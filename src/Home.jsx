@@ -632,20 +632,40 @@ const Home = () => {
   };
 
   const handleSubmitIconClick = () => {
-    handleMessageSend(messageText);
-    setMessageText('');
-    setSelectedFile(null);
-    submitInputRef.current.focus(); // Set focus back to the input
+    if (messageText !== '') {
+      handleMessageSend(messageText);
+      setMessageText('');
+      setSelectedFile(null);
+      submitInputRef.current.focus(); // Set focus back to the input
+    }
   };
 
 
   const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    setSelectedFile(file);
   };
 
   const handleLogoClick = () => {
-    fileInputRef.current.click();
+    if (fileInputRef.current) {
+      // 1. Clear the file input value
+      fileInputRef.current.value = null;
+
+      // 2. Trigger the file input click
+      fileInputRef.current.click();
+    }
   };
+
+  useEffect(() => {
+    if (selectedFile && selectedFile.type.startsWith('image/')) {
+      const chatWindow = document.querySelector('.chat-window');
+      if (chatWindow) {
+        chatWindow.style.bottom = '300px';
+      } else {
+        chatWindow.style.bottom = 'initial';
+      }
+    }
+  }, [selectedFile]);
 
   useEffect(() => {
     // Determine if the attachment should be shown based on selectedChat
@@ -655,6 +675,14 @@ const Home = () => {
       setShowAttachment(true);
     }
   }, [selectedChat]);
+
+  const handleCloseAttachment = () => {
+    const chatWindow = document.querySelector('.chat-window');
+    if (chatWindow) {
+      chatWindow.style.bottom = '150px';
+      setSelectedFile(null); // Clear the selectedFile state
+    }
+  };
 
   return (
     <>
@@ -875,7 +903,7 @@ const Home = () => {
                   onClick={handleCloseChat} 
                 />
               </div>
-              <MainContainer>
+              <MainContainer style={{maxHeight:"200px"}}>
                 <ChatContainer>
                   <MessageList>
                     {messages.map((message, i) => (
@@ -894,9 +922,26 @@ const Home = () => {
               </MainContainer>
               {selectedFile && (
                 <div className="attachment-image">
-                  <span style={{color:"black"}}>
-                    Selected file: {selectedFile.name}
-                  </span>
+                  <FontAwesomeIcon 
+                      className="close-image-icon" 
+                      icon={faXmark} 
+                      color="black" 
+                      size="sm"
+                      onClick={handleCloseAttachment}
+                    />
+                  {selectedFile.type.startsWith('image/') ? (
+                    <>
+                      <img
+                        src={URL.createObjectURL(selectedFile)}
+                        alt={selectedFile.name}
+                        style={{ maxWidth: '100px', maxHeight: '100px' }}
+                      />
+                      <br />
+                      <span style={{color: "black"}}>{selectedFile.name}</span>
+                    </>
+                  ) : (
+                    <span style={{color: "black"}}>{selectedFile.name}</span>
+                  )}
                 </div>
               )}
               <div className="message-input">
