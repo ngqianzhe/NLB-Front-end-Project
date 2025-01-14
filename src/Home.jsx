@@ -617,6 +617,7 @@ const Home = () => {
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [messageText, setMessageText] = useState('');
+  const [showAttachment, setShowAttachment] = useState(true); // State for showing/hiding attachment
 
   const handleTextChange = (event) => {
     setMessageText(event.target.value);
@@ -645,6 +646,15 @@ const Home = () => {
   const handleLogoClick = () => {
     fileInputRef.current.click();
   };
+
+  useEffect(() => {
+    // Determine if the attachment should be shown based on selectedChat
+    if (selectedChat === 'OpenAI') {
+      setShowAttachment(false);
+    } else if (selectedChat === 'Gemini') {
+      setShowAttachment(true);
+    }
+  }, [selectedChat]);
 
   return (
     <>
@@ -890,10 +900,12 @@ const Home = () => {
                 </div>
               )}
               <div className="message-input-container">
-                <div className="attachment-container">
-                  <FontAwesomeIcon icon={faPaperclip} color="#6EA9D7" onClick={handleLogoClick} className="file-icon-button" /> 
-                  <input type="file" ref={fileInputRef} id="fileInput" style={{ display: 'none' }} onChange={handleFileChange} />
-                </div>
+                {showAttachment && ( // Conditionally render attachment
+                  <div className="attachment-container">
+                    <FontAwesomeIcon icon={faPaperclip} color="#6EA9D7" onClick={handleLogoClick} className="file-icon-button" /> 
+                    <input type="file" ref={fileInputRef} id="fileInput" style={{ display: 'none' }} onChange={handleFileChange} />
+                  </div>
+                )}
                 <input type="text" value={messageText} onChange={handleTextChange} className="text-input" placeholder="Enter your queries here..." onKeyUp={handleKeyPress} />
                 <FontAwesomeIcon icon={faPaperPlane} color="#6EA9D7" className="submit-icon-button"  onClick={handleSubmitIconClick} /> 
               </div>

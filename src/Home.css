@@ -311,7 +311,6 @@ html, body, #root {
 .file-icon-button {
   padding-inline-start: 10px;
   cursor: pointer;
-  padding-inline-end: 5px;
 }
 
 .file-icon-button:hover {
@@ -463,6 +462,7 @@ html, body, #root {
   border-radius: 8px;
   background-color: #C6E3FA;
   color: black;
+  margin-inline-start: 8px;
 }
 
 .send-button {
