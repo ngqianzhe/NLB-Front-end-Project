@@ -35,6 +35,6 @@ This guide will walk you through the steps of creating a React application using
 2. Type npm run preview and press enter. This will launch the production server and open your browser to a new tab with your React application running.
 
 ## Additional Resources
-[React Documentation](https://react.dev/)
-[Node.js Documentation](https://nodejs.org/en)
-[npm Documentation](https://www.npmjs.com/)
+- [React Documentation](https://react.dev/)
+- [Node.js Documentation](https://nodejs.org/en)
+- [npm Documentation](https://www.npmjs.com/)
