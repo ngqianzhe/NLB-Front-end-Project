@@ -22,7 +22,7 @@ This guide will walk you through the steps of creating a React application using
 1. Open a terminal and navigate to the NLB folder.
 2. Type npm install and press enter. This will install all of the dependencies that are listed in the package.json file.
 
-## Running the development React Application
+## Running the Development Server of the React Application
 1. Open a terminal and navigate to the NLB folder.
 2. Type npm run dev and press enter. This will launch the development server and open your browser to a new tab with your React application running.
 
@@ -30,7 +30,7 @@ This guide will walk you through the steps of creating a React application using
 1. Build your React application by typing npm run build in the terminal. This will create a minified version of your application in the build folder.
 2. You can deploy your React application to any web hosting service that supports static websites.
 
-## Running the production React Application 
+## Running the Production Server of the React Application 
 1. Open a terminal and navigate to the NLB folder.
 2. Type npm run preview and press enter. This will launch the production server and open your browser to a new tab with your React application running.
 
