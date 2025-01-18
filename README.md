@@ -22,6 +22,11 @@ This guide will walk you through the steps of creating a React application using
 1. Open a terminal and navigate to the NLB folder.
 2. Type npm install and press enter. This will install all of the dependencies that are listed in the package.json file.
 
+## Running the proxy server for the API
+1. Open a terminal and navigate to the NLB folder.
+2. Type npm install -g pm2 and press enter. This will install all of the dependencies that are listed in the package.json file.
+3. Run pm2 proxy-server.js to continuously run this proxy server for your React application to enable the API to work.
+
 ## Running the Development Server of the React Application
 1. Open a terminal and navigate to the NLB folder.
 2. Type npm run dev and press enter. This will launch the development server and open your browser to a new tab with your React application running.
