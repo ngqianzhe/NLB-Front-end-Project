@@ -13,7 +13,7 @@ This guide will walk you through the steps of creating a React application using
 4. npm is included with Node.js, so you don't need to install it separately. However, you can verify that npm is installed by typing npm -v in the terminal.
 
 ## Retrieving the React Application
-1. Clone the files in this repository.
+1. Clone the files in this repository using Visual Studio Code.
 2. Open a terminal and navigate to the folder you cloned in step 1.
 3. When cloning the file, rename the folder as NLB.
 4. Once the cloning process is complete, navigate to the NLB folder in your file explorer.
