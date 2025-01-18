@@ -339,8 +339,8 @@ const Home = () => {
     const fetchOpeningHours = async () => {
       setIsLoading(true);
       try {
-        //const apiUrl = 'http://localhost:3400/NLB';
-        const apiUrl = 'http://138.2.104.173:3400/NLB';
+        const apiUrl = 'http://localhost:3400/NLB';
+        //const apiUrl = 'http://138.2.104.173:3400/NLB';
         const response = await fetch(apiUrl);
         const data = await response.json();
         const library = data.branches.find(branch => branch.branchName === selectedValue);
