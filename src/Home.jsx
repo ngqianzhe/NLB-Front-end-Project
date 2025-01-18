@@ -71,12 +71,10 @@ const Home = () => {
     const now = new Date();
     const hour = now.getHours();
     const background = document.getElementById("root"); // Get the body element
-    const body = document.body;
     const page = document.querySelector(".page");
     
     if (hour >= 18 || hour < 5) { // Evening time (6 PM to 5 AM)
       background.style.backgroundColor = "#101c2c"; // Darker color
-      body.style.backgroundColor = "#101c2c";
       if (page) {
         page.style.backgroundColor = "#101c2c";
       }
@@ -341,8 +339,8 @@ const Home = () => {
     const fetchOpeningHours = async () => {
       setIsLoading(true);
       try {
-        const apiUrl = 'http://localhost:3400/NLB';
-        //const apiUrl = 'http://138.2.104.173:3400/NLB';
+        //const apiUrl = 'http://localhost:3400/NLB';
+        const apiUrl = 'http://138.2.104.173:3400/NLB';
         const response = await fetch(apiUrl);
         const data = await response.json();
         const library = data.branches.find(branch => branch.branchName === selectedValue);
