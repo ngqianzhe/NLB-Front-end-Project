@@ -161,8 +161,8 @@ const Navbar = () => {
                   </div>
                 </li>
                 <li className="nav-item">
-                  <span className="nav-link" onClick={toggleSearchPopup}> 
-                    <FontAwesomeIcon className="search-icon" icon={searchIcon} size="xl" color="white"/>
+                  <span className="nav-link"> 
+                    <FontAwesomeIcon className="search-icon" icon={searchIcon} onClick={toggleSearchPopup} size="xl" color="white"/>
                   </span>
                 </li>
               </ul>  
