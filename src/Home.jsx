@@ -466,14 +466,22 @@ const Home = () => {
   }
 
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [selectedChat, setSelectedChat] = useState(null); // State to track selected chat
-
-  const handleChatClick = () => {
-    setIsChatOpen(true);
-  };
+  const [selectedChat, setSelectedChat] = useState(''); // State to track selected chat
 
   const handleChatSelection = (chat) => {
     setSelectedChat(chat);
+    setMessages([
+      {
+        message:
+        `Hello ${chatbotUsername}! ${chat} is chatting with you for today!\nHow can I help you?`, // Default incoming message
+        sender: "chatbot", // Set sender as "chatbot"
+        direction: "incoming", // Set direction as "incoming"
+      }
+    ]);
+  };
+
+  const handleChatClick = () => {
+    setIsChatOpen(true);
   };
 
   const geminiAPIKey = import.meta.env.VITE_GOOGLE_API_KEY; // Replace with your actual API key
@@ -507,7 +515,7 @@ const Home = () => {
         if (message.sender === "chatbot") {
           return {
             ...message,
-            message: `Hello ${storedUser.username}! This chatbot is chatting with you for today!\nHow can I help you?`
+            message: `Hello ${storedUser.username}! ${selectedChat} is chatting with you for today!\nHow can I help you?`
           };
         }
         return message;
@@ -526,7 +534,7 @@ const Home = () => {
   const [messages, setMessages] = useState([
     {
       message:
-        `Hello ${chatbotUsername}! This chatbot is chatting with you for today!\nHow can I help you?`, // Default incoming message
+        `Hello ${chatbotUsername}! ${selectedChat} is chatting with you for today!\nHow can I help you?`, // Default incoming message
       sender: "chatbot", // Set sender as "chatbot"
       direction: "incoming", // Set direction as "incoming"
     },
@@ -545,7 +553,7 @@ const Home = () => {
     setMessages([
       {
         message:
-        `Hello ${chatbotUsername}! This chatbot is chatting with you for today!\nHow can I help you?`, // Default incoming message
+        `Hello ${chatbotUsername}! ${selectedChat} is chatting with you for today!\nHow can I help you?`, // Default incoming message
         sender: "chatbot", // Set sender as "chatbot"
         direction: "incoming", // Set direction as "incoming"
       }
@@ -560,7 +568,7 @@ const Home = () => {
 
     let chatbotResponse;
 
-    if (selectedChat === "OpenAI") {
+    if (selectedChat === "Select AI") {
       try {
         const apiUrl = `http://localhost:3000/oracledb?message=${encodeURIComponent(messageText)}`;
         //const apiUrl = `http://138.2.92.117:3000/oracledb?message=${encodeURIComponent(messageText)}`;
@@ -569,7 +577,19 @@ const Home = () => {
         chatbotResponse = data.message;
 
       } catch (error) {
-        console.error("Error with OpenAI Select AI Chatbot:", error);
+        
+        setMessages([
+          ...messages,
+          { message: messageText, sender: "user", direction: "outgoing" },
+          {
+            message: "I am sorry I do not understand you. Could you please try and repeat the question again?",
+            sender: "chatbot",
+            direction: "incoming",
+            file: selectedFile
+          },
+        ]);
+        console.error("Error with Select AI:", error);
+        return;
       }
     } else if (selectedChat === "Gemini") {
       // ... (Gemini API call) ...
@@ -581,20 +601,43 @@ const Home = () => {
         const result = await chatSession.sendMessage(messageText);
         chatbotResponse = result.response.text();
       } catch (error) {
+        setMessages([
+          ...messages,
+          { message: messageText, sender: "user", direction: "outgoing" },
+          {
+            message: "I am sorry I do not understand you. Could you please try and repeat the question again?",
+            sender: "chatbot",
+            direction: "incoming",
+            file: selectedFile
+          },
+        ]);
         console.error("Error with Google Gemini:", error);
+        return;
       }
     }
-
-    setMessages([
-      ...messages,
-      { message: messageText, sender: "user", direction: "outgoing" },
-      {
-        message: chatbotResponse,
-        sender: "chatbot",
-        direction: "incoming",
-        file: selectedFile,
-      },
-    ]);
+    if (chatbotResponse !== "Error" || chatbotResponse !== null || chatbotResponse !== "") {
+      setMessages([
+        ...messages,
+        { message: messageText, sender: "user", direction: "outgoing" },
+        {
+          message: chatbotResponse,
+          sender: "chatbot",
+          direction: "incoming",
+          file: selectedFile
+        },
+      ]);
+    } else {
+      setMessages([
+        ...messages,
+        { message: messageText, sender: "user", direction: "outgoing" },
+        {
+          message: "I am sorry I do not understand you. Could you please try and repeat the question again?",
+          sender: "chatbot",
+          direction: "incoming",
+          file: selectedFile
+        },
+      ]);
+    }
     setMessageText('');
     setSelectedFile(null);
     // ... (rest of your message sending logic) ...
@@ -610,7 +653,7 @@ const Home = () => {
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && messageText !== '') {
       handleMessageSend(messageText);
       setMessageText('');
       setSelectedFile(null);
@@ -655,7 +698,7 @@ const Home = () => {
 
   useEffect(() => {
     // Determine if the attachment should be shown based on selectedChat
-    if (selectedChat === 'OpenAI') {
+    if (selectedChat === 'Select AI') {
       setShowAttachment(false);
     } else if (selectedChat === 'Gemini') {
       setShowAttachment(true);
@@ -869,8 +912,8 @@ const Home = () => {
                   onClick={handleCloseChat} 
               />
               <div className="button-box">
-                <button className="select-button" onClick={() => handleChatSelection("OpenAI")}>
-                  <b>OpenAI</b>
+                <button className="select-button" onClick={() => handleChatSelection("Select AI")}>
+                  <b>Select AI</b>
                 </button>
                 <button className="select-button" onClick={() => handleChatSelection("Gemini")}>
                   <b>Gemini</b>
@@ -881,7 +924,7 @@ const Home = () => {
           {isChatOpen && selectedChat && (
             <div className="chat-window">
               <div className="chat-header"> {/* Add a header for the close button */}
-                <h6 className="chat-header-text">{selectedChat} Chatbot</h6>
+                <h6 className="chat-header-text">{selectedChat}</h6>
                 <FontAwesomeIcon 
                   icon={faXmark} 
                   color="black"
