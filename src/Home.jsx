@@ -71,12 +71,10 @@ const Home = () => {
     const now = new Date();
     const hour = now.getHours();
     const background = document.getElementById("root"); // Get the body element
-    const body = document.body;
     const page = document.querySelector(".page");
     
     if (hour >= 18 || hour < 5) { // Evening time (6 PM to 5 AM)
       background.style.backgroundColor = "#101c2c"; // Darker color
-      body.style.backgroundColor = "#101c2c";
       if (page) {
         page.style.backgroundColor = "#101c2c";
       }
@@ -340,17 +338,10 @@ const Home = () => {
   useEffect(() => {
     const fetchOpeningHours = async () => {
       setIsLoading(true);
-      const myHeaders = new Headers();
-      myHeaders.append("x-api-key", "<P}o$s$v.|X4~w#*4/+8GxrIJd_I5Wtt");
-      myHeaders.append("x-app-code", "DEV-NgQianZhe");
-      myHeaders.append("Cookie", "AWSALB=ocEaQ9sXcmDiQFk2OFXbzDQDGfDQ6evQAvAjS2/l+mJd0Z/fdfEq4/JjVRGAoJnCGpRyrRoXNR/lM8MV/pFXxSsQBSgmCuU6MfzZP97ZQ/FrLqQBlU65H4my3l75; AWSALBCORS=ocEaQ9sXcmDiQFk2OFXbzDQDGfDQ6evQAvAjS2/l+mJd0Z/fdfEq4/JjVRGAoJnCGpRyrRoXNR/lM8MV/pFXxSsQBSgmCuU6MfzZP97ZQ/FrLqQBlU65H4my3l75");
       try {
-        //const apiUrl = 'https://openweb.nlb.gov.sg/api/v1/Library/GetBranches';
-        const apiUrl = '/api/v1/Library/GetBranches';
-        const response = await fetch(apiUrl, {
-          headers: myHeaders
-        });
-
+        const apiUrl = 'http://localhost:3400/NLB';
+        //const apiUrl = 'http://138.2.104.173:3400/NLB';
+        const response = await fetch(apiUrl);
         const data = await response.json();
         const library = data.branches.find(branch => branch.branchName === selectedValue);
         const messageText = document.querySelector(".message");
@@ -665,7 +656,7 @@ const Home = () => {
       if (selectedFile && selectedFile.type.startsWith('image/')) {
         chatWindow.style.bottom = '300px';
       } else {
-        chatWindow.style.bottom = 'initial';
+        chatWindow.style.bottom = '150px';
       }
     }
   }, [selectedFile]);
