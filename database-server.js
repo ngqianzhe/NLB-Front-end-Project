@@ -4,7 +4,6 @@ import oracledb from 'oracledb';
 
 const app = express();
 app.use(cors()); // Enable CORS for all routes 
-
 let message;
 
 app.get('/oracledb', async (req, res) => {
