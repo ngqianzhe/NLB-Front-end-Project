@@ -5,27 +5,39 @@ import oracledb from 'oracledb';
 const app = express();
 app.use(cors()); // Enable CORS for all routes 
 
-// ... (your Oracle database connection logic) ...
+let message;
+
 app.get('/oracledb', async (req, res) => {
   try {
-    const connection = await oracledb.getConnection({
-      user: "admin",
-      password: "Qzlovesskibidi1",
-      connectString: "nlbadb23ai_high"
-    });
+        const connection = await oracledb.getConnection({
+            user: "admin",
+            password: "Qzlovesskibidi1",
+            connectString: "nlbadb23ai_high"
+        });
+	let result; 
+  //message = "list the book inventories";
+  message = req.query.messageText;
 
-    const result = await connection.execute("SELECT 'Hello, Node.js!' AS message FROM DUAL");
-    res.json(result.rows);
+	let plsql1 = "BEGIN\n"
+	    + "DBMS_CLOUD_AI.SET_PROFILE('OPENAI_GPT_ADMIN_TABLE');\n"
+	    + "END;"
 
-  } catch (err) {
-    console.error(err);
-    res.status(500).send(err.message);
-  }
+	let plsql2 = `select ai narrate ${message}`;
+
+	await connection.execute(plsql1);
+	result = await connection.execute(plsql2);
+	console.log(result.rows);
+	res.json(result.rows);
+	await connection.close();
+    } catch (err) {
+		console.error(err);
+        res.status(500).send(err.message);
+    }
 });
-
 
 const PORT = 3000;
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server is running on http://localhost:${PORT}/oracledb`);
-});
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}/oracledb?message=${message}`);
+})
+
   

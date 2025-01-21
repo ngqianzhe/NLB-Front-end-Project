@@ -27,7 +27,7 @@ import {
   faPaperclip,
   faPaperPlane
 } from '@fortawesome/free-solid-svg-icons'; 
-import { OpenAI } from "openai";
+//import { OpenAI } from "openai";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const Home = () => {  
@@ -476,12 +476,6 @@ const Home = () => {
     setSelectedChat(chat);
   };
 
-  const openai = new OpenAI({
-    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    organization: "org-l6jiqsh5JBfKik7Nokftvb28",
-    dangerouslyAllowBrowser: true, // Use with caution!
-  });
-
   const geminiAPIKey = import.meta.env.VITE_GOOGLE_API_KEY; // Replace with your actual API key
 
   const googleAI = new GoogleGenerativeAI(geminiAPIKey);
@@ -568,16 +562,13 @@ const Home = () => {
 
     if (selectedChat === "OpenAI") {
       try {
-        const completion = await openai.chat.completions.create({
-          messages: [{ role: "assistant", content: messageText }],
-          model: "gpt-4o-mini",
-          store: true
-        });
-
-        chatbotResponse = completion.choices[0].message.content;
+        const apiUrl = `http://localhost:3400/oracledb?message=${encodeURIComponent(messageText)}`;
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+        chatbotResponse = data.message;
 
       } catch (error) {
-        console.error("Error with OpenAI Chatbot:", error);
+        console.error("Error with OpenAI Select AI Chatbot:", error);
       }
     } else if (selectedChat === "Gemini") {
       // ... (Gemini API call) ...
