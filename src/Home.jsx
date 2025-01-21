@@ -562,7 +562,8 @@ const Home = () => {
 
     if (selectedChat === "OpenAI") {
       try {
-        const apiUrl = `http://localhost:3400/oracledb?message=${encodeURIComponent(messageText)}`;
+        const apiUrl = `http://localhost:3000/oracledb?message=${encodeURIComponent(messageText)}`;
+        //const apiUrl = `http://138.2.92.117:3000/oracledb?message=${encodeURIComponent(messageText)}`;
         const res = await fetch(apiUrl);
         const data = await res.json();
         chatbotResponse = data.message;
