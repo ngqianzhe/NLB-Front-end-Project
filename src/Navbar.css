@@ -1,13 +1,11 @@
 .navigation-bar {
   background-color: #02615b;
+  padding-bottom: 10px;
+  padding-top: 20px;
 }
 
 .navbar {
   border-bottom: 1px solid white;
-}
-
-.navigation-bar {
-  padding-bottom: 10px;
 }
 
 .icon {
