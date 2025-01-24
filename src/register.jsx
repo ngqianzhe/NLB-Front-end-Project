@@ -70,7 +70,6 @@ const Register = () => {
     // Store the updated array back in localStorage
     localStorage.setItem('users', JSON.stringify(users));
     
-    console.log(users);
     const userSessionData = { username, password }
     sessionStorage.setItem('user', JSON.stringify(userSessionData));
     navigate('/'); 

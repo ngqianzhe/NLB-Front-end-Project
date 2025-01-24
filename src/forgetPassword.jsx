@@ -9,7 +9,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import emailjs from '@emailjs/browser';
-
+import uuidv4 from 'uuid';
 
 const ForgetPassword = () => {
   function updateBackgroundColor() {
@@ -34,6 +34,9 @@ const ForgetPassword = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('Enter your email address and we will send you an email to get your password.'); 
   const navigate = useNavigate();
+  const generateUniqueToken = () => {
+    return uuidv4();
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault(); 
@@ -60,18 +63,25 @@ const ForgetPassword = () => {
       const serviceID = 'service_adup5tr';
       const templateID = 'template_teaz77q';
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-      const password = emailExists.password;
+
       const username = emailExists.username;
+      // Generate a unique token (replace with your token generation logic)
+      const token = generateUniqueToken(); 
+
+      // Construct the password reset link with the token as a query parameter
+      const resetLink = `your-website.com/reset-password?token=${token}`; 
       await emailjs.send(serviceID, templateID, {
         to_email: email,
         username: username,
         subject: 'Password Reset Request',
         message: `You have requested to reset your password. 
-          Here is your password: ${password} 
+          Please click on the link to reset your password:
+          ${resetLink}
 
           If you did not request a password reset, please ignore this email.`,
       }, publicKey);
-
+      localStorage.removeItem('existingEmail', email);
+      localStorage.setItem('existingEmail', email);
       // Countdown and redirect
       let countdown = 5;
       const countdownInterval = setInterval(() => {

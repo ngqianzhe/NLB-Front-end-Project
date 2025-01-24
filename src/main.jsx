@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from './login.jsx'; 
 import RegisterPage from './register.jsx';
 import ForgetPasswordPage from './forgetPassword.jsx';
+import ResetPasswordPage from './resetPassword.jsx';
 
 
 createRoot(document.getElementById('root')).render(
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/login" element={<LoginPage />} /> 
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/forgetPassword" element={<ForgetPasswordPage />} />
+        <Route path="/resetPassword" element={<ResetPasswordPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
