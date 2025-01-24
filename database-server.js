@@ -36,11 +36,9 @@ app.get('/oracledb', async (req, res) => {
   }
 });
 
-const currentURL = new URL(window.location.href);
-const origin = currentURL.origin;
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on ${origin}:${PORT}/oracledb`);
+    console.log(`Server is running on http://localhost:${PORT}/oracledb`);
 })
 
   

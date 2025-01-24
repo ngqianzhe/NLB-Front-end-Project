@@ -29,9 +29,7 @@ app.get('/NLB', async (req, res) => {
     }
   });
   
-const currentURL = new URL(window.location.href);
-const origin = currentURL.origin;
 const PORT = 3400; // Choose a different port than your other servers
 app.listen(PORT, () => {
-  console.log(`Proxy server is running on ${origin}:${PORT}/NLB`);
+  console.log(`Proxy server is running on http://localhost:${PORT}/NLB`);
 });
