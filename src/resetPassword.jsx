@@ -126,7 +126,6 @@ const ResetPassword = () => {
     let username = emailExists.username;
     const userData = { username, password }; 
     sessionStorage.setItem('user', JSON.stringify(userData));
-    localStorage.removeItem('existingEmail');
     // Countdown and redirect
     let countdown = 5;
     const countdownInterval = setInterval(() => {
@@ -135,7 +134,9 @@ const ResetPassword = () => {
 
       if (countdown === 0) {
         clearInterval(countdownInterval); // Stop the countdown
+        localStorage.removeItem('existingEmail');
         navigate('/login'); 
+        window.location.reload();
       }
     }, 1000); // Update message every 1000 milliseconds (1 second)
   };

@@ -31,6 +31,12 @@ import {
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const Home = () => {  
+  function getURLOrigin() {
+    const currentURL = new URL(window.location.href);
+    const origin = currentURL.origin;
+    return origin;
+  }
+
   const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
@@ -339,7 +345,8 @@ const Home = () => {
     const fetchOpeningHours = async () => {
       setIsLoading(true);
       try {
-        const apiUrl = 'http://localhost:3400/NLB';
+        const origin = getURLOrigin();
+        const apiUrl = `${origin}:3400/NLB`;
         //const apiUrl = 'http://138.2.104.173:3400/NLB';
         const response = await fetch(apiUrl);
         const data = await response.json();
@@ -570,7 +577,8 @@ const Home = () => {
 
     if (selectedChat === "Select AI") {
       try {
-        const apiUrl = `http://localhost:3000/oracledb?message=${encodeURIComponent(messageText)}`;
+        const origin = getURLOrigin();
+        const apiUrl = `${origin}:3000/oracledb?message=${encodeURIComponent(messageText)}`;
         //const apiUrl = `http://138.2.92.117:3000/oracledb?message=${encodeURIComponent(messageText)}`;
         const res = await fetch(apiUrl);
         const data = await res.json();

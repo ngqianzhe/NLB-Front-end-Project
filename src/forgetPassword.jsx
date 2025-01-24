@@ -12,6 +12,12 @@ import emailjs from '@emailjs/browser';
 import { v4 as uuidv4 } from 'uuid';
 
 const ForgetPassword = () => {
+  function getURLOrigin() {
+    const currentURL = new URL(window.location.href);
+    const origin = currentURL.origin;
+    return origin;
+  }
+
   function updateBackgroundColor() {
     const background = document.getElementById("root"); // Get the body element
   
@@ -68,8 +74,7 @@ const ForgetPassword = () => {
       const token = generateUniqueToken(); 
 
       // Construct the password reset link with the token as a query parameter
-      const currentURL = new URL(window.location.href);
-      const origin = currentURL.origin;
+      const origin = getURLOrigin();
       const resetLink = `${origin}/resetPassword?token=${token}`;
       await emailjs.send(serviceID, templateID, {
         to_email: email,
