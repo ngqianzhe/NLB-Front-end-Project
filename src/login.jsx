@@ -12,7 +12,6 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-
   function updateBackgroundColor() {
     const background = document.getElementById("root"); // Get the body element
     background.style.backgroundColor = "#fff4f4";

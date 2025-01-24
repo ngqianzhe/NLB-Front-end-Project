@@ -9,7 +9,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import emailjs from '@emailjs/browser';
-import uuidv4 from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 const ForgetPassword = () => {
   function updateBackgroundColor() {
@@ -18,7 +18,6 @@ const ForgetPassword = () => {
     background.style.backgroundColor = "#fff4f4";
     
   }
-
   
   updateBackgroundColor();
 
@@ -69,7 +68,9 @@ const ForgetPassword = () => {
       const token = generateUniqueToken(); 
 
       // Construct the password reset link with the token as a query parameter
-      const resetLink = `your-website.com/reset-password?token=${token}`; 
+      const currentURL = new URL(window.location.href);
+      const origin = currentURL.origin;
+      const resetLink = `${origin}/resetPassword?token=${token}`;
       await emailjs.send(serviceID, templateID, {
         to_email: email,
         username: username,
@@ -80,17 +81,22 @@ const ForgetPassword = () => {
 
           If you did not request a password reset, please ignore this email.`,
       }, publicKey);
-      localStorage.removeItem('existingEmail', email);
-      localStorage.setItem('existingEmail', email);
+      const emailData = {
+        email: email,
+        token: token,
+        timeStored: new Date().getTime()
+      };
+      localStorage.setItem('existingEmail', JSON.stringify(emailData)); 
+      // Get the existing users array from localStorage, or initialize an empty array
       // Countdown and redirect
       let countdown = 5;
       const countdownInterval = setInterval(() => {
         countdown--;
-        setMessage(`Password reset email sent! Redirecting to login in ${countdown} seconds...`);
+        setMessage(`Password reset email sent! Redirecting to the homepage in ${countdown} seconds...`);
 
         if (countdown === 0) {
           clearInterval(countdownInterval); // Stop the countdown
-          navigate('/login'); 
+          navigate('/'); 
         }
       }, 1000); // Update message every 1000 milliseconds (1 second)
       
