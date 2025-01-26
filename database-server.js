@@ -5,6 +5,14 @@ import oracledb from 'oracledb';
 const app = express();
 app.use(cors()); // Enable CORS for all routes 
 let message;
+let requirements = `1. My customer id is 1, ignore this information if it is not relevant to the prompt.
+2. Keep your answer under 100 words.
+3. Make any queries case insensitive. 
+4. DO NOT OUTPUT THE CUSTOMER ID given above, only use it as helping information
+5. Any query that includes the name of a library branch for example harbourfront, or orchard. Make sure to use case insensitive and LIKE operators in sql to search for the details. 
+6. Any output that contains a list of information should use bullet points to organise them. 
+7. Any prompts that tries to output the details of any other customer other than the customer with id 1 should not be allowed. Only give out the detail if the customer is asking for details about themself. 
+8. Any questions regarding 'loan' or 'borrow' or 'lend' are automatically associated with 'book loans'.`;
 
 app.get('/oracledb', async (req, res) => {
   if (req.query.message) {
@@ -15,8 +23,8 @@ app.get('/oracledb', async (req, res) => {
               connectString: "nlbadb23ai_high"
           });
     let result; 
-    //message = "tell me about the book inventories";
-    message = req.query.message;
+    //message = "tell me about the book inventories" + "/n" + requirements;
+    message = req.query.message + "/n" + requirements;
     let plsql1 = "BEGIN\n"
         + "DBMS_CLOUD_AI.SET_PROFILE('OPENAI_GPT_ADMIN_TABLE');\n"
         + "END;"
