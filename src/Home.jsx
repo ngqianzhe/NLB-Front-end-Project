@@ -592,7 +592,6 @@ const Home = () => {
             message: "I am sorry I do not understand you. Could you please try and repeat the question again?",
             sender: "chatbot",
             direction: "incoming",
-            file: selectedFile
           },
         ]);
         console.error("Error with Select AI:", error);
@@ -623,16 +622,28 @@ const Home = () => {
       }
     }
     if (chatbotResponse !== "Error" || chatbotResponse !== null || chatbotResponse !== "") {
-      setMessages([
-        ...messages,
-        { message: messageText, sender: "user", direction: "outgoing" },
-        {
-          message: chatbotResponse,
-          sender: "chatbot",
-          direction: "incoming",
-          file: selectedFile
-        },
-      ]);
+      if (selectedChat === "Gemini") {
+        setMessages([
+          ...messages,
+          { message: messageText, sender: "user", direction: "outgoing" },
+          {
+            message: chatbotResponse,
+            sender: "chatbot",
+            direction: "incoming",
+            file: selectedFile
+          },
+        ]);
+      } else {
+        setMessages([
+          ...messages,
+          { message: messageText, sender: "user", direction: "outgoing" },
+          {
+            message: chatbotResponse,
+            sender: "chatbot",
+            direction: "incoming"
+          },
+        ]);
+      }
     } else {
       setMessages([
         ...messages,
@@ -641,7 +652,6 @@ const Home = () => {
           message: "I am sorry I do not understand you. Could you please try and repeat the question again?",
           sender: "chatbot",
           direction: "incoming",
-          file: selectedFile
         },
       ]);
     }
