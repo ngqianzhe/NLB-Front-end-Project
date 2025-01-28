@@ -392,7 +392,7 @@ const Home = () => {
             return; // Exit early if closed
           }
 
-          if ((now < closinghourInt && minute > 0) && (now >= openinghourInt && minute > 0) && (closingDayName == "Sun" || closingDay >= currentDay)) {
+          if ((now < closinghourInt && minute > 0) && (now > openinghourInt && minute > 0) && (closingDayName == "Sun" || closingDay >= currentDay)) {
             messageText.innerHTML = "Open today from <br />";
             setOpeningHours (`${openingTime} to ${closingTime}`);
           } else { 
