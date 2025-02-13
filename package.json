@@ -32,6 +32,8 @@
     "oci-sdk": "^2.102.1",
     "openai": "^4.77.3",
     "oracledb": "^6.7.1",
+    "os": "^0.1.2",
+    "path": "^0.12.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",

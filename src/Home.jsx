@@ -601,17 +601,23 @@ const Home = () => {
       // ... (Gemini API call) ...
       if (selectedFile) {
         try {
+          const origin = getOriginWithoutPort();
+          const apiUrl = `${origin}:3600/upload`;
+          //const apiUrl = `http://213.35.110.195:3600/upload`;
+          
           const formData = new FormData();
-          formData.append("image", selectedFile); // 'image' should match your server-side code
+          formData.append('image', selectedFile); // Use a more descriptive name like 'image'
+          
           const requestOptions = {
-            method: "POST",
+            method: "PUT",
             body: formData,
             redirect: "follow"
           };
-          fetch('http://localhost:3600/upload', requestOptions);
+
+          await fetch(apiUrl, requestOptions);
         } catch (error) {
-          console.error('Upload failed:', error);
-          // Optionally, display an error message to the user
+          console.error('Error:', error);
+          //... handle the error (e.g., display an error message to the user)
         }
       }
       try {
@@ -679,6 +685,7 @@ const Home = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [messageText, setMessageText] = useState('');
   const [showAttachment, setShowAttachment] = useState(true); // State for showing/hiding attachment
+  const [previewURL, setPreviewURL] = useState(null); // For image preview
 
   const handleTextChange = (event) => {
     setMessageText(event.target.value);
@@ -696,8 +703,8 @@ const Home = () => {
     if (messageText !== '') {
       handleMessageSend(messageText);
       setMessageText('');
-      setSelectedFile(null);
       submitInputRef.current.focus(); // Set focus back to the input
+      setSelectedFile(null);
     }
   };
 
@@ -705,7 +712,15 @@ const Home = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
-    console.log(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewURL(reader.result); // Set preview URL for the image
+      };
+      reader.readAsDataURL(file); // Use readAsDataURL for images
+    } else {
+        setPreviewURL(null); // Clear preview if no file selected
+    }
   };
 
   const handleLogoClick = () => {
