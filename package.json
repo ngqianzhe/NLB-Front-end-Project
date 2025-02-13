@@ -17,7 +17,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@google/generative-ai": "^0.21.0",
-    "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "Buffer": "^0.0.0",
     "cors": "^2.8.5",
