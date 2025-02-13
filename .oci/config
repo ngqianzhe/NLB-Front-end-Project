@@ -1,0 +1,6 @@
+[DEFAULT]
+user=ocid1.user.oc1..aaaaaaaaztmkx55ewsomfcsa2c24b5rkybowbdj5g7lmtp25lvivqwshk6zq
+fingerprint=11:d0:c4:39:dd:0c:4b:78:55:98:a9:b0:51:e2:3d:ca
+tenancy=ocid1.tenancy.oc1..aaaaaaaa3h4pfgug2gwv7hkhuuq4mdorifywsousrwpbsmeofct3nnswvhha
+region=us-chicago-1
+key_file=C:/Users/qng/NLB/.oci/oci_api_key.pem

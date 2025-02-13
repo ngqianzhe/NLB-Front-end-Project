@@ -1,6 +1,6 @@
-import express from 'express';
-import cors from 'cors';
-import oracledb from 'oracledb';
+const express = require('express');
+const cors = require('cors');
+const oracledb = require('oracledb');
 
 const app = express();
 app.use(cors()); // Enable CORS for all routes 

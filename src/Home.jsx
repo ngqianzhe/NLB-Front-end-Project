@@ -599,6 +599,21 @@ const Home = () => {
       }
     } else if (selectedChat === "Gemini") {
       // ... (Gemini API call) ...
+      if (selectedFile) {
+        try {
+          const formData = new FormData();
+          formData.append("image", selectedFile); // 'image' should match your server-side code
+          const requestOptions = {
+            method: "POST",
+            body: formData,
+            redirect: "follow"
+          };
+          fetch('http://localhost:3600/upload', requestOptions);
+        } catch (error) {
+          console.error('Upload failed:', error);
+          // Optionally, display an error message to the user
+        }
+      }
       try {
         const chatSession = model.startChat({
           generation_config,
@@ -690,6 +705,7 @@ const Home = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
+    console.log(file);
   };
 
   const handleLogoClick = () => {
