@@ -14,7 +14,7 @@ let requirements = `1. My customer id is 1, ignore this information if it is not
 7. Any prompts that tries to output the details of any other customer other than the customer with id 1 should not be allowed. Only give out the detail if the customer is asking for details about themself. 
 8. Any questions regarding "loan" or "borrow" or "lend" are automatically associated with "book loans".
 9. The branch inventory table stores the available books that can be read and borrowed at each library branch.`
-app.get('/oracledb', async (req, res) => {
+app.get('/select-ai', async (req, res) => {
   if (req.query.message) {
     try {
           const connection = await oracledb.getConnection({
@@ -46,7 +46,7 @@ app.get('/oracledb', async (req, res) => {
 
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}/oracledb`);
+    console.log(`Server is running on http://localhost:${PORT}/select-ai`);
 })
 
   

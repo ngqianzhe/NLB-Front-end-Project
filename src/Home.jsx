@@ -27,8 +27,6 @@ import {
   faPaperclip,
   faPaperPlane
 } from '@fortawesome/free-solid-svg-icons'; 
-//import { OpenAI } from "openai";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const Home = () => {  
   function getOriginWithoutPort() {
@@ -490,21 +488,6 @@ const Home = () => {
     setIsChatOpen(true);
   };
 
-  const geminiAPIKey = import.meta.env.VITE_GOOGLE_API_KEY; // Replace with your actual API key
-
-  const googleAI = new GoogleGenerativeAI(geminiAPIKey);
-
-  const generation_config = {
-    "temperature": 1,
-    "top_p": 0.95,
-    "top_k": 40,
-    "max_output_tokens": 8192,
-  }
-
-  const model = googleAI.getGenerativeModel({
-    model: "gemini-1.5-pro", // Or another Gemini model
-  });
-
   const [chatbotUsername, setChatbotUsername] = useState('Guest');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState(''); // State to store the username
@@ -577,8 +560,8 @@ const Home = () => {
     if (selectedChat === "Select AI") {
       try {
         const origin = getOriginWithoutPort();
-        const apiUrl = `${origin}:3000/oracledb?message=${encodeURIComponent(messageText)}`;
-        //const apiUrl = `http://138.2.92.117:3000/oracledb?message=${encodeURIComponent(messageText)}`;
+        const apiUrl = `${origin}:3000/select-ai?message=${encodeURIComponent(messageText)}`;
+        //const apiUrl = `http://138.2.92.117:3000/select-ai?message=${encodeURIComponent(messageText)}`;
         const res = await fetch(apiUrl);
         const data = await res.json();
         chatbotResponse = data.message;
@@ -597,7 +580,7 @@ const Home = () => {
         console.error("Error with Select AI:", error);
         return;
       }
-    } else if (selectedChat === "Gemini") {
+    } else if (selectedChat === "Ingestion Select AI") {
       // ... (Gemini API call) ...
       if (selectedFile) {
         try {
@@ -621,12 +604,12 @@ const Home = () => {
         }
       }
       try {
-        const chatSession = model.startChat({
-          generation_config,
-          history: []
-        });
-        const result = await chatSession.sendMessage(messageText);
-        chatbotResponse = result.response.text();
+        const origin = getOriginWithoutPort();
+        const apiUrl = `${origin}:3100/ingestion-select-ai?message=${encodeURIComponent(messageText)}`;
+        //const apiUrl = `http://138.2.92.117:3100/ingestion-select-ai?message=${encodeURIComponent(messageText)}`;
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+        chatbotResponse = data.message;
       } catch (error) {
         setMessages([
           ...messages,
@@ -963,8 +946,8 @@ const Home = () => {
                 <button className="select-button" onClick={() => handleChatSelection("Select AI")}>
                   <b>Select AI</b>
                 </button>
-                <button className="select-button" onClick={() => handleChatSelection("Gemini")}>
-                  <b>Gemini</b>
+                <button className="select-button" onClick={() => handleChatSelection("Ingestion Select AI")}>
+                  <b>Ingestion Select AI</b>
                 </button>
               </div>
             </div>
