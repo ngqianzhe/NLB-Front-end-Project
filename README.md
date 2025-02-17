@@ -45,6 +45,12 @@ Note: Set-up your own Select AI Profile for your autonomous database and replace
 2. Type npm install -g pm2 and press enter. This will install all of the dependencies that are listed in the package.json file.
 3. Run pm2 proxy-server.js to continuously run this proxy server for your React application to enable the API to work.
 
+## Uploading files to the Object Storage from the server
+1. Open a terminal and navigate to the NLB folder.
+2. Type npm install -g pm2 and press enter. This will install all of the dependencies that are listed in the package.json file.
+3. Run pm2 object-storage-server.js to continuously run this proxy server for your React application to enable the uploading of the object storage.
+Note: Set-up your Oracle Cloud Tenancy and use the Oracle SDK with your config file of your API Key to connect your application code to the Oracle Cloud - Requires a bucket with a namespace as well as the compartment you are linking this bucket to.
+
 ## Running the Development Server of the React Application
 1. Open a terminal and navigate to the NLB folder.
 2. Type npm run dev and press enter. This will launch the development server and open your browser to a new tab with your React application running.
@@ -62,3 +68,5 @@ Note: Set-up your own Select AI Profile for your autonomous database and replace
 - [Node.js Documentation](https://nodejs.org/en)
 - [npm Documentation](https://www.npmjs.com/)
 - [Oracle Instant Client and SQL*Plus Downloads](https://www.oracle.com/sg/database/technologies/instant-client/downloads.html)
+- [Oracle JavaScript and TypeScript SDK](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/typescriptsdk.htm)
+- [PutObject API Reference](https://docs.oracle.com/en-us/iaas/api/#/en/objectstorage/20160918/Object/PutObject)
