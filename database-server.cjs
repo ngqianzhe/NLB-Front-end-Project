@@ -27,7 +27,7 @@ app.get('/select-ai', async (req, res) => {
     //message = "tell me about the book inventories" + "/n" + requirements;
     message = req.query.message + "/n" + requirements;
     let plsql1 = "BEGIN\n"
-        + "DBMS_CLOUD_AI.SET_PROFILE('OPENAI_GPT_ADMIN_NEW');\n"
+        + "DBMS_CLOUD_AI.SET_PROFILE('OPENAI_GPT_ADMIN_NEW_4o');\n"
         + "END;"
 
     let plsql2 = `select ai narrate ${message}`;

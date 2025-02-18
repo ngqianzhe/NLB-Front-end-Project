@@ -294,7 +294,7 @@ html, body, #root {
   position: fixed; /* Or absolute, depending on your layout */
   bottom: 150px; /* Adjust position as needed */
   right: 20px;
-  width: 300px; /* Adjust size as needed */
+  width: 400px; /* Adjust size as needed */
   height: 400px; /* Adjust size as needed */
   background-color: white;
 }
