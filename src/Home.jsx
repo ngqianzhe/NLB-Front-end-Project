@@ -626,7 +626,7 @@ const Home = () => {
       }
     }
     if (chatbotResponse !== "Error" || chatbotResponse !== null || chatbotResponse !== "") {
-      if (selectedChat === "Gemini") {
+      if (selectedChat === "Ingestion Select AI") {
         setMessages([
           ...messages,
           { message: messageText, sender: "user", direction: "outgoing" },
@@ -668,7 +668,6 @@ const Home = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [messageText, setMessageText] = useState('');
   const [showAttachment, setShowAttachment] = useState(true); // State for showing/hiding attachment
-  const [previewURL, setPreviewURL] = useState(null); // For image preview
 
   const handleTextChange = (event) => {
     setMessageText(event.target.value);
@@ -695,15 +694,6 @@ const Home = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewURL(reader.result); // Set preview URL for the image
-      };
-      reader.readAsDataURL(file); // Use readAsDataURL for images
-    } else {
-        setPreviewURL(null); // Clear preview if no file selected
-    }
   };
 
   const handleLogoClick = () => {
@@ -721,8 +711,10 @@ const Home = () => {
     if (chatWindow) {
       if (selectedFile && selectedFile.type.startsWith('image/')) {
         chatWindow.style.bottom = '300px';
+        chatWindow.style.height = '250px';
       } else {
         chatWindow.style.bottom = '150px';
+        chatWindow.style.height = '400px';
       }
     }
   }, [selectedFile]);
@@ -731,7 +723,7 @@ const Home = () => {
     // Determine if the attachment should be shown based on selectedChat
     if (selectedChat === 'Select AI') {
       setShowAttachment(false);
-    } else if (selectedChat === 'Gemini') {
+    } else if (selectedChat === 'Ingestion Select AI') {
       setShowAttachment(true);
     }
   }, [selectedChat]);
@@ -739,7 +731,7 @@ const Home = () => {
   const handleCloseAttachment = () => {
     const chatWindow = document.querySelector('.chat-window');
     if (chatWindow) {
-      chatWindow.style.bottom = '150px';
+      chatWindow.style.bottom = '400px';
       setSelectedFile(null); // Clear the selectedFile state
     }
   };
@@ -963,7 +955,7 @@ const Home = () => {
                   onClick={handleCloseChat} 
                 />
               </div>
-              <MainContainer style={{maxHeight:"200px"}}>
+              <MainContainer style={{maxHeight:"400px"}}>
                 <ChatContainer>
                   <MessageList>
                     {messages.map((message, i) => (
