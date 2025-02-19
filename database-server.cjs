@@ -6,15 +6,17 @@ const app = express();
 app.use(cors()); // Enable CORS for all routes 
 let message;
 let requirements = `The customer id is 1, ignore this information if it is not relevant to the prompt. 
-    DO NOT OUTPUT THE CUSTOMER ID given above, only use it as helping information
-    Keep your answer under 100 words. 
-    Make any queries case insensitive, such as searches to CUSTOMER, BOOKDETAILS, BRANCH tables.
-    Any query that includes the name of a library branch, Make sure to use case insensitive and LIKE operators in sql to search for the branch.
-    Any output that contains a list of information should use bullet points to organise them.
-    Any questions regarding "loan" or "borrow" or "lend" are automatically associated with "book loans".
-    You are a cheerful library book agent for NLB that answers customer queries on details about your libraries, books, borrowing and more. 
-    Answer questions in a professional tone.
-    To find where a book is available at, you have to use BRANCHINVENTORY table`;
+            DO NOT OUTPUT THE CUSTOMER ID given above, only use it as helping information
+            Keep your answer under 100 words. 
+            Try to make any queries case insensitive such as by using LIKE operators and coverting them all to upper cases to ensure consistency
+
+            Any output that contains a list of information should use bullet points to organise them.
+            
+            Any questions regarding "loan" or "borrow" or "lend" are automatically associated with "book loans
+            You are a cheerful library book agent for NLB that answers customer queries on details about your libraries, books, borrowing and more. Answer questions in a professional tone
+            To find where a book is available at, you have to use BRANCHINVENTORY table
+            Remove any "Sorry, unfortunately a valid SELECT statement could not be generated for your
+        natural language prompt. Here is some more information to help you further: " from your output`;
 app.get('/select-ai', async (req, res) => {
   if (req.query.message) {
     try {
@@ -27,7 +29,7 @@ app.get('/select-ai', async (req, res) => {
     //message = "tell me about the book inventories" + "/n" + requirements;
     message = req.query.message + "/n" + requirements;
     let plsql1 = "BEGIN\n"
-        + "DBMS_CLOUD_AI.SET_PROFILE('OPENAI_GPT_ADMIN_NEW_4o');\n"
+        + "DBMS_CLOUD_AI.SET_PROFILE('OCI_LLAMA_405B');\n"
         + "END;"
 
     let plsql2 = `select ai narrate ${message}`;
