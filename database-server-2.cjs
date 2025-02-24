@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const oracledb = require('oracledb');
+oracledb.fetchAsString = [ oracledb.CLOB ];
 
 const app = express();
 app.use(cors()); // Enable CORS for all routes 
@@ -24,6 +25,7 @@ app.get('/ingestion-select-ai', async (req, res) => {
 
     await connection.execute(plsql1);
     result = await connection.execute(plsql2);
+    delete result.metaData;
     res.json({message: result.rows});
     await connection.close();
       } catch (err) {
@@ -37,7 +39,7 @@ app.get('/ingestion-select-ai', async (req, res) => {
 
 const PORT = 3100;
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}/ingestion-select-ai`);
+    console.log(`Server is running on http://localhost:${PORT}/ingestion-select-ai?message=${message}`);
 })
 
   
