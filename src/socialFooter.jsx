@@ -2,14 +2,15 @@ import './socialFooter.css';
 import { faFacebook, faInstagram, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import NLBHomeLogo from './assets/NLB-home-coloured-logo.png';
+import OracleHomeLogo from './assets/oracle-logo.png';
 import { Link } from 'react-router-dom';
 
 const SocialFooter = () => {
   return (
     <div className="socialFooter">
-      <Link to="/">
-        <img src={NLBHomeLogo} alt="Logo" className="footer-image" />
+      <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', paddingBottom: '20px' }}>
+        <img src={OracleHomeLogo} alt="Logo" className="footer-image" width='80' height='80'/>
+        <h3 style={{ color:'#0675BD', paddingTop: '10px', fontWeight: 'bold', fontFamily: 'Montserrat, serif', paddingInlineStart: '10px', fontSize: '20px'}}>Oracle 23ai Select AI Demo for National Library Board</h3>
       </Link>
     <div className="footer-content-2">
       <div className="footer-column-2">

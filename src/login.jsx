@@ -24,7 +24,7 @@ const Login = () => {
   setInterval(updateBackgroundColor, 60 * 60 * 1000); // 1 hour in milliseconds
   
   useEffect(() => {
-    document.title = 'Login with myLibrary';
+    document.title = 'Oracle 23ai Select AI Demo - Login with myLibrary';
   }, []); // Empty dependency array ensures this runs only once
 
   const [username, setUsername] = useState('');

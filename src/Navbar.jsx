@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import NLBLogo from './assets/NLB-home-logo.png';
+import OracleLogo from './assets/oracle-icon.png';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -124,8 +124,8 @@ const Navbar = () => {
     <div className="navigation-bar"> 
         <nav className="navbar navbar-expand-xl smart-scroll navigation">
           <div className="navbar-brand">
-            <Link to="/">
-                <img className="icon" src={NLBLogo} alt="NLB Logo" /> 
+            <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+                <img className="icon" src={OracleLogo} alt="NLB Logo" /><h3 className="icon-name" style={{ color:'white', paddingTop: '10px', fontWeight: 'bold', fontFamily: 'Montserrat, serif', paddingInlineStart: '10px'}}>Oracle 23ai Select AI Demo for National Library Board</h3>
             </Link> 
           </div>
             <div className="collapse navbar-collapse" id="navbarNav">

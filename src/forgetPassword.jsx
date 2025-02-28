@@ -32,7 +32,7 @@ const ForgetPassword = () => {
 
 
   useEffect(() => {
-    document.title = 'Recover your Password';
+    document.title = 'Oracle 23ai Select AI Demo - Recover your Password';
   }, []); // Empty dependency array ensures this runs only once
 
 

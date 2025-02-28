@@ -37,7 +37,7 @@ const Home = () => {
   const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
-    document.title = 'National Library Board';
+    document.title = 'Oracle 23ai Select AI Demo for National Library Board';
   }, []); // Empty dependency array ensures this runs only once
 
   useEffect(() => {
@@ -474,14 +474,25 @@ const Home = () => {
 
   const handleChatSelection = (chat) => {
     setSelectedChat(chat);
-    setMessages([
-      {
-        message:
-        `Hello ${chatbotUsername}! ${chat} is chatting with you for today!\nHow can I help you?`, // Default incoming message
-        sender: "chatbot", // Set sender as "chatbot"
-        direction: "incoming", // Set direction as "incoming"
-      }
-    ]);
+    if (chat === 'Ask my Library') {
+      setMessages([
+        {
+          message:
+          `Hello ${chatbotUsername}! You can ${chat} about anything enquiring about the books, location, etc.\nHow can I help you?`, // Default incoming message
+          sender: "chatbot", // Set sender as "chatbot"
+          direction: "incoming", // Set direction as "incoming"
+        }
+      ]);
+    } else if (chat === 'FAQ Chatbot') {
+      setMessages([
+        {
+          message:
+          `Hello ${chatbotUsername}! ${chat} is chatting with you for today!\nHow can I help you?`, // Default incoming message
+          sender: "chatbot", // Set sender as "chatbot"
+          direction: "incoming", // Set direction as "incoming"
+        }
+      ]);
+    }
   };
 
   const handleChatClick = () => {
@@ -557,7 +568,7 @@ const Home = () => {
 
     let chatbotResponse;
 
-    if (selectedChat === "Select AI") {
+    if (selectedChat === "Ask my Library") {
       try {
         const origin = getOriginWithoutPort();
         const apiUrl = `${origin}:3000/select-ai?message=${encodeURIComponent(messageText)}`;
@@ -580,7 +591,7 @@ const Home = () => {
         console.error("Error with Select AI:", error);
         return;
       }
-    } else if (selectedChat === "Ingestion Select AI") {
+    } else if (selectedChat === "FAQ Chatbot") {
       // ... (Gemini API call) ...
       if (selectedFile) {
         try {
@@ -721,9 +732,9 @@ const Home = () => {
 
   useEffect(() => {
     // Determine if the attachment should be shown based on selectedChat
-    if (selectedChat === 'Select AI') {
+    if (selectedChat === 'Ask my Library') {
       setShowAttachment(false);
-    } else if (selectedChat === 'Ingestion Select AI') {
+    } else if (selectedChat === 'FAQ Chatbot') {
       setShowAttachment(true);
     }
   }, [selectedChat]);
@@ -935,11 +946,11 @@ const Home = () => {
                   onClick={handleCloseChat} 
               />
               <div className="button-box">
-                <button className="select-button" onClick={() => handleChatSelection("Select AI")}>
-                  <b>Select AI</b>
+                <button className="select-button" onClick={() => handleChatSelection("Ask my Library")}>
+                  <b>Ask my Library</b>
                 </button>
-                <button className="select-button" onClick={() => handleChatSelection("Ingestion Select AI")}>
-                  <b>Ingestion Select AI</b>
+                <button className="select-button" onClick={() => handleChatSelection("FAQ Chatbot")}>
+                  <b>FAQ Chatbot</b>
                 </button>
               </div>
             </div>
