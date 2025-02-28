@@ -571,8 +571,8 @@ const Home = () => {
     if (selectedChat === "Ask my Library") {
       try {
         const origin = getOriginWithoutPort();
-        const apiUrl = `${origin}:3000/select-ai?message=${encodeURIComponent(messageText)}`;
-        //const apiUrl = `http://138.2.92.117:3000/select-ai?message=${encodeURIComponent(messageText)}`;
+        const apiUrl = `${origin}:3000/ask-my-library?message=${encodeURIComponent(messageText)}`;
+        //const apiUrl = `http://138.2.92.117:3000/ask-my-library?message=${encodeURIComponent(messageText)}`;
         const res = await fetch(apiUrl);
         const data = await res.json();
         chatbotResponse = data.message;
@@ -616,8 +616,8 @@ const Home = () => {
       }
       try {
         const origin = getOriginWithoutPort();
-        const apiUrl = `${origin}:3100/ingestion-select-ai?message=${encodeURIComponent(messageText)}`;
-        //const apiUrl = `http://138.2.92.117:3100/ingestion-select-ai?message=${encodeURIComponent(messageText)}`;
+        const apiUrl = `${origin}:3100/faq-chatbot?message=${encodeURIComponent(messageText)}`;
+        //const apiUrl = `http://138.2.92.117:3100/faq-chatbot?message=${encodeURIComponent(messageText)}`;
         const res = await fetch(apiUrl);
         const data = await res.json();
         chatbotResponse = data.message;

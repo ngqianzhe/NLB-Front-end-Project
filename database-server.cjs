@@ -17,7 +17,7 @@ To find where a book is available at, you have to use BRANCHINVENTORY table.
 Remove any "Sorry, unfortunately a valid SELECT statement could not be generated for your
 natural language prompt. Here is some more information to help you further" from your output`;
 
-app.get('/select-ai', async (req, res) => {
+app.get('/ask-my-library', async (req, res) => {
   if (req.query.message) {
     try {
           const connection = await oracledb.getConnection({
@@ -50,7 +50,7 @@ app.get('/select-ai', async (req, res) => {
 
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}/select-ai?message=${message}`);
+    console.log(`Server is running on http://localhost:${PORT}/ask-my-library?message=${message}`);
 })
 
   
