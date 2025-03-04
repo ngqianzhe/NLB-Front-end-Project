@@ -156,11 +156,10 @@ pm2 proxy-server.js
 npm install -g pm2
 ```
    and press enter. This will install all of the dependencies that are listed in the package.json file.
-3. Run 
 ```
 pm2 object-storage-server.js
 ```
-   to continuously run this proxy server for your React application to enable the uploading of the object storage.
+3. Run the following commands to continuously run this proxy server for your React application to enable the uploading of the object storage.
 Note: Set-up your Oracle Cloud Tenancy and use the Oracle SDK with your config file of your API Key to connect your application code to the Oracle Cloud - Requires a bucket with a namespace as well as the compartment you are linking this bucket to.
 
 ## Hosting the Proxy and Database Server on a Compute Instance using Node.js
