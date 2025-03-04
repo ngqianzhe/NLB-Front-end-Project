@@ -129,7 +129,7 @@ export ORACLE_WALLET_DIR=/home/user/wallet
 npm install -g pm2 
 ```
    and press enter. This will install all the dependencies that are listed in the package.json file.
-3. Run 
+3. Run this following command 
 ```
 pm2 database-server.js
 ``` 
