@@ -24,7 +24,7 @@ const Register = () => {
 
   
   useEffect(() => {
-    document.title = 'Register for myLibrary';
+    document.title = 'Oracle 23ai Select AI Demo - Register for myLibrary';
   }, []); // Empty dependency array ensures this runs only once
 
   const [username, setUsername] = useState('');

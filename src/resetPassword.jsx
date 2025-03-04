@@ -66,7 +66,7 @@ const ResetPassword = () => {
   setInterval(updateBackgroundColor, 60 * 60 * 1000); // 1 hour in milliseconds
   setInterval(updateTokenExpiry, 1 * 60 * 1000);
   useEffect(() => {
-    document.title = 'Reset your Password';
+    document.title = 'Oracle 23ai Select AI Demo - Reset your Password';
   }, []); // Empty dependency array ensures this runs only once
 
   

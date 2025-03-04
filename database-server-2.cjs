@@ -6,7 +6,7 @@ oracledb.fetchAsString = [ oracledb.CLOB ];
 const app = express();
 app.use(cors()); // Enable CORS for all routes 
 let message;
-app.get('/ingestion-select-ai', async (req, res) => {
+app.get('/faq-chatbot', async (req, res) => {
   if (req.query.message) {
     try {
           const connection = await oracledb.getConnection({
@@ -39,7 +39,7 @@ app.get('/ingestion-select-ai', async (req, res) => {
 
 const PORT = 3100;
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}/ingestion-select-ai?message=${message}`);
+    console.log(`Server is running on http://localhost:${PORT}/faq-chatbot?message=${message}`);
 })
 
   

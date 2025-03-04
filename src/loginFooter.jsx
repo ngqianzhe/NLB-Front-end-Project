@@ -15,7 +15,7 @@ const loginFooter = () => {
           <li><a href="https://www.tech.gov.sg/terms-of-use/" className="login-list-text">Other Policies</a></li>
         </ul>
         <div className="login-right-text">
-          &copy; {date.getFullYear()} Government of Singapore
+          &copy; {date.getFullYear()} Oracle Corporation Pte Ltd
         </div>
       </div>
     </div>

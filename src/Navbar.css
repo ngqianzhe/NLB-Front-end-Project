@@ -16,6 +16,9 @@
   padding-inline-end: 2em;
 }
 
+.icon-name {
+  font-size: 20px;
+}
 .search-icon {
   cursor: pointer;
 }
@@ -80,7 +83,7 @@ input[type="radio"]:checked {
 .profile-container {
   position: relative; /* To position the dropdown relative to the icon */
   display: inline-block; /* To contain the dropdown within the container */
-  padding-inline-start: 50rem;
+  padding-inline-start: 30rem;
 }
 
 .user-icon {
@@ -123,7 +126,7 @@ input[type="radio"]:checked {
 
 @media screen and (min-width: 1303px) and (min-height: 750px) {
   .profile-container {
-    padding-inline-start: 60rem;
+    padding-inline-start: 41rem;
   }
   
   .icon {
@@ -133,7 +136,7 @@ input[type="radio"]:checked {
 
 @media screen and (min-width: 1520px) and (min-height: 876px) {
   .profile-container {
-    padding-inline-start: 75rem;
+    padding-inline-start: 56rem;
   }
   
   .icon {
@@ -143,7 +146,7 @@ input[type="radio"]:checked {
 
 @media screen and (min-width: 1824px) and (min-height: 1051px) {
   .profile-container {
-    padding-inline-start: 95rem;
+    padding-inline-start: 76rem;
   }
   
   .icon {
@@ -153,20 +156,28 @@ input[type="radio"]:checked {
 
 @media screen and (min-width: 2087px) and (min-height: 1194px) {
   .profile-container {
-    padding-inline-start: 112rem;
+    padding-inline-start: 89rem;
   }
   
   .icon {
     padding-inline-start: 40px;
+  }
+
+  .icon-name {
+    font-size: 23px;
   }
 }
 
 @media screen and (min-width: 2281px) and (min-height: 1314px) {
   .profile-container {
-    padding-inline-start: 127rem;
+    padding-inline-start: 100rem;
   }
   
   .icon {
     padding-inline-start: 40px;
+  }
+
+  .icon-name {
+    font-size: 25px;
   }
 }

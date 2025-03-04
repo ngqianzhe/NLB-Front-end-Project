@@ -29,6 +29,7 @@ Done in the first instance with any image and any shape (Website)
 3. Create a template for you to send your emails. 
 4. If you have any variables, please write them in the template, for example: {{your_username}}.
 5. Link your EmailJS Public Key, Service ID and Request ID in the API options.
+<<<<<<< HEAD
 ## Hosting the React Application on a Compute Instance using Apache Server
 1. Create your Oracle Cloud Tenancy.
 2. Host the compute instance with your SSH Keys saved into your local machine.
@@ -57,6 +58,9 @@ Done in the first instance with any image and any shape (Website)
 2. Type npm run preview and press enter. This will launch the production server and open your browser to a new tab with your React application running.
 
 Done in the second instance with any image and any shape (Proxy and Database Servers)
+=======
+
+>>>>>>> 7aac62d83df9029f9198afbc5e3133412a9105c7
 ## Installing SQL*Plus and Oracle Instant Client, as well as installing your wallet for setting environment variables
 1. Go to the official website to download Oracle Instant Client and SQL*Plus.
 2. Extract the ZIP file to a directory of your choice.
@@ -103,6 +107,7 @@ Note: Set-up your Oracle Cloud Tenancy and use the Oracle SDK with your config f
 - sudo chmod 755 /var/www/html/assets
 6. Allow ingress rules ports 80 and 443 in your default security lists for that virtual cloud network connected to your instance with TCP protocol to run the website.
 
+<<<<<<< HEAD
 ## Hosting the Proxy and Database Server on a Compute Instance using Node.js
 1. Create your Oracle Cloud Tenancy.
 2. Host the compute instance with your SSH keys saved into your local machine.
@@ -112,6 +117,32 @@ Note: Set-up your Oracle Cloud Tenancy and use the Oracle SDK with your config f
 6. Run the command to allow firewall for the specific ports hosted:
 - sudo firewall-cmd --permanent --zone=public --add-service=http
 - sudo firewall-cmd –reload
+=======
+## Deploying the React Application
+1. Build your React application by typing npm run build in the terminal. This will create a minified version of your application in the build folder.
+2. You can deploy your React application to any web hosting service that supports static websites.
+
+## Hosting the React Application on a Compute Instance using Apache Server
+1. Create your Oracle Cloud Tenancy.
+2. Host the compute instance with your SSH Keys saved into your local machine.
+3. Type ssh -i "your key path" "username"@"ip address of compute instance" to connect your instance through CLI.
+4. Run the following commands:
+- sudo yum install httpd -y
+- sudo apachectl start
+- sudo systemctl enable httpd
+- sudo apachectl configtest
+- sudo firewall-cmd --permanent --zone=public --add-service=http
+- sudo firewall-cmd --reload
+5. This will set up the Apache server. In order to run the react application, it is necessary to copy over the production files into the directory /var/www/html. To do that, run the following commands:
+- scp -i "your key path" -r "dist folder path" "username"@"ip address of compute instance":/var/www/html
+- sudo chmod 755 /var/www/html
+- sudo chmod 755 /var/www/html/assets
+6. Allow ingress rules ports 80 and 443 in your default security lists for that particular virtual cloud network connected to your instance with TCP protocol to run the website.
+
+## Running the Production Server of the React Application 
+1. Open a terminal and navigate to the NLB folder.
+2. Type npm run preview and press enter. This will launch the production server and open your browser to a new tab with your React application running.
+>>>>>>> 7aac62d83df9029f9198afbc5e3133412a9105c7
 
 ## Additional Resources
 - [React Documentation](https://react.dev/)
