@@ -176,8 +176,7 @@ ssh -i "your key path" "username"@"ip address of compute instance"
 6. Run the command to allow firewall for the specific ports hosted:
 ```
 sudo firewall-cmd --permanent --zone=public --add-service=http
-```
-```
+
 sudo firewall-cmd –reload
 ```
 
