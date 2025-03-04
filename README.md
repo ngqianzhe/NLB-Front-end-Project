@@ -118,8 +118,7 @@ export PATH=$ORACLE_HOME/bin:$PATH
 6. Set the environment variables TNS_ADMIN and ORACLE_WALLET_DIR to point to the directory where you created your wallet. For example, if you created your wallet in /home/user/wallet, you would set the environment variables as follows:
 ```
 export TNS_ADMIN=/home/user/wallet
-```
-```
+
 export ORACLE_WALLET_DIR=/home/user/wallet
 ```
 
