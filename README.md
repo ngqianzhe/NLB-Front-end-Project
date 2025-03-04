@@ -110,8 +110,7 @@ npm run preview
 3. Set the environment variables ORACLE_HOME and PATH to point to the directory where you extracted the Oracle Instant Client files. For example, if you extracted the files to /opt/oracle/instantclient_19_8, you would set the environment variables as follows:
 ```
 export ORACLE_HOME=/opt/oracle/instantclient_19_8
-```
-```
+
 export PATH=$ORACLE_HOME/bin:$PATH
 ```
 4. Install the wallet through your Oracle Cloud Infrastructure's Autonomous Database.
