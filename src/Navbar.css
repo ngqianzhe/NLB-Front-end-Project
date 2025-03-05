@@ -1,5 +1,5 @@
 .navigation-bar {
-  background-color: #02615b;
+  background-color: rgb(57, 55, 55);
   padding-bottom: 10px;
   padding-top: 20px;
 }
@@ -37,7 +37,7 @@
   width: 100%; /* Make it span the full width */
   padding: 20px;
   display: none; /* Hidden by default */
-  background-color: #02615b;
+  background-color: rgb(57, 55, 55);
   transition: opacity 0.3s ease, visibility 0.3s ease; /* Add transitions (optional) */
   border-bottom: 1px solid white;
 }
@@ -77,13 +77,13 @@
 }
 
 input[type="radio"]:checked {
-  accent-color: #e07c1c; /* Change the radio button's accent color */
+  accent-color: green; /* Change the radio button's accent color */
 }
 
 .profile-container {
   position: relative; /* To position the dropdown relative to the icon */
   display: inline-block; /* To contain the dropdown within the container */
-  padding-inline-start: 30rem;
+  padding-inline-start: 40rem; /* 30 rem*/
 }
 
 .user-icon {
@@ -126,7 +126,7 @@ input[type="radio"]:checked {
 
 @media screen and (min-width: 1303px) and (min-height: 750px) {
   .profile-container {
-    padding-inline-start: 41rem;
+    padding-inline-start: 51rem;
   }
   
   .icon {
@@ -136,7 +136,7 @@ input[type="radio"]:checked {
 
 @media screen and (min-width: 1520px) and (min-height: 876px) {
   .profile-container {
-    padding-inline-start: 56rem;
+    padding-inline-start: 66rem;
   }
   
   .icon {
@@ -146,7 +146,7 @@ input[type="radio"]:checked {
 
 @media screen and (min-width: 1824px) and (min-height: 1051px) {
   .profile-container {
-    padding-inline-start: 76rem;
+    padding-inline-start: 86rem;
   }
   
   .icon {
@@ -156,7 +156,7 @@ input[type="radio"]:checked {
 
 @media screen and (min-width: 2087px) and (min-height: 1194px) {
   .profile-container {
-    padding-inline-start: 89rem;
+    padding-inline-start: 99rem;
   }
   
   .icon {
@@ -170,7 +170,7 @@ input[type="radio"]:checked {
 
 @media screen and (min-width: 2281px) and (min-height: 1314px) {
   .profile-container {
-    padding-inline-start: 100rem;
+    padding-inline-start: 110rem;
   }
   
   .icon {

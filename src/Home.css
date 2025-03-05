@@ -6,12 +6,12 @@ html, body, #root {
   width: 100%;
   zoom: 100%;
   margin: 0;
-  background-color: #02615b;
+  background-color: rgb(57, 55, 55);
 } 
 
 #root {
   text-align: center;
-  background-color: #02615b;
+  background-color: rgb(57, 55, 55);
   font-family: "Lato", serif;
 }
 
@@ -20,7 +20,7 @@ html, body, #root {
 }
 
 .container-box {
-  background-color: #002d72; /* Dark blue background */
+  background-color: #c74634; /* Dark blue background */
   color: white;
   padding: 10px;
   border-radius: 10px; /* Rounded corners */
@@ -56,12 +56,12 @@ html, body, #root {
 
 .location select option {
   color: white;
-  background-color: #002d72;
+  background-color: #c74634;
 }
 
 .location select option:hover {
   background-color: white;
-  color: #002d72;
+  color: #c74634;
 }
 
 .hours {
@@ -79,7 +79,7 @@ html, body, #root {
 .button-container {
   display: inline-block;
   background-color: #fff;
-  color: #002d72;
+  color: #c74634;
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
@@ -87,8 +87,7 @@ html, body, #root {
 }
 
 .button-container:hover {
-  color: #002d72;
-  background-color: #e07c1c;
+  color: #c74634;
 }
 
 .card-container {  /* New container for the cards */
@@ -108,8 +107,8 @@ html, body, #root {
   border: 1px solid white; /* Blue border */
   border-radius: 10px;
   transform: skewX(-15deg); /* Adjust the angle as needed */
-  box-shadow: 5px 5px 5px white; /* Subtle shadow */
-  background-color: transparent;
+  box-shadow: 5px 5px 5px black; /* Subtle shadow */
+  background-color: white;
   cursor: pointer;
 }
 
@@ -117,11 +116,12 @@ html, body, #root {
   transform: skewX(15deg); /* Counteract the skew of the container */
   text-align: center;
   background-color: transparent;
-  color: white;
+  color: rgb(57, 55, 55);
   text-decoration: none;
   font-weight: bold;
   font-size: 10px;
   font-family: "Montserrat", serif;
+  white-space: nowrap;
 }
 
 .content-wrapper {
@@ -334,7 +334,7 @@ html, body, #root {
 }
 
 .page {
-  background-color:#02615b;
+  background-color: rgb(57, 55, 55);
 }
 
 @media screen and (min-width: 1303px) and (min-height: 750px) {

@@ -15,23 +15,6 @@ const Navbar = () => {
   const [selectedRadio, setSelectedRadio] = useState(null); // State for selected radio button
   const navigate = useNavigate(); 
 
-  function updateNavBackgroundColor() {
-    const now = new Date();
-    const hour = now.getHours();
-    const navigationBar = document.querySelector(".navigation-bar");
-    
-    if (navigationBar) {
-      if (hour >= 18 || hour < 5) { // Evening time (6 PM to 5 AM)
-        navigationBar.style.backgroundColor = "#101c2c";
-      }
-    }
-  }
-
-  updateNavBackgroundColor();
-
-  // Update the background color every hour
-  setInterval(updateNavBackgroundColor, 60 * 60 * 1000); // 1 hour in milliseconds
-
   function toggleSearchPopup() {
     const searchPopup = document.querySelector(".search-popup");
     const now = new Date();
@@ -125,7 +108,7 @@ const Navbar = () => {
         <nav className="navbar navbar-expand-xl smart-scroll navigation">
           <div className="navbar-brand">
             <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-                <img className="icon" src={OracleLogo} alt="NLB Logo" /><h3 className="icon-name" style={{ color:'white', paddingTop: '10px', fontWeight: 'bold', fontFamily: 'Montserrat, serif', paddingInlineStart: '10px'}}>Oracle 23ai Select AI Demo for National Library Board</h3>
+                <img className="icon" src={OracleLogo} alt="NLB Logo" /><h3 className="icon-name" style={{ color:'white', paddingTop: '10px', fontWeight: 'bold', fontFamily: 'Montserrat, serif', paddingInlineStart: '10px'}}>Oracle 23ai Select AI Demo for Libraries</h3>
             </Link> 
           </div>
             <div className="collapse navbar-collapse" id="navbarNav">

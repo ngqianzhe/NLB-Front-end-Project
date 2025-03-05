@@ -2,7 +2,6 @@ import './Home.css';
 import { useState, useRef, useEffect } from 'react';
 import Navbar from './Navbar.jsx'; 
 import Footer from './footer.jsx';
-import SocialFooter from './socialFooter.jsx';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import {
   MainContainer,
@@ -37,7 +36,7 @@ const Home = () => {
   const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
-    document.title = 'Oracle 23ai Select AI Demo for National Library Board';
+    document.title = 'Oracle 23ai Select AI Demo for Libraries';
   }, []); // Empty dependency array ensures this runs only once
 
   useEffect(() => {
@@ -69,28 +68,6 @@ const Home = () => {
   // Clean up the interval when the component unmounts
   return () => clearInterval(intervalId);
 }, []); // Empty dependency array ensures this runs only once
-
-  function updateBackgroundColor() {
-    const now = new Date();
-    const hour = now.getHours();
-    const background = document.getElementById("root"); // Get the body element
-    const page = document.querySelector(".page");
-    
-    if (hour >= 18 || hour < 5) { // Evening time (6 PM to 5 AM)
-      background.style.backgroundColor = "#101c2c"; // Darker color
-      if (page) {
-        page.style.backgroundColor = "#101c2c";
-      }
-    }
-    else {
-      background.style.backgroundColor = "#02615b";
-    }
-  }
-
-  updateBackgroundColor();
-
-  // Update the background color every hour
-  setInterval(updateBackgroundColor, 60 * 60 * 1000); // 1 hour in milliseconds
 
   const [selectedValue, setSelectedValue] = useState('National Library / Lee Kong Chian Reference Library');
   const [openingHours, setOpeningHours] = useState("Getting schedule..."); // State to store opening hours
@@ -750,7 +727,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="page" style={{ textAlign: "left", paddingInlineStart: "20px", color: "white", marginTop: "3rem"}}>
+      <div className="page" style={{ textAlign: "left", paddingInlineStart: "20px", color: "white", paddingTop: "3rem"}}>
         {isLoggedIn ? ( // Conditionally render the greeting
           <h6 id="greeting" style={{ fontWeight: "bold" }}>
             {greeting}, {userName}!
@@ -813,29 +790,29 @@ const Home = () => {
               )}
             </div>
 
-            <a href={getLibraryUrl(selectedValue)} className="button-container">Go to the library <FontAwesomeIcon icon={faArrowRight} color="#002d72" size="lg"/></a>
+            <a href={getLibraryUrl(selectedValue)} className="button-container">Go to the library <FontAwesomeIcon icon={faArrowRight} color="#c74634" size="lg"/></a>
           </div>
           <div className="card-container">
             <a className="button-cards" href="https://www.nlb.gov.sg/main/services/library-membership">
             <div className="parallel-card">
               <div className="card-content">
-                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faCreditCard} size="3x" color="white" />
-                <p>NLB Membership</p>
+                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faCreditCard} size="3x" color="rgb(57, 55, 55)" />
+                <p>Oracle Membership</p>
               </div>
             </div>
             </a>
             <a className="button-cards" href="https://catalogue.nlb.gov.sg/">
             <div className="parallel-card">
               <div className="card-content">
-                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faBookOpen} size="3x" color="white" /> 
-                <p>NLB Digital Resources</p>
+                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faBookOpen} size="3x" color="rgb(57, 55, 55)" /> 
+                <p>Oracle Digital Resources</p>
               </div>
             </div>
             </a>
             <a className="button-cards" href="https://www.nlb.gov.sg/main/services/Loans-and-Reservations">
             <div className="parallel-card">
               <div className="card-content">
-                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faUserFriends} size="3x" color="white" /> 
+                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faUserFriends} size="3x" color="rgb(57, 55, 55)" /> 
                 <p>Loans and Reservations</p>
               </div>
             </div>
@@ -843,7 +820,7 @@ const Home = () => {
             <a className="button-cards" href="https://www.nlb.gov.sg/main/services/facilities/book-room-or-venue">
             <div className="parallel-card">
               <div className="card-content">
-                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faCalendarCheck} size="3x" color="white" /> 
+                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faCalendarCheck} size="3x" color="rgb(57, 55, 55)" /> 
                 <p>Book a Room or Venue</p>
               </div>
             </div>
@@ -851,7 +828,7 @@ const Home = () => {
             <a className="button-cards" href="https://www.nlb.gov.sg/main/about-us/careers">
             <div className="parallel-card">
               <div className="card-content">
-                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faBriefcase} size="3x" color="white" /> 
+                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faBriefcase} size="3x" color="rgb(57, 55, 55)" /> 
                 <p>Explore a Career with Us</p>
               </div>
             </div>
@@ -859,7 +836,7 @@ const Home = () => {
             <a className="button-cards" href="https://www.nlb.gov.sg/main/partner-us">
             <div className="parallel-card">
               <div className="card-content">
-                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faHandshake} size="3x" color="white" /> 
+                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faHandshake} size="3x" color="rgb(57, 55, 55)" /> 
                 <p>Partner Us</p>
               </div>
             </div>
@@ -1021,7 +998,6 @@ const Home = () => {
           )}
         </div>
       </div>
-      <SocialFooter />
       <Footer />
     </>
   );

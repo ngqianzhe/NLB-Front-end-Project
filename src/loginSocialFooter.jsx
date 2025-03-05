@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const loginSocialFooter = () => {
   return (
       <div className="loginSocialFooter">
-        <Link to="/" className="footer-text">Oracle 23ai Select AI Demo</Link> 
+        <Link to="/" className="footer-text">Oracle 23ai Select AI Demo for Libraries</Link> 
           <nav className="footer-nav">
             <ul className="footer-nav-list">
               <li className="footer-nav-item">
