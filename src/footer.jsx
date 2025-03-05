@@ -16,7 +16,7 @@ const footer = () => {
           <li><a href="https://www.tech.gov.sg/terms-of-use/" className="list-text">Other Policies</a></li>
         </ul>
         <div className="right-text">
-          &copy; {date.getFullYear()} Oracle 23ai Select AI Demo for National Library Board. Last Updated: {date.toLocaleDateString('en-GB', options)}
+          &copy; {date.getFullYear()} Oracle 23ai Select AI Demo for Libraries. Last Updated: {date.toLocaleDateString('en-GB', options)}
         </div>
       </div>
     </div>
