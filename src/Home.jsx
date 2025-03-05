@@ -28,10 +28,10 @@ import {
 import LibraryLogo from './assets/Library.jpg';
 
 const Home = () => {  
-  /*function getOriginWithoutPort() {
+  function getOriginWithoutPort() {
     const url = new URL(window.location.href);
     return url.origin.replace(/:\d+$/, ''); 
-  }*/
+  }
 
   const [greeting, setGreeting] = useState('');
 
@@ -125,9 +125,9 @@ const Home = () => {
     const fetchOpeningHours = async () => {
       setIsLoading(true);
       try {
-        /*const origin = getOriginWithoutPort();
+        const origin = getOriginWithoutPort();
         const apiUrl = `${origin}:3400/NLB`;
-        */const apiUrl = 'http://138.2.104.173:3400/NLB';
+        //const apiUrl = 'http://138.2.104.173:3400/NLB';
         const response = await fetch(apiUrl);
         const data = await response.json();
         const library = data.branches.find(branch => branch.branchName === selectedValue);
@@ -353,9 +353,9 @@ const Home = () => {
 
     if (selectedChat === "Ask my Library") {
       try {
-        /*const origin = getOriginWithoutPort();
+        const origin = getOriginWithoutPort();
         const apiUrl = `${origin}:3000/ask-my-library?message=${encodeURIComponent(messageText)}`;
-        */const apiUrl = `http://138.2.92.117:3000/ask-my-library?message=${encodeURIComponent(messageText)}`;
+        //const apiUrl = `http://138.2.92.117:3000/ask-my-library?message=${encodeURIComponent(messageText)}`;
         const res = await fetch(apiUrl);
         const data = await res.json();
         chatbotResponse = data.message;
@@ -378,9 +378,9 @@ const Home = () => {
       // ... (Gemini API call) ...
       if (selectedFile) {
         try {
-          /*const origin = getOriginWithoutPort();
+          const origin = getOriginWithoutPort();
           const apiUrl = `${origin}:3600/upload`;
-          */const apiUrl = `http://213.35.110.195:3600/upload`;
+          //const apiUrl = `http://213.35.110.195:3600/upload`;
           
           const formData = new FormData();
           formData.append('image', selectedFile); // Use a more descriptive name like 'image'
