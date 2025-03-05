@@ -13,8 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faLocationDot, faArrowRight, faCreditCard, faBookOpen, faUserFriends, 
-  faCalendarCheck, faBriefcase, faHandshake, faCaretDown,
+  faLocationDot, faArrowRight, faCaretDown,
   faFaceSmile,
   faFaceFrown,
   faFaceMeh,
@@ -26,12 +25,13 @@ import {
   faPaperclip,
   faPaperPlane
 } from '@fortawesome/free-solid-svg-icons'; 
+import LibraryLogo from './assets/Library.jpg';
 
 const Home = () => {  
-  function getOriginWithoutPort() {
+  /*function getOriginWithoutPort() {
     const url = new URL(window.location.href);
     return url.origin.replace(/:\d+$/, ''); 
-  }
+  }*/
 
   const [greeting, setGreeting] = useState('');
 
@@ -90,86 +90,17 @@ const Home = () => {
     // Clean up the event listener when the component unmounts
     return () => document.removeEventListener('mouseout', handleMouseOut);
   }, []); // Empty dependency array ensures this runs only once
-  
-  const getLibraryUrl = (libraryName) => {
-    switch (libraryName) {
-      case "National Library / Lee Kong Chian Reference Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/national-library-singapore";
-      case "National Archives of Singapore":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/national-archives-of-singapore";
-      case "Ang Mo Kio Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/ang-mo-kio-public-library";
-      case "Bedok Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/bedok-public-library";
-      case "Bishan Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/bishan-public-library";
-      case "Bukit Batok Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/bukit-batok-public-library";
-      case "Bukit Panjang Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/bukit-panjang-public-library";
-      case "Central Arts Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/central-public-library";
-      case "Central Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/central-public-library";
-      case "Choa Chu Kang Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/choa-chu-kang-public-library";
-      case "Cheng San Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/cheng-san-public-library";
-      case "Clementi Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/clementi-public-library";
-      case "Geylang East Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/geylang-east-public-library";
-      case "Jurong Regional Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/jurong-regional-library";
-      case "Jurong West Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/jurong-west-public-library";
-      case "library@chinatown":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/library@chinatown";
-      case "library@harbourfront":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/library@harbourfront";
-      case "library@orchard":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/library@orchard";
-      case "Marine Parade Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/marine-parade-public-library";
-      case "Punggol Regional Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/punggol-regional-library";
-      case "Pasir Ris Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/pasir-ris-public-library";
-      case "Queenstown Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/queenstown-public-library";
-      case "Sembawang Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/sembawang-public-library";
-      case "Sengkang Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/sengkang-public-library";
-      case "Serangoon Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/serangoon-public-library";
-      case "Singapore Botanic Gardens' Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/singapore-botanic-gardens-library";
-      case "Tampines Regional Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/tampines-regional-library";
-      case "The LLiBrary":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/the-llibrary";
-      case "Toa Payoh Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/toa-payoh-public-library";
-      case "Woodlands Regional Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/woodlands-regional-library";
-      case "Yishun Public Library":
-        return "https://www.nlb.gov.sg/main/visit-us/our-libraries-and-locations/libraries/yishun-public-library";
-      default:
-        return "#"; 
-    }
-  };
 
   useEffect(() => {
     const selectElement = selectRef.current;
     if (selectElement) {
       if (selectedValue === "National Library / Lee Kong Chian Reference Library") {
-        selectElement.style.width = "340px";
+        selectElement.style.width = "150px";
         selectElement.style.marginInlineEnd = "-1px";
       }
 
       else if (selectedValue === "National Archives of Singapore") {
-        selectElement.style.width = "220px";
+        selectElement.style.width = "140px";
         selectElement.style.marginInlineEnd = "-5px";
       }
 
@@ -178,139 +109,14 @@ const Home = () => {
         selectElement.style.marginInlineEnd = "-5px";
       }
 
-      else if (selectedValue === "Bedok Public Library" || selectedValue === "Bishan Public Library") {
+      else if (selectedValue === "Bedok Public Library") {
+        selectElement.style.width = "180px";
+        selectElement.style.marginInlineEnd = "-4px";
+      }
+
+      else if (selectedValue === "Bishan Public Library") {
         selectElement.style.width = "150px";
-        selectElement.style.marginInlineEnd = "-4px";
-      }
-
-      else if (selectedValue === "Bukit Batok Public Library") {
-        selectElement.style.width = "180px";
         selectElement.style.marginInlineEnd = "-3px";
-      }
-
-      else if (selectedValue === "Bukit Panjang Public Library") {
-        selectElement.style.width = "200px";
-        selectElement.style.marginInlineEnd = "-5px";
-      }
-
-      else if (selectedValue === "Central Arts Library") {
-        selectElement.style.width = "150px";
-        selectElement.style.marginInlineEnd = "-6px";
-      }
-
-      else if (selectedValue === "Choa Chu Kang Public Library") {
-        selectElement.style.width = "210px";
-        selectElement.style.marginInlineEnd = "-3px";
-      }
-
-      else if (selectedValue === "Central Public Library") {
-        selectElement.style.width = "155px";
-        selectElement.style.marginInlineEnd = "-3px";
-      }
-
-      else if (selectedValue === "Clementi Public Library") {
-        selectElement.style.width = "165px";
-        selectElement.style.marginInlineEnd = "-3px";
-      }
-
-      else if (selectedValue === "Cheng San Public Library") {
-        selectElement.style.width = "180px";
-        selectElement.style.marginInlineEnd = "-3px";
-      }
-
-      else if (selectedValue === "Geylang East Public Library") {
-        selectElement.style.width = "190px";
-        selectElement.style.marginInlineEnd = "-4px";
-      }
-
-      else if (selectedValue === "Jurong West Public Library") {
-        selectElement.style.width = "180px";
-        selectElement.style.marginInlineEnd = "-2px";
-      }
-
-      else if (selectedValue === "Marine Parade Public Library") {
-        selectElement.style.width = "200px";
-        selectElement.style.marginInlineEnd = "-4px";
-      }
-
-      else if (selectedValue === "Punggol Regional Library") {
-        selectElement.style.width = "170px";
-        selectElement.style.marginInlineEnd = "-1px";
-      }
-
-      else if (selectedValue === "Pasir Ris Public Library") {
-        selectElement.style.width = "160px";
-        selectElement.style.marginInlineEnd = "-3px";
-      }
-
-      else if (selectedValue === "Queenstown Public Library") {
-        selectElement.style.width = "190px";
-        selectElement.style.marginInlineEnd = "-4px";
-      }
-
-      else if (selectedValue === "Sembawang Public Library") {
-        selectElement.style.width = "180px";
-        selectElement.style.marginInlineEnd = "-2px";
-      }
-
-      else if (selectedValue === "Sengkang Public Library") {
-        selectElement.style.width = "170px";
-        selectElement.style.marginInlineEnd = "-3px";
-      }
-
-      else if (selectedValue === "Serangoon Public Library") {
-        selectElement.style.width = "180px";
-        selectElement.style.marginInlineEnd = "-5px";
-      }
-
-      else if (selectedValue === "Toa Payoh Public Library") {
-        selectElement.style.width = "170px";
-        selectElement.style.marginInlineEnd = "-3px";
-      }
-
-      else if (selectedValue === "Tampines Regional Library") {
-        selectElement.style.width = "180px";
-        selectElement.style.marginInlineEnd = "-2px";
-      }
-
-      else if (selectedValue === "Woodlands Regional Library") {
-        selectElement.style.width = "190px";
-        selectElement.style.marginInlineEnd = "-1px";
-      }
-
-      else if (selectedValue === "Yishun Public Library") {
-        selectElement.style.width = "160px";
-        selectElement.style.marginInlineEnd = "-7px";
-      }
-
-      else if (selectedValue === "The LLiBrary") {
-        selectElement.style.width = "110px";
-        selectElement.style.marginInlineEnd = "-7px";
-      }
-
-      else if (selectedValue === "Singapore Botanic Gardens' Library") {
-        selectElement.style.width = "250px";
-        selectElement.style.marginInlineEnd = "-7px";
-      }
-
-      else if (selectedValue === "library@chinatown") {
-        selectElement.style.width = "140px";
-        selectElement.style.marginInlineEnd = "-6px";
-      }
-
-      else if (selectedValue === "library@harbourfront") {
-        selectElement.style.width = "160px";
-        selectElement.style.marginInlineEnd = "-6px";
-      }
-
-      else if (selectedValue === "library@orchard") {
-        selectElement.style.width = "130px";
-        selectElement.style.marginInlineEnd = "-6px";
-      }
-
-      else if (selectedValue === "Jurong Regional Library") {
-        selectElement.style.width = "170px";
-        selectElement.style.marginInlineEnd = "-5px";
       }
     }
   }, [selectedValue]);
@@ -319,9 +125,9 @@ const Home = () => {
     const fetchOpeningHours = async () => {
       setIsLoading(true);
       try {
-        const origin = getOriginWithoutPort();
+        /*const origin = getOriginWithoutPort();
         const apiUrl = `${origin}:3400/NLB`;
-        //const apiUrl = 'http://138.2.104.173:3400/NLB';
+        */const apiUrl = 'http://138.2.104.173:3400/NLB';
         const response = await fetch(apiUrl);
         const data = await response.json();
         const library = data.branches.find(branch => branch.branchName === selectedValue);
@@ -547,9 +353,9 @@ const Home = () => {
 
     if (selectedChat === "Ask my Library") {
       try {
-        const origin = getOriginWithoutPort();
+        /*const origin = getOriginWithoutPort();
         const apiUrl = `${origin}:3000/ask-my-library?message=${encodeURIComponent(messageText)}`;
-        //const apiUrl = `http://138.2.92.117:3000/ask-my-library?message=${encodeURIComponent(messageText)}`;
+        */const apiUrl = `http://138.2.92.117:3000/ask-my-library?message=${encodeURIComponent(messageText)}`;
         const res = await fetch(apiUrl);
         const data = await res.json();
         chatbotResponse = data.message;
@@ -572,9 +378,9 @@ const Home = () => {
       // ... (Gemini API call) ...
       if (selectedFile) {
         try {
-          const origin = getOriginWithoutPort();
+          /*const origin = getOriginWithoutPort();
           const apiUrl = `${origin}:3600/upload`;
-          //const apiUrl = `http://213.35.110.195:3600/upload`;
+          */const apiUrl = `http://213.35.110.195:3600/upload`;
           
           const formData = new FormData();
           formData.append('image', selectedFile); // Use a more descriptive name like 'image'
@@ -592,9 +398,9 @@ const Home = () => {
         }
       }
       try {
-        const origin = getOriginWithoutPort();
+        /*const origin = getOriginWithoutPort();
         const apiUrl = `${origin}:3100/faq-chatbot?message=${encodeURIComponent(messageText)}`;
-        //const apiUrl = `http://138.2.92.117:3100/faq-chatbot?message=${encodeURIComponent(messageText)}`;
+        */const apiUrl = `http://138.2.92.117:3100/faq-chatbot?message=${encodeURIComponent(messageText)}`;
         const res = await fetch(apiUrl);
         const data = await res.json();
         chatbotResponse = data.message;
@@ -743,37 +549,11 @@ const Home = () => {
             <div className="location">
               <FontAwesomeIcon style={{marginRight: "3px", textAlign: "center"}} icon={faLocationDot} color="white" size="sm" />
               <select ref={selectRef} value={selectedValue} onChange={handleChange} title="Select Libraries">
-                  <option value="National Library / Lee Kong Chian Reference Library">National Library / Lee Kong Chian Reference Library</option>
-                  <option value="National Archives of Singapore">National Archives of Singapore</option>
-                  <option value="Ang Mo Kio Public Library">Ang Mo Kio Public Library</option>
-                  <option value="Bedok Public Library">Bedok Public Library</option>
-                  <option value="Bishan Public Library">Bishan Public Library</option>
-                  <option value="Bukit Batok Public Library">Bukit Batok Public Library</option>
-                  <option value="Bukit Panjang Public Library">Bukit Panjang Public Library</option>
-                  <option value="Central Arts Library">Central Arts Library</option>
-                  <option value="Central Public Library">Central Public Library</option>
-                  <option value="Choa Chu Kang Public Library">Choa Chu Kang Public Library</option>
-                  <option value="Cheng San Public Library">Cheng San Public Library</option>
-                  <option value="Clementi Public Library">Clementi Public Library</option>
-                  <option value="Geylang East Public Library">Geylang East Public Library</option>
-                  <option value="Jurong Regional Library">Jurong Regional Library</option>
-                  <option value="Jurong West Public Library">Jurong West Public Library</option>
-                  <option value="library@chinatown">library@chinatown</option>
-                  <option value="library@harbourfront">library@harbourfront</option>
-                  <option value="library@orchard">library@orchard</option>
-                  <option value="Marine Parade Public Library">Marine Parade Public Library</option>
-                  <option value="Punggol Regional Library">Punggol Regional Library</option>
-                  <option value="Pasir Ris Public Library">Pasir Ris Public Library</option>
-                  <option value="Queenstown Public Library">Queenstown Public Library</option>
-                  <option value="Sembawang Public Library">Sembawang Public Library</option>
-                  <option value="Sengkang Public Library">Sengkang Public Library</option>
-                  <option value="Serangoon Public Library">Serangoon Public Library</option>
-                  <option value="Singapore Botanic Gardens' Library">Singapore Botanic Gardens&apos; Library</option>
-                  <option value="Tampines Regional Library">Tampines Regional Library</option>
-                  <option value="The LLiBrary">The LLiBrary</option>
-                  <option value="Toa Payoh Public Library">Toa Payoh Public Library</option>
-                  <option value="Woodlands Regional Library">Woodlands Regional Library</option>
-                  <option value="Yishun Public Library">Yishun Public Library</option>
+                  <option value="National Library / Lee Kong Chian Reference Library">The Reading Room</option>
+                  <option value="National Archives of Singapore">Heritage Library</option>
+                  <option value="Ang Mo Kio Public Library">Community Bookshelf</option>
+                  <option value="Bedok Public Library">The Literary Commons</option>
+                  <option value="Bishan Public Library">Evergreen Archives</option>
               </select>
               <FontAwesomeIcon style={{textAlign: "center"}} icon={faCaretDown} color="white" size="sm" />
             </div>
@@ -790,57 +570,10 @@ const Home = () => {
               )}
             </div>
 
-            <a href={getLibraryUrl(selectedValue)} className="button-container">Go to the library <FontAwesomeIcon icon={faArrowRight} color="#c74634" size="lg"/></a>
+            <a href="#" className="button-container">Go to the library <FontAwesomeIcon icon={faArrowRight} color="#c74634" size="lg"/></a>
           </div>
-          <div className="card-container">
-            <a className="button-cards" href="https://www.nlb.gov.sg/main/services/library-membership">
-            <div className="parallel-card">
-              <div className="card-content">
-                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faCreditCard} size="3x" color="rgb(57, 55, 55)" />
-                <p>Oracle Membership</p>
-              </div>
-            </div>
-            </a>
-            <a className="button-cards" href="https://catalogue.nlb.gov.sg/">
-            <div className="parallel-card">
-              <div className="card-content">
-                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faBookOpen} size="3x" color="rgb(57, 55, 55)" /> 
-                <p>Oracle Digital Resources</p>
-              </div>
-            </div>
-            </a>
-            <a className="button-cards" href="https://www.nlb.gov.sg/main/services/Loans-and-Reservations">
-            <div className="parallel-card">
-              <div className="card-content">
-                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faUserFriends} size="3x" color="rgb(57, 55, 55)" /> 
-                <p>Loans and Reservations</p>
-              </div>
-            </div>
-            </a>
-            <a className="button-cards" href="https://www.nlb.gov.sg/main/services/facilities/book-room-or-venue">
-            <div className="parallel-card">
-              <div className="card-content">
-                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faCalendarCheck} size="3x" color="rgb(57, 55, 55)" /> 
-                <p>Book a Room or Venue</p>
-              </div>
-            </div>
-            </a>
-            <a className="button-cards" href="https://www.nlb.gov.sg/main/about-us/careers">
-            <div className="parallel-card">
-              <div className="card-content">
-                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faBriefcase} size="3x" color="rgb(57, 55, 55)" /> 
-                <p>Explore a Career with Us</p>
-              </div>
-            </div>
-            </a>
-            <a className="button-cards" href="https://www.nlb.gov.sg/main/partner-us">
-            <div className="parallel-card">
-              <div className="card-content">
-                <FontAwesomeIcon className="card-icon" style={{marginBottom: "10px"}} icon={faHandshake} size="3x" color="rgb(57, 55, 55)" /> 
-                <p>Partner Us</p>
-              </div>
-            </div>
-            </a>
+          <div>
+              <img src={LibraryLogo} alt="Library Image" width="700"/>
           </div>
           <div className="rating-icon" ref={ratingIconRef} onMouseEnter={() => setIconVisible(false)}>
             {iconVisible && !ratingSubmitted && ( 

@@ -126,7 +126,7 @@ html, body, #root {
 
 .content-wrapper {
   display: flex;
-  gap: 100px; /* Adjust spacing as needed */
+  gap: 70px; /* Adjust spacing as needed */
   margin-top: 1rem;
   padding-inline-start: 25px;
   padding-bottom: 50px;
