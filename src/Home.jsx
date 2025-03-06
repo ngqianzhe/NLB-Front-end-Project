@@ -28,10 +28,10 @@ import {
 import LibraryLogo from './assets/Library.jpg';
 
 const Home = () => {  
-  function getOriginWithoutPort() {
+  /*function getOriginWithoutPort() {
     const url = new URL(window.location.href);
     return url.origin.replace(/:\d+$/, ''); 
-  }
+  }*/
 
   const [greeting, setGreeting] = useState('');
 
@@ -125,9 +125,9 @@ const Home = () => {
     const fetchOpeningHours = async () => {
       setIsLoading(true);
       try {
-        const origin = getOriginWithoutPort();
+        /*const origin = getOriginWithoutPort();
         const apiUrl = `${origin}:3400/NLB`;
-        //const apiUrl = 'http://138.2.104.173:3400/NLB';
+        */const apiUrl = 'http://138.2.104.173:3400/NLB';
         const response = await fetch(apiUrl);
         const data = await response.json();
         const library = data.branches.find(branch => branch.branchName === selectedValue);
@@ -353,9 +353,9 @@ const Home = () => {
 
     if (selectedChat === "Ask my Library") {
       try {
-        const origin = getOriginWithoutPort();
+        /*const origin = getOriginWithoutPort();
         const apiUrl = `${origin}:3000/ask-my-library?message=${encodeURIComponent(messageText)}`;
-        //const apiUrl = `http://138.2.92.117:3000/ask-my-library?message=${encodeURIComponent(messageText)}`;
+        */const apiUrl = `http://138.2.92.117:3000/ask-my-library?message=${encodeURIComponent(messageText)}`;
         const res = await fetch(apiUrl);
         const data = await res.json();
         chatbotResponse = data.message;
@@ -378,9 +378,9 @@ const Home = () => {
       // ... (Gemini API call) ...
       if (selectedFile) {
         try {
-          const origin = getOriginWithoutPort();
+          /*const origin = getOriginWithoutPort();
           const apiUrl = `${origin}:3600/upload`;
-          //const apiUrl = `http://213.35.110.195:3600/upload`;
+          */const apiUrl = `http://213.35.110.195:3600/upload`;
           
           const formData = new FormData();
           formData.append('image', selectedFile); // Use a more descriptive name like 'image'
@@ -535,13 +535,15 @@ const Home = () => {
       <Navbar />
       <div className="page" style={{ textAlign: "left", paddingInlineStart: "20px", color: "white", paddingTop: "3rem"}}>
         {isLoggedIn ? ( // Conditionally render the greeting
-          <h6 id="greeting" style={{ fontWeight: "bold" }}>
-            {greeting}, {userName}!
-          </h6>
+          <h4 id="header" style={{ fontWeight: "bold", textAlign: "center" }}>
+            {greeting}, {userName}! What would you like to do today?
+          </h4> 
         ) : (
-          <h6 id="greeting" style={{fontWeight: "bold"}}>{greeting}!</h6>
+          <h4 id="header" style={{ fontWeight: "bold", textAlign: "center" }}>
+            {greeting}! What would you like to do today?
+          </h4>
         )}
-        <h4 id="header" style={{textAlign: "center", fontWeight: "bold"}}>What would you like to do today?</h4> <br />
+        <br />
         <div className="content-wrapper">
           <div className="container-box">
             <h4 style={{fontWeight: "bold"}}>Plan Your Visit</h4>
