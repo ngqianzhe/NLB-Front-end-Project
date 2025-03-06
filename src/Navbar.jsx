@@ -111,6 +111,10 @@ const Navbar = () => {
                 <img className="icon" src={OracleLogo} alt="NLB Logo" /><h3 className="icon-name" style={{ color:'white', paddingTop: '10px', fontWeight: 'bold', fontFamily: 'Montserrat, serif', paddingInlineStart: '10px'}}>Oracle 23ai Select AI Demo for Libraries</h3>
             </Link> 
           </div>
+           {/* Add this button for toggling the navbar */}
+           <button className="navbar-toggler" style={{backgroundColor:"white", marginInlineEnd: "2em"}} type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+            </button>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">

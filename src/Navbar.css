@@ -125,8 +125,13 @@ input[type="radio"]:checked {
 }
 
 @media screen and (max-width: 1200px) {
+  .nav-item {
+    display: flex;
+    justify-content: left;
+  }
+
   .profile-container {
-    padding-inline-start: 30rem;
+    padding-inline-start: -608px;
   }
 }
 

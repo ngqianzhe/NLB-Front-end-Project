@@ -575,7 +575,7 @@ const Home = () => {
             <a href="#" className="button-container">Go to the library <FontAwesomeIcon icon={faArrowRight} color="#c74634" size="lg"/></a>
           </div>
           <div>
-              <img src={LibraryLogo} alt="Library Image" width="700" className="responsive-image"/>
+              <img src={LibraryLogo} alt="Library Image" width="700" />
           </div>
           <div className="rating-icon" ref={ratingIconRef} onMouseEnter={() => setIconVisible(false)}>
             {iconVisible && !ratingSubmitted && ( 
