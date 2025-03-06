@@ -760,6 +760,7 @@ const Home = () => {
             {greeting}! What would you like to do today?
           </h4>
         )}
+        <br />
         <div className="content-wrapper">
           <div className="container-box">
             <h4 style={{fontWeight: "bold"}}>Plan Your Visit</h4>
