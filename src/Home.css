@@ -343,11 +343,6 @@ html, body, #root {
     gap: 120px;
   }
   
-  #greeting {
-    padding-inline-start: 10px;
-    font-size: 17px;
-  }
-
   .hours {
     width: 72%;
   }
@@ -362,11 +357,6 @@ html, body, #root {
   .content-wrapper {
     padding-inline-start: 170px;
     gap: 150px;
-  }
-  
-  #greeting {
-    padding-inline-start: 20px;
-    font-size: 18px;
   }
 
   .hours {
@@ -383,11 +373,6 @@ html, body, #root {
   .content-wrapper {
     padding-inline-start: 280px;
     gap: 240px;
-  }
-  
-  #greeting {
-    padding-inline-start: 25px;
-    font-size: 20px;
   }
 
   .hours {
@@ -407,11 +392,6 @@ html, body, #root {
     padding-top: 30px;
     padding-bottom: 150px;
   }
-  
-  #greeting {
-    padding-inline-start: 30px;
-    font-size: 22px;
-  }
 
   .hours {
     width: 78%;
@@ -429,12 +409,7 @@ html, body, #root {
     gap: 300px;
     padding-top: 40px;
     padding-bottom: 250px;
-  }
-  
-  #greeting {
-    padding-inline-start: 32px;
-    font-size: 25px;
-  }
+  } 
 
   .hours {
     width: 79%;
