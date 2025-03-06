@@ -118,15 +118,27 @@ input[type="radio"]:checked {
   background-color: peachpuff;
 }
 
-@media screen and (max-width: 676px) and (max-height: 512px) {
+@media screen and (max-width: 676px) {
   .icon {
     padding-inline-start: 5px;
   }
 }
 
-@media screen and (min-width: 1303px) and (min-height: 750px) {
+@media screen and (max-width: 1200px) {
   .profile-container {
-    padding-inline-start: 51rem;
+    padding-inline-start: 30rem;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .profile-container {
+    padding-inline-start: 38rem;
+  }
+}
+
+@media screen and (min-width: 1303px) {
+  .profile-container {
+    padding-inline-start: 42rem;
   }
   
   .icon {
@@ -134,9 +146,9 @@ input[type="radio"]:checked {
   }
 }
 
-@media screen and (min-width: 1520px) and (min-height: 876px) {
+@media screen and (min-width: 1520px) {
   .profile-container {
-    padding-inline-start: 66rem;
+    padding-inline-start: 55rem;
   }
   
   .icon {
@@ -144,9 +156,9 @@ input[type="radio"]:checked {
   }
 }
 
-@media screen and (min-width: 1824px) and (min-height: 1051px) {
+@media screen and (min-width: 1824px) {
   .profile-container {
-    padding-inline-start: 86rem;
+    padding-inline-start: 82rem;
   }
   
   .icon {
@@ -154,9 +166,9 @@ input[type="radio"]:checked {
   }
 }
 
-@media screen and (min-width: 2087px) and (min-height: 1194px) {
+@media screen and (min-width: 2087px) {
   .profile-container {
-    padding-inline-start: 99rem;
+    padding-inline-start: 85rem;
   }
   
   .icon {
@@ -168,9 +180,9 @@ input[type="radio"]:checked {
   }
 }
 
-@media screen and (min-width: 2281px) and (min-height: 1314px) {
+@media screen and (min-width: 2281px) {
   .profile-container {
-    padding-inline-start: 110rem;
+    padding-inline-start: 96rem;
   }
   
   .icon {
