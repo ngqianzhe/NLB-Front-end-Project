@@ -13,6 +13,7 @@ html, body, #root {
   text-align: center;
   background-color: #02615b;
   font-family: "Lato", serif;
+  zoom: 100%;
 }
 
 #header {
