@@ -337,7 +337,7 @@ html, body, #root {
   background-color: rgb(57, 55, 55);
 }
 
-@media screen and (min-width: 1303px) and (min-height: 750px) {
+@media screen and (min-width: 1303px) {
   .content-wrapper {
     padding-inline-start: 90px;
     gap: 120px;
@@ -353,7 +353,7 @@ html, body, #root {
   }
 }
 
-@media screen and (min-width: 1520px) and (min-height: 876px) {
+@media screen and (min-width: 1520px) {
   .content-wrapper {
     padding-inline-start: 170px;
     gap: 150px;
@@ -369,7 +369,7 @@ html, body, #root {
   }
 }
 
-@media screen and (min-width: 1824px) and (min-height: 1051px) {
+@media screen and (min-width: 1824px) {
   .content-wrapper {
     padding-inline-start: 280px;
     gap: 240px;
@@ -385,7 +385,7 @@ html, body, #root {
   }
 }
 
-@media screen and (min-width: 2087px) and (min-height: 1194px) {
+@media screen and (min-width: 2087px) {
   .content-wrapper {
     padding-inline-start: 350px;
     gap: 270px;
@@ -403,7 +403,7 @@ html, body, #root {
   }
 }
 
-@media screen and (min-width: 2281px) and (min-height: 1314px) {
+@media screen and (min-width: 2281px) {
   .content-wrapper {
     padding-inline-start: 500px;
     gap: 300px;
