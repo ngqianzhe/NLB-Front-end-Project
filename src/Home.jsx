@@ -752,13 +752,14 @@ const Home = () => {
       <Navbar />
       <div className="page" style={{ textAlign: "left", paddingInlineStart: "20px", color: "white", marginTop: "3rem"}}>
         {isLoggedIn ? ( // Conditionally render the greeting
-          <h6 id="greeting" style={{ fontWeight: "bold" }}>
-            {greeting}, {userName}!
-          </h6>
+          <h4 id="header" style={{ fontWeight: "bold", textAlign: "center" }}>
+            {greeting}, {userName}! What would you like to do today?
+          </h4> 
         ) : (
-          <h6 id="greeting" style={{fontWeight: "bold"}}>{greeting}!</h6>
+          <h4 id="header" style={{ fontWeight: "bold", textAlign: "center" }}>
+            {greeting}! What would you like to do today?
+          </h4>
         )}
-        <h4 id="header" style={{textAlign: "center", fontWeight: "bold"}}>What would you like to do today?</h4> <br />
         <div className="content-wrapper">
           <div className="container-box">
             <h4 style={{fontWeight: "bold"}}>Plan Your Visit</h4>
